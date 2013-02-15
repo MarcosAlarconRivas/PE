@@ -5,11 +5,24 @@ import GA.Individual.Individual;
 
 public abstract class Mutation {
 	protected double baseRate;
-	protected double inbreedingMult;
-	protected double annealingFactor;
+	protected double inbreedingMult = 0;
+	protected double annealingFactor = 1;
 
 	public void mutate(Population creatures) {
-		// TODO Auto-generated method stub
+		double rate = baseRate;
+		
+		if(inbreedingMult>0){
+			rate+= inbreedingMult*creatures.inbreading();
+		}
+		
+		for(Individual ind : creatures.mutable()){
+			if(Math.random()<rate){
+				mutate(ind);
+			}
+			
+		}
+		
+		baseRate *= annealingFactor;
 		
 	}
 	
