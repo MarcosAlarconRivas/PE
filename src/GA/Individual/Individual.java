@@ -9,6 +9,9 @@ public abstract class Individual implements Comparable<Individual>{
 		return fitness.evaluate(this);
 	}
 	
+	/**
+	 * Decides if 'this' is better, equal or worse of than 'other'
+	 */
 	public int compareTo(Individual other){
 		double mine= this.fitness();
 		double its= other.fitness();

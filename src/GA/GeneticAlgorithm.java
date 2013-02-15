@@ -6,12 +6,12 @@ import GA.Mutation.Mutation;
 public class GeneticAlgorithm {
 	protected Reproduccion repFun;
 	protected Mutation mutFun;
-	protected Population creatures;
+	protected Population population;
 	protected long currentGen;
 	protected long generations;
 	
 	public GeneticAlgorithm(long numOfGenerations, Population pop, Reproduccion rep, Mutation mut){
-		creatures = pop;
+		population = pop;
 		repFun = rep;
 		mutFun = mut;
 		generations = numOfGenerations;
@@ -19,9 +19,9 @@ public class GeneticAlgorithm {
 	
 	protected void advanceGeneration(){
 		currentGen++;
-		repFun.reproduce(creatures);
-		mutFun.mutate(creatures);
-		creatures.recalculate();
+		repFun.reproduce(population);
+		mutFun.mutate(population);
+		population.recalculate();
 		
 	}
 	
@@ -36,6 +36,6 @@ public class GeneticAlgorithm {
 			advanceGeneration();
 		}
 
-		return creatures.getBest();
+		return population.getBest();
 	}
 }
