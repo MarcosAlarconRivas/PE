@@ -5,10 +5,21 @@ import GA.Replacement.Replacement;
 import GA.Selection.Selection;
 
 public class Reproduccion {
-	Replacement repFun;
-	Crossover xFun;
 	Selection selFun;
+	Crossover xFun;
+	Replacement repFun;
+	
+	public Reproduccion(Selection selectionMethod, Crossover crossMethod,
+			Replacement repalceMthod)
+	{
+		selFun = selectionMethod;
+		xFun = crossMethod;
+		repFun = repalceMthod;
+	}
 
+	/**
+	 * Reproduccion algorithm, decides the procreation for all the population.
+	 */
 	public void reproduce(Population creatures) {
 		// TODO Auto-generated method stub
 		
