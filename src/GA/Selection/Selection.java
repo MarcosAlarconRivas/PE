@@ -6,6 +6,6 @@ import GA.Individual.Individual;
 
 public interface Selection {
 	
-	List<Individual> select(Population creatures);
+	public List<Individual> select(Population creatures);
 	
 }

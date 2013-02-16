@@ -8,7 +8,7 @@ public interface Replacement {
 	
 	public boolean respectsElitism();
 
-	void replace(Population creatures, List<Individual> parents,
+	public void replace(Population creatures, List<Individual> parents,
 			List<Individual> children);
 	
 }

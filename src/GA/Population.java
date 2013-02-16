@@ -43,5 +43,13 @@ public class Population {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * @returns non elite individuals.
+	 */
+	public Set<Individual> mortals(){
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

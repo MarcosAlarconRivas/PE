@@ -5,6 +5,6 @@ import GA.Individual.Individual;
 
 public interface Crossover {
 
-	List<Individual> crossover(List<Individual> parents);
+	public List<Individual> crossover(List<Individual> parents);
 	
 }
