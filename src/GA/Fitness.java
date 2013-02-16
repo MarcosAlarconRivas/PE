@@ -3,6 +3,20 @@ package GA;
 import GA.Individual.Individual;
 
 public interface Fitness {
+	/**
+	 * The class of the Individuals to work with in this fitness.
+	 */
+	public Class<Individual> specie();
+	
+	/**
+	 * Core method of the Fitness function, evaluates an individual
+	 * with a double.
+	 */
 	public double evaluate(Individual creature);
-	boolean maximization();
+	
+	/**
+	 * True if you are trying to maximize the fitness evaluation
+	 * False if it mast be minimized.
+	 */
+	public boolean maximization();
 }
