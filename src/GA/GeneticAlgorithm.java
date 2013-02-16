@@ -10,7 +10,9 @@ public class GeneticAlgorithm {
 	protected long currentGen;
 	protected long generations;
 	
-	public GeneticAlgorithm(long numOfGenerations, Population pop, Reproduction rep, Mutation mut){
+	public GeneticAlgorithm(long numOfGenerations, Population pop, 
+			Reproduction rep, Mutation mut)
+	{
 		population = pop;
 		repFun = rep;
 		mutFun = mut;
@@ -22,7 +24,6 @@ public class GeneticAlgorithm {
 		repFun.reproduce(population);
 		mutFun.mutate(population);
 		population.recalculate();
-		
 	}
 	
 	/**
@@ -31,7 +32,7 @@ public class GeneticAlgorithm {
 	 */
 	public Individual search(){
 		currentGen = 0;
-		
+		mutFun.reset();
 		while(currentGen<generations){
 			advanceGeneration();
 		}

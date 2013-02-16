@@ -13,7 +13,9 @@ public abstract class Mutation {
 		startingBaseRate = baseRate = mutationRate;
 	}
 	
-	public Mutation(double baseProb, double inbreedingControl, double annealingControl){
+	public Mutation(double baseProb, double inbreedingControl, 
+			double annealingControl)
+	{
 		startingBaseRate = baseRate = baseProb;
 		inbreedingMult = inbreedingControl;
 		annealingFactor = annealingControl;
@@ -22,7 +24,7 @@ public abstract class Mutation {
 	/**
 	 * Mutation algorithm, decides the mutation for all the population.
 	 */
-	public void mutate(Population creatures) {
+	public void mutate(Population creatures){
 		double rate = baseRate;
 		
 		if(inbreedingMult>0){
