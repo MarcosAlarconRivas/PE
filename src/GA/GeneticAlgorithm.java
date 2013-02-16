@@ -4,13 +4,13 @@ import GA.Individual.Individual;
 import GA.Mutation.Mutation;
 
 public class GeneticAlgorithm {
-	protected Reproduccion repFun;
+	protected Reproduction repFun;
 	protected Mutation mutFun;
 	protected Population population;
 	protected long currentGen;
 	protected long generations;
 	
-	public GeneticAlgorithm(long numOfGenerations, Population pop, Reproduccion rep, Mutation mut){
+	public GeneticAlgorithm(long numOfGenerations, Population pop, Reproduction rep, Mutation mut){
 		population = pop;
 		repFun = rep;
 		mutFun = mut;
