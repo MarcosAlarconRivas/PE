@@ -5,6 +5,8 @@ import GA.Population;
 import GA.Individual.Individual;
 
 public interface Replacement {
+	
+	public boolean respectsElitism();
 
 	void replace(Population creatures, List<Individual> parents,
 			List<Individual> children);

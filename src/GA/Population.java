@@ -10,7 +10,7 @@ public class Population {
 		return null;
 	}
 
-	public int inbreading() {
+	public double inbreading() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -32,6 +32,14 @@ public class Population {
 	 * @returns creatures which are able to crossover.
 	 */
 	public Set<Individual> fertile(){
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/**
+	 * @returns elite individuals.
+	 */
+	public Set<Individual> elite(){
 		// TODO Auto-generated method stub
 		return null;
 	}
