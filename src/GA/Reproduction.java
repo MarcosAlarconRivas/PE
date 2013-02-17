@@ -1,8 +1,10 @@
 package GA;
 
+import java.util.List;
 import GA.Crossover.Crossover;
 import GA.Replacement.Replacement;
 import GA.Selection.Selection;
+import GA.Individual.Individual;
 
 public class Reproduction {
 	Selection selFun;
@@ -20,10 +22,11 @@ public class Reproduction {
 	/**
 	 * Reproduction algorithm, decides the procreation for all the population.
 	 */
-	public void reproduce(Population creatures) {
-		selFun.select(creatures);
-		xFun.crossover(creatures);
-		repFun.replace(creatures);
+	public void reproduce(Population population) {
+		List<Individual> children;
+		int[] parents = selFun.select(population);
+		children= xFun.crossover(parents, population);
+		repFun.replace(children, parents, population);
 	}
 
 }

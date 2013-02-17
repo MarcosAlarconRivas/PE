@@ -4,6 +4,7 @@ import java.util.Set;
 import GA.Individual.Individual;
 
 public class Population {
+	public Individual[] people;
 
 	public Individual getBest() {
 		// TODO Auto-generated method stub
