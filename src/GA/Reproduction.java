@@ -4,7 +4,6 @@ import java.util.List;
 import GA.Crossover.Crossover;
 import GA.Replacement.Replacement;
 import GA.Selection.Selection;
-import GA.Individual.Individual;
 
 public class Reproduction {
 	Selection selFun;

@@ -1,6 +1,5 @@
 package GA;
 
-import GA.Individual.Individual;
 import GA.Mutation.Mutation;
 
 public class GeneticAlgorithm {

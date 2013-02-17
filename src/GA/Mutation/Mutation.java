@@ -1,7 +1,7 @@
 package GA.Mutation;
 
+import GA.Individual;
 import GA.Population;
-import GA.Individual.Individual;
 
 public abstract class Mutation {
 	private double startingBaseRate;
