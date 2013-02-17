@@ -6,7 +6,7 @@ public interface Fitness {
 	/**
 	 * The class of the Individuals to work with in this fitness.
 	 */
-	public Class<Individual> specie();
+	public Class<? extends Individual> specie();
 	
 	/**
 	 * Core method of the Fitness function, evaluates an individual
