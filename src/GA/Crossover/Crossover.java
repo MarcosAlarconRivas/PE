@@ -1,10 +1,9 @@
 package GA.Crossover;
 
-import java.util.List;
-import GA.Individual.Individual;
+import GA.Population;
 
 public interface Crossover {
 
-	public List<Individual> crossover(List<Individual> parents);
+	public void crossover(Population pop);
 	
 }

@@ -31,12 +31,10 @@ public abstract class Mutation {
 			rate+= inbreedingMult*creatures.inbreading();
 		}
 		
-		for(Individual ind : creatures.mutable()){
-			if(Math.random()<rate){
-				mutate(ind);
-			}
-			
+		for(Individual ind : creatures.mortals()){
+			if(Math.random()<rate) mutate(ind);
 		}
+		
 		baseRate *= annealingFactor;
 	}
 	
