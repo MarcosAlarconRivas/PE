@@ -1,13 +1,19 @@
 package GA;
 
+import java.util.Arrays;
 import java.util.Set;
 
 public class Population {
 	public Individual[] people;
+	private int best;
+	protected double fitAverage;
 
+	public double average(){
+		return fitAverage;
+	}
+	
 	public Individual getBest() {
-		// TODO Auto-generated method stub
-		return null;
+		return people[best];
 	}
 
 	public double inbreading() {
@@ -16,16 +22,16 @@ public class Population {
 	}
 
 	public void recalculate() {
-		// TODO Auto-generated method stub
+		Arrays.sort(people);
+		best = 0;
 		
-	}
-	
-	/**
-	 * @returns elite individuals.
-	 */
-	public Set<Individual> elite(){
-		// TODO Auto-generated method stub
-		return null;
+		fitAverage= 0;
+		int length= people.length;
+		for(int i=0; i<length; i++){
+			fitAverage += people[i].fitness()/length;
+			if(people[i].compareTo(people[best])>0)
+				best= i;
+		}
 	}
 	
 	/**

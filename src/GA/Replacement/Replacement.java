@@ -7,6 +7,6 @@ import GA.Population;
 
 public interface Replacement {
 
-	public void replace(List<Individual> children, int[] parents, Population pop);
+	public void replace(List<? extends Individual> children, int[] parents, Population pop);
 	
 }
