@@ -1,21 +1,19 @@
 package GUI;
 
+import DoubleValue.BitVector;
+
 public class Testnig {
 
 	public static void main(String[] args) {
 		System.out.println("Project runing");
-		/*System.out.println(Double.MAX_VALUE);
-		System.out.println(Double.doubleToLongBits(Double.MAX_VALUE));
-		System.out.println(Double.doubleToRawLongBits(Double.MAX_VALUE));
-		System.out.println("-----------------------");*/
-		/*System.out.println(123456789);
-		long l= Double.doubleToLongBits(1.23456789E8);
-		 System.out.println(l);
-		 Long.toBinaryString(123456789);
-		 Double.toHexString(123456789);
-		
-		 System.out.println(Double.doubleToRawLongBits(123456789));
-		System.out.println(Double.longBitsToDouble(l));*/
+		for (int i=0; i<=255; i++){
+			for(int j=0; j<=8; j++){
+				byte b=BitVector.unsignedToByte(i);
+				if((i%j!=0)!= BitVector.getBit(b, j))
+					System.out.print(i+','+j+" fails"+'\n');
+			}
+		}
+
 	}
 
 }

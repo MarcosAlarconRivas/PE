@@ -18,7 +18,8 @@ public class BitVector {
 
 	public BitVector(InitType t, long length) {
 		this.length = length;
-		int bytes = (int)(length/8 +length%8);
+		int residue = (int) (length%8);
+		int bytes = (int)(length/8 +(residue>0?1:0));
 		g = new byte[bytes];
 		for (int i= 0; i< bytes-1; i++) {
 			switch (t) {
@@ -29,11 +30,16 @@ public class BitVector {
 				g[i] =  Byte.MAX_VALUE;
 				break;
 			case RANDOM:
-				g[i] =  (byte)(Byte.MIN_VALUE + Math.random()*Byte.MAX_VALUE);
+				g[i] =(byte)(Math.ceil(Math.random()*(Byte.MAX_VALUE-Byte.MIN_VALUE)));
 				//FIXME prove this random generation
 				break;
 			}
-			//TODO generate last byte
+		}
+		if(residue>0){
+			g[bytes-1]=Byte.MIN_VALUE; 
+			for(int i=0; i<residue; i++){
+				g[bytes-1]=(byte) (2*g[bytes-1]+(Math.random()>0.5?1:0));
+			}
 		}
 	}
 
@@ -55,13 +61,12 @@ public class BitVector {
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
-	private boolean getBit(byte b, long numOfBit) {
-		// TODO Auto-generated method stub
-		return false;
+	public static boolean getBit(byte b, long numOfBit) {
+		return (b%(1<<numOfBit) !=0 );
 	}
 
 	public void set(int position, boolean value) {
-		if(position>=0&&position<length){
+		if(position>=0 && position<length){
 			byte oldValue = g[(int)position/8];
 			g[(int)position/8]= setBit(oldValue, position%8, value);
 		}
@@ -71,53 +76,18 @@ public class BitVector {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-/**
-	public double getFenotipo(double tolerancia, double xMin, double xMax) {
-		long dec = binToDec();
-		Double fenotipo = xMin + dec * (xMax - xMin) ;// / numMax;
-		if (fenotipo < xMin || fenotipo > xMax) {
-			System.err.println("Fenotipo " + fenotipo + " fuera de rango");
-		}
-		return fenotipo;
+	
+	public static int byteToUnsigned(byte b){
+		if(b>=0) return (int)b;
+		return (int)b+256;
 	}
+	
+	public static byte unsignedToByte(int i){
+		if(i<0||i>255) return 0;
+		if(i>127) return (byte)(i-256);
+		return (byte)i;
+	}
+	
 
-	private long binToDec() {
-		long pot = 1;
-		long result = 0;
-		for (int i = 0; i < g.length; i++) {
-			if (g[i])
-				result += pot;
-			pot *= 2;
-		}
-		return result;
-	}
-
-	public int getFen() {
-		int fen = 0;
-		for (int i = 0, m = 1; i < g.length; i++, m *= 2)
-			if (g[i])
-				fen += m;
-		return fen;
-	}
-
-	public static BitVector[] cut(int[] cutPoint, BitVector gen) {
-		BitVector[] slice = new BitVector[cutPoint.length + 1];
-		slice[0] = new BitVector(cutPoint[0], 0, gen);
-		for (int i = 1; i < cutPoint.length - 1; i++)
-			slice[i] = new BitVector(cutPoint[i + 1] - cutPoint[i],
-					cutPoint[i], gen);
-		slice[cutPoint.length] = new BitVector(gen.length()
-				- cutPoint[cutPoint.length - 1],
-				cutPoint[cutPoint.length - 1], gen);
-		return slice;
-	}
-
-	public void muta(double prob) {
-		for (int i = 0; i < g.length; i++)
-			if (Math.random() <= prob) {
-				g[i] = !g[i];
-			}
-	}
-**/
 
 }
