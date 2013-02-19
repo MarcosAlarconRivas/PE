@@ -3,6 +3,10 @@ package GA.Mutation;
 import GA.Individual;
 import GA.Population;
 
+/**
+ * Homogeneus (same for all the population) mutation function.
+ * Can be extended for improves.
+ */
 public abstract class Mutation {
 	private double startingBaseRate;
 	protected double baseRate;

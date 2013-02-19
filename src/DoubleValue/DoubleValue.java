@@ -3,10 +3,11 @@ package DoubleValue;
 import GA.Individual;
 
 public class DoubleValue extends Individual {
-	double genotype;
+	BitVector genotype;
+	double fenotype;
 	
-	public DoubleValue(double genotype){
-		this.genotype= genotype;
+	public DoubleValue(){
+		this.genotype= new BitVector((DoubleFunction)fitness);
 	}
 	
 	public boolean equals(Individual other){

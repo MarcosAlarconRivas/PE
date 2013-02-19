@@ -1,7 +1,5 @@
-package GA.Crossover;
+package GA;
 
-import GA.Individual;
-import GA.Population;
 import java.util.LinkedList;
 
 public interface Crossover {

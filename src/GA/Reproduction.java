@@ -1,11 +1,11 @@
 package GA;
 
 import java.util.List;
-import GA.Crossover.Crossover;
 import GA.Replacement.Replacement;
 import GA.Selection.Selection;
 
 public class Reproduction {
+	
 	Selection selFun;
 	Crossover xFun;
 	Replacement repFun;
