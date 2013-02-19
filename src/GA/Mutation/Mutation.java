@@ -31,7 +31,7 @@ public abstract class Mutation {
 			rate+= inbreedingMult*creatures.inbreading();
 		}
 		
-		for(Individual ind : creatures.mortals()){
+		for(Individual ind : creatures.mutable()){
 			if(Math.random()<rate) mutate(ind);
 		}
 		

@@ -1,11 +1,17 @@
 package GA;
 
-import java.util.Arrays;
 import java.util.Set;
 
 public class Population {
+	//copied elite creatures (they are also in people).
+	Individual elite[] = null;
+	
+	//current full population
 	public Individual[] people;
+	
+	//position in people of the best individual
 	private int best;
+	
 	protected double fitAverage;
 
 	public double average(){
@@ -17,29 +23,41 @@ public class Population {
 	}
 
 	public double inbreading() {
-		// TODO Auto-generated method stub
+		// TODO Implement inbreading calculus
 		return 0;
 	}
 
 	public void recalculate() {
-		Arrays.sort(people);
+		//Arrays.sort(people);
 		best = 0;
-		
 		fitAverage= 0;
 		int length= people.length;
 		for(int i=0; i<length; i++){
+			//calculating fitAverage
 			fitAverage += people[i].fitness()/length;
+			
+			//calculating best
 			if(people[i].compareTo(people[best])>0)
 				best= i;
+			
+			//calculating elite
+			if(elite!=null){
+				// TODO Implement elite calculus
+			}
 		}
 	}
 	
 	/**
-	 * @returns non elite individuals.
+	 * @returns individuals to crossover.
 	 */
-	public Set<Individual> mortals(){
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Individual> fertile(){
+		return ((Set<Individual>)java.util.Arrays.asList(people));
+	}
+	/**
+	 * @returns individuals to mutate.
+	 */
+	public Set<Individual> mutable(){
+		return ((Set<Individual>)java.util.Arrays.asList(people));
 	}
 
 }
