@@ -3,6 +3,7 @@ package GUI;
 public class Testnig {
 
 	public static void main(String[] args) {
+		System.out.println("Project runing");
 		/*System.out.println(Double.MAX_VALUE);
 		System.out.println(Double.doubleToLongBits(Double.MAX_VALUE));
 		System.out.println(Double.doubleToRawLongBits(Double.MAX_VALUE));
