@@ -14,15 +14,33 @@ public class BitVector {
 	private long length;
 
 	BitVector(DoubleFunction fitness) {
-		new BitVector(InitType.RANDOM, fitness.precision);
+		this(InitType.RANDOM, fitness.precision);
 	}
 	
+	/**
+	 * Creates a natural binary representation of the number.
+	 */
+	public BitVector(long unsigned){
+		this(unsigned, minimalLength(unsigned));
+	}
+	
+	private static int minimalLength(long unsigned){
+		if(unsigned==0)return 1;
+		int shift;
+		for(shift=0; unsigned>= 0x1<<shift; shift++);
+		return shift;
+	}
+	
+	/**
+	 * Creates a natural binary representation of the number,
+	 * and saves it in a vector with given length.
+	 */
 	public BitVector(long unsigned, long length){
 		this.length = length;
 		if(unsigned<0){
 			g = null;
 		}else{
-			g = new byte[(int) (length/8)];
+			g = new byte[(int) (length/8)+(length%8>0?1:0)];
 			for(int i=0; i<g.length; i++){
 				g[i]= unsignedToByte((int) (unsigned%256));
 				unsigned /= 256;
@@ -69,7 +87,7 @@ public class BitVector {
 		return length;
 	}
 
-	/**public BitVector(BitVector[] meiosis1, BitVector[] meiosis2) {
+	/*public BitVector(BitVector[] meiosis1, BitVector[] meiosis2) {
 		// Genera un hijo a partir de los genes troceados de 2 padres
 		g = new boolean[meiosis1[0].g.length + meiosis1[1].g.length
 				* (meiosis1.length - 1)];
@@ -114,55 +132,55 @@ public class BitVector {
 	}
 	
 	public static int byteToUnsigned(byte b){
-		if(b>=0) return (int)b;
-		return (int)b+256;
+		return b+128;
 	}
 	
 	public static byte unsignedToByte(int i){
 		if(i<0||i>255) return 0;
-		if(i>127) return (byte)(i-256);
-		return (byte)i;
+		return (byte)(i-128);
 	}
 	
-	private static char halfByteToHex(int num){
-		if(num<10)return (char) ('0'+num);//FIXME
-		switch(num){
-			case 10: return 'A';
-			case 11: return 'B';
-			case 12: return 'C';
-			case 13: return 'D';
-			case 14: return 'E';
-			case 15: return 'F';
-			default: return '?';
+	public long toUnsigned(){
+		long sum = 0;
+		int b = g.length-1;;
+		for(; b>-1; ){
+			sum *= 256;
+			sum += BitVector.byteToUnsigned(g[b--]);
 		}
+		return sum;
 	}
 	
-	public static String byteToHex(byte b){
-		int natVal = byteToUnsigned(b);
-		char ff[] = {halfByteToHex(natVal/16), halfByteToHex(natVal%16)};
-		return String.valueOf(ff);
+	private static String byteToHex(byte b){
+		int i = byteToUnsigned(b);
+		String result = "";
+		if(i<16) result += '0';
+		result += Integer.toHexString(i);
+		return result;
 	}
-	
 	/**
 	 * @returns Hexadecimal representation of the bit vector.
 	 */
-	public String toString(){
-		String result = "[";
+	public String toHexString(){
+		String result = "";
 		for(int i= g.length-1; i>=0; i--){
 			result +=byteToHex(g[i]);
 		}
-		return result+"]";
+		return result;
 	}
 	
 	/**
 	 * @returns Binary representation of the bit vector.
 	 */
-	public String toBinary(){
-		String result = "[";
+	public String toBinaryString(){
+		String result = "";
 		for(long i= length-1; i>=0; i--){
 			result +=(get(i)?1:0);
 		}
-		return result+"]";
+		return result;
+	}
+	
+	public String toString(){
+		return "["+toHexString()+"]";
 	}
 
 

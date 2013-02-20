@@ -12,20 +12,50 @@ public class Testnig {
 			int j = BitVector.byteToUnsigned(b);
 			System.out.println(i+"="+j+"="+BitVector.byteToHex(b));
 		}*/
+		
 		/* RUNS
-		 for (int i=0; i<256; i++){
-			for (int j=0; j<256; j++){
-				byte b[] = {BitVector.unsignedToByte(j), BitVector.unsignedToByte(i)};
-			System.out.print(i+","+j+": ");
-			System.out.println(new BitVector(b));
+		int j=0;
+		byte i = Byte.MIN_VALUE;
+		for(; ; i++, j++){
+			  System.out.println(j+"="+BitVector.byteToUnsigned(i));
+			 if( i==Byte.MAX_VALUE) break;
+		  }*/
+		
+		/* RUNS
+		long lon=-1;
+		for (long i=1; i<Long.MAX_VALUE; i*=2){
+			BitVector bv = new BitVector(i);
+			if(lon != bv.length()){
+				lon = bv.length();
+				System.out.print(i+"->");
+				System.out.print(bv.length()+" bits->");
+				System.out.println(bv.g.length+" bytes");
 			}
+				
 		}*/
-		  for (int i=0; i<256; i++){
+		
+		/* RUNS
+		for (int i=0; i<1024; i++){
+			System.out.print(i+"=");
+			System.out.println(new BitVector(i).toUnsigned());
+		} */
+		
+		/* RUNS
+		 for (int i=0; i<1024; i++){
+			System.out.print(i+": ");
+			System.out.println(new BitVector((long)i));
+		}*/
+		
+		/* RUNS
+		for(int i=1024; i<4096; i++){
+			  BitVector bv = new BitVector(i);
+			  System.out.println(bv.toString()+"="+Integer.toHexString(i));
+		}*/
 
-				byte b[]= {BitVector.unsignedToByte(i)};
-				BitVector bv = new BitVector(b);
+		  for (int i=0; i<256; i++){
+				BitVector bv = new BitVector(i);
 				System.out.print("= "+i);
-				System.out.print("= "+bv.toBinary());
+				System.out.print("= "+bv.toBinaryString());
 				System.out.print("= "+bv+'\n');
 		}
 		
