@@ -7,13 +7,21 @@ package DoubleValue;
 public class BitVector {
 	public enum InitType {ALL0, ALL1, RANDOM}
 
+	//Real vector containing the info.
 	private byte[] g;
+	
+	//number of bits contained.
 	private long length;
 
 	public BitVector(DoubleFunction fitness) {
 		new BitVector(InitType.RANDOM, fitness.precision);
 	}
 
+	public BitVector(byte vect[]){
+		g = vect;
+		length = 8*vect.length;
+	}
+	
 	public BitVector(InitType t, long length) {
 		this.length = length;
 		int residue = (int) (length%8);
@@ -39,6 +47,13 @@ public class BitVector {
 			}
 		}
 	}
+	
+	/**
+	 * @return number of bits contained.
+	 */
+	public long length(){
+		return length;
+	}
 
 	/**public BitVector(BitVector[] meiosis1, BitVector[] meiosis2) {
 		// Genera un hijo a partir de los genes troceados de 2 padres
@@ -52,7 +67,11 @@ public class BitVector {
 				g[k] = padres[i % 2][i].g[j];
 		//numMax = (long) (Math.pow(2, g.length) - 1);
 	}*/
-
+	
+	/**
+	 * gets the bit[position]
+	 * @return the specified bit value as a boolean.
+	 */
 	public boolean get(long position) {
 		if(position<0||position>length)return false;
 		return getBit(g[(int) (position/8)], position%8);
@@ -62,6 +81,9 @@ public class BitVector {
 		return (b%(0x1<<numOfBit) !=0 );
 	}
 
+	/**
+	 * sets the bit[position]= (boolean)value
+	 */
 	public void set(int position, boolean value) {
 		if(position<0 || position>=length) return;
 		
@@ -107,6 +129,9 @@ public class BitVector {
 		return String.valueOf(ff);
 	}
 	
+	/**
+	 * @returns Hexadecimal representation of the bit vector.
+	 */
 	public String toString(){
 		String result = "";
 		for(int i=g.length-1; i>=0; i--){
