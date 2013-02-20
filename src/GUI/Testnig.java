@@ -54,9 +54,8 @@ public class Testnig {
 
 		  for (int i=0; i<256; i++){
 				BitVector bv = new BitVector(i);
-				System.out.print("= "+i);
-				System.out.print("= "+bv.toBinaryString());
-				System.out.print("= "+bv+'\n');
+				System.out.print(i+"="+bv);
+				System.out.print("="+bv.toBinaryString()+'\n');
 		}
 		
 	}

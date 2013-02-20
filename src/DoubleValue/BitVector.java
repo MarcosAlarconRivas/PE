@@ -5,6 +5,7 @@ package DoubleValue;
  * It works as a bit[], but is implemented with a byte[] (for efficiency).
  */
 public class BitVector {
+	//Type used to initialize the vector with 0s, 1s or randomly 
 	public enum InitType {ALL0, ALL1, RANDOM}
 
 	//Real vector containing the info.
@@ -46,38 +47,49 @@ public class BitVector {
 				unsigned /= 256;
 			}
 		}
-		
 	}
-
+	
+	/**
+	 * Obvious constructor.
+	 */
 	public BitVector(byte vect[]){
 		g = vect;
 		length = 8*vect.length;
 	}
 	
+	/**
+	 * Initialize as '@param t' a vector of '@param length' bits.
+	 */
 	public BitVector(InitType t, long length) {
 		this.length = length;
 		int residue = (int) (length%8);
 		int bytes = (int)(length/8 +(residue>0?1:0));
 		g = new byte[bytes];
-		for (int i= 0; i< bytes-1; i++) {
+		for (int i= 0; i< bytes; i++) {
 			switch (t) {
 			case ALL0:
-				g[i] = Byte.MIN_VALUE;
+				g[i] = unsignedToByte(0);
 				break;
 			case ALL1:
-				g[i] =  Byte.MAX_VALUE;
+				g[i] = unsignedToByte(255);
 				break;
 			case RANDOM:
-				g[i] =(byte)(Math.ceil(Math.random()*(Byte.MAX_VALUE-Byte.MIN_VALUE)));
+				g[i] = unsignedToByte((int)Math.ceil(Math.random()*255));
 				break;
 			}
 		}
-		if(residue>0){
-			g[bytes-1]=Byte.MIN_VALUE; 
-			for(int i=0; i<residue; i++){
-				g[bytes-1]=(byte) (2*g[bytes-1]+(Math.random()>0.5?1:0));
-			}
-		}
+		/*TRY0
+		 * while(residue>0){
+			g[bytes-1] &= ~(0x1<<--residue);
+			//delete possible bits in positions > length
+		}*/
+		/*TRY1
+		 * int shift = 0x1;
+		while(residue>shift){
+			shift= shift<<1;
+			g[bytes-1] &= ~(shift);
+			//delete possible bits in positions > length
+		}*/
 	}
 	
 	/**
@@ -101,20 +113,20 @@ public class BitVector {
 	}*/
 	
 	/**
-	 * gets the bit[position]
+	 * Gets the bit[position]
 	 * @return the specified bit value as a boolean.
 	 */
-	public boolean get(long position) {//FIXME something is wrong
+	public boolean get(long position) {//FIXME probe it
 		if(position<0||position>=length)return false;
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
 	private static boolean getBit(byte b, long numOfBit) {
-		return (b%(0x1<<numOfBit) !=0 );
+		return (b | 0x1<<numOfBit) !=0 ;
 	}
 
 	/**
-	 * sets the bit[position]= (boolean)value
+	 * Sets the bit[position]= (boolean)value
 	 */
 	public void set(int position, boolean value) {
 		if(position<0 || position>=length) return;
@@ -128,21 +140,30 @@ public class BitVector {
 		
 		if(value) return (byte) (oldValue | 0x1<<position);
 		
-		return (byte) (oldValue & 0x1<<position);
+		return (byte) (oldValue & ~(0x1<<position));
 	}
 	
+	/**
+	 * Given a byte coded in natural binary returns its value.
+	 */
 	public static int byteToUnsigned(byte b){
 		return b+128;
 	}
 	
-	public static byte unsignedToByte(int i){
-		if(i<0||i>255) return 0;
-		return (byte)(i-128);
+	/**
+	 * Given 0<=natural<=255 returns its codification in natural binary.
+	 */
+	public static byte unsignedToByte(int n){
+		if(n<0||n>255) return 0;
+		return (byte)(n-128);
 	}
 	
+	/**
+	 * @returns the value of the vector (as natural).
+	 */
 	public long toUnsigned(){
 		long sum = 0;
-		int b = g.length-1;;
+		int b = g.length-1;
 		for(; b>-1; ){
 			sum *= 256;
 			sum += BitVector.byteToUnsigned(g[b--]);
@@ -161,9 +182,10 @@ public class BitVector {
 	 * @returns Hexadecimal representation of the bit vector.
 	 */
 	public String toHexString(){
-		String result = "";
-		for(int i= g.length-1; i>=0; i--){
-			result +=byteToHex(g[i]);
+		if(length==0) return "";
+		String result = Integer.toHexString(g[g.length-1]);
+		for(int i= g.length-2; i>=0; i--){
+			result += byteToHex(g[i]);
 		}
 		return result;
 	}
