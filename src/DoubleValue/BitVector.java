@@ -13,8 +13,22 @@ public class BitVector {
 	//number of bits contained.
 	private long length;
 
-	public BitVector(DoubleFunction fitness) {
+	BitVector(DoubleFunction fitness) {
 		new BitVector(InitType.RANDOM, fitness.precision);
+	}
+	
+	public BitVector(long unsigned, long length){
+		this.length = length;
+		if(unsigned<0){
+			g = null;
+		}else{
+			g = new byte[(int) (length/8)];
+			for(int i=0; i<g.length; i++){
+				g[i]= unsignedToByte((int) (unsigned%256));
+				unsigned /= 256;
+			}
+		}
+		
 	}
 
 	public BitVector(byte vect[]){
@@ -72,12 +86,12 @@ public class BitVector {
 	 * gets the bit[position]
 	 * @return the specified bit value as a boolean.
 	 */
-	public boolean get(long position) {
-		if(position<0||position>length)return false;
+	public boolean get(long position) {//FIXME something is wrong
+		if(position<0||position>=length)return false;
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
-	public static boolean getBit(byte b, long numOfBit) {
+	private static boolean getBit(byte b, long numOfBit) {
 		return (b%(0x1<<numOfBit) !=0 );
 	}
 
@@ -125,7 +139,7 @@ public class BitVector {
 	
 	public static String byteToHex(byte b){
 		int natVal = byteToUnsigned(b);
-		char ff[] = {halfByteToHex(natVal/256), halfByteToHex(natVal%256)};
+		char ff[] = {halfByteToHex(natVal/16), halfByteToHex(natVal%16)};
 		return String.valueOf(ff);
 	}
 	
@@ -133,11 +147,22 @@ public class BitVector {
 	 * @returns Hexadecimal representation of the bit vector.
 	 */
 	public String toString(){
-		String result = "";
-		for(int i=g.length-1; i>=0; i--){
-			result+=byteToHex(g[i]);
+		String result = "[";
+		for(int i= g.length-1; i>=0; i--){
+			result +=byteToHex(g[i]);
 		}
-		return result;
+		return result+"]";
+	}
+	
+	/**
+	 * @returns Binary representation of the bit vector.
+	 */
+	public String toBinary(){
+		String result = "[";
+		for(long i= length-1; i>=0; i--){
+			result +=(get(i)?1:0);
+		}
+		return result+"]";
 	}
 
 
