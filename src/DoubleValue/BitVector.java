@@ -9,8 +9,6 @@ public class BitVector {
 
 	private byte[] g;
 	private long length;
-	private DoubleValue owner;
-	
 
 	public BitVector(DoubleFunction fitness) {
 		new BitVector(InitType.RANDOM, fitness.precision);
@@ -31,7 +29,6 @@ public class BitVector {
 				break;
 			case RANDOM:
 				g[i] =(byte)(Math.ceil(Math.random()*(Byte.MAX_VALUE-Byte.MIN_VALUE)));
-				//FIXME prove this random generation
 				break;
 			}
 		}
@@ -62,19 +59,22 @@ public class BitVector {
 	}
 
 	public static boolean getBit(byte b, long numOfBit) {
-		return (b%(1<<numOfBit) !=0 );
+		return (b%(0x1<<numOfBit) !=0 );
 	}
 
 	public void set(int position, boolean value) {
-		if(position>=0 && position<length){
-			byte oldValue = g[(int)position/8];
-			g[(int)position/8]= setBit(oldValue, position%8, value);
-		}
+		if(position<0 || position>=length) return;
+		
+		byte oldValue = g[(int)position/8];
+		g[(int)position/8]= setBit(oldValue, position%8, value);
 	}
 
-	private byte setBit(byte oldValue, int i, boolean value) {
-		// TODO Auto-generated method stub
-		return 0;
+	private byte setBit(byte oldValue, int position, boolean value) {
+		if(position>7||position<0) return oldValue;
+		
+		if(value) return (byte) (oldValue | 0x1<<position);
+		
+		return (byte) (oldValue & 0x1<<position);
 	}
 	
 	public static int byteToUnsigned(byte b){
@@ -88,6 +88,32 @@ public class BitVector {
 		return (byte)i;
 	}
 	
+	private static char halfByteToHex(int num){
+		if(num<10)return (char) ('0'+num);//FIXME
+		switch(num){
+			case 10: return 'A';
+			case 11: return 'B';
+			case 12: return 'C';
+			case 13: return 'D';
+			case 14: return 'E';
+			case 15: return 'F';
+			default: return '?';
+		}
+	}
+	
+	public static String byteToHex(byte b){
+		int natVal = byteToUnsigned(b);
+		char ff[] = {halfByteToHex(natVal/256), halfByteToHex(natVal%256)};
+		return String.valueOf(ff);
+	}
+	
+	public String toString(){
+		String result = "";
+		for(int i=g.length-1; i>=0; i--){
+			result+=byteToHex(g[i]);
+		}
+		return result;
+	}
 
 
 }
