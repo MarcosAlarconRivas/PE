@@ -19,7 +19,7 @@ public class Testnig {
 		for(; ; i++, j++){
 			  System.out.println(j+"="+BitVector.byteToUnsigned(i));
 			 if( i==Byte.MAX_VALUE) break;
-		  }*/
+		}*/
 		
 		/* RUNS
 		long lon=-1;
@@ -35,15 +35,11 @@ public class Testnig {
 		}*/
 		
 		/* RUNS
-		for (int i=0; i<1024; i++){
+		for (int i=0; i<1025; i++){
 			System.out.print(i+"=");
-			System.out.println(new BitVector(i).toUnsigned());
-		} */
-		
-		/* RUNS
-		 for (int i=0; i<1024; i++){
-			System.out.print(i+": ");
-			System.out.println(new BitVector((long)i));
+			BitVector bv =new BitVector(i);
+			System.out.print(bv.toUnsigned()+"="+bv);
+			System.out.println(": length= "+bv.length());
 		}*/
 		
 		/* RUNS
@@ -51,12 +47,14 @@ public class Testnig {
 			  BitVector bv = new BitVector(i);
 			  System.out.println(bv.toString()+"="+Integer.toHexString(i));
 		}*/
-
-		  for (int i=0; i<256; i++){
+		
+		
+		  for (int i=127; i<256; i++){
 				BitVector bv = new BitVector(i);
 				System.out.print(i+"="+bv);
 				System.out.print("="+bv.toBinaryString()+'\n');
 		}
+		
 		
 	}
 }

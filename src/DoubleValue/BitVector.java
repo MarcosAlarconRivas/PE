@@ -121,8 +121,8 @@ public class BitVector {
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
-	private static boolean getBit(byte b, long numOfBit) {
-		return (b | 0x1<<numOfBit) !=0 ;
+	private static boolean getBit(byte b, long position) {
+		return (b & 0x1<<position) !=0 ;
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class BitVector {
 	 */
 	public String toHexString(){
 		if(length==0) return "";
-		String result = Integer.toHexString(g[g.length-1]);
+		String result = Integer.toHexString(byteToUnsigned(g[g.length-1]));
 		for(int i= g.length-2; i>=0; i--){
 			result += byteToHex(g[i]);
 		}
