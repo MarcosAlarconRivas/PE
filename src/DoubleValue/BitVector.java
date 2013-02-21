@@ -12,13 +12,14 @@ public class BitVector {
 	public static final InitType RANDOM= InitType.RANDOM;
 
 	//Real vector containing the info.
-	public byte[] g;//XXX
+	private byte[] g;
 
 	//number of bits contained.
 	private long length;
 
+	@SuppressWarnings("static-access")
 	BitVector(DoubleFunction fitness) {
-		this(InitType.RANDOM, fitness.precision);
+		this(InitType.RANDOM, fitness.genotypeBits);
 	}
 
 	/**
@@ -120,8 +121,7 @@ public class BitVector {
 	 * @return the specified bit value as a boolean.
 	 */
 	public boolean get(long position) {
-		//TODO mask the 8th bit
-		//if(position<0||position>=length)return false;
+		if(position<0||position>=length)return false;
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
@@ -145,6 +145,14 @@ public class BitVector {
 		if(value) return (byte) (oldValue | 0x1<<position);
 
 		return (byte) (oldValue & ~(0x1<<position));
+	}
+	
+	/**
+	 * Switches the bit[position]= !bit[position];
+	 */
+	public void xor(long position) {
+		if(position<0 || position>=length) return;
+		g[(int)position/8] ^= 0x1<<position%8;
 	}
 
 	/**

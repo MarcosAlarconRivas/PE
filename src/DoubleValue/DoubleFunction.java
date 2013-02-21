@@ -7,7 +7,8 @@ public abstract class DoubleFunction implements Fitness {
 
 	protected boolean maximization = true;
 	protected static double lowLimit, highLimit;
-	protected static int precision;
+	protected static int genotypeBits = 16;
+	protected static double failover = 1;
 	
 	@Override
 	public Class<? extends Individual> specie() {
@@ -16,7 +17,8 @@ public abstract class DoubleFunction implements Fitness {
 
 	@Override
 	public double evaluate(Individual creature) {
-		return fitnessFun(((DoubleValue) creature).fenotype);
+		double val = ((DoubleValue) creature).genotype.toUnsigned()*failover;
+		return fitnessFun(lowLimit+val);
 	}
 
 	@Override
@@ -29,8 +31,9 @@ public abstract class DoubleFunction implements Fitness {
 		highLimit= max;
 	}
 	
-	public static void setPrecision(int numOfBits){
-		precision = numOfBits;
+	public static void setFailover(double failover){
+		DoubleFunction.failover = failover;
+		DoubleFunction.genotypeBits = (int)((highLimit-lowLimit)/failover+1);
 	}
 	
 	protected abstract double fitnessFun(double fenotype);

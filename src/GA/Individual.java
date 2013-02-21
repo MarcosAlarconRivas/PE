@@ -3,9 +3,21 @@ package GA;
 
 public abstract class Individual implements Comparable<Individual>{
 	public static Fitness fitness;
+	public double lastEvaluation;
 	
+	/**
+	 * @returns the fitness of this Individual.
+	 */
 	public double fitness(){
-		return fitness.evaluate(this);
+		return lastEvaluation;
+	}
+	
+	/**
+	 * 
+	 * recalces and @returns the fitness of this Individual.
+	 */
+	public double recalce(){
+		return lastEvaluation=fitness.evaluate(this);
 	}
 	
 	/**

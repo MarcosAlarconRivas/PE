@@ -4,7 +4,6 @@ import GA.Individual;
 
 public class DoubleValue extends Individual {
 	BitVector genotype;
-	double fenotype;
 	
 	public DoubleValue(){
 		this.genotype= new BitVector((DoubleFunction)fitness);
