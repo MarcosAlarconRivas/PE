@@ -7,31 +7,34 @@ package DoubleValue;
 public class BitVector {
 	//Type used to initialize the vector with 0s, 1s or randomly 
 	public enum InitType {ALL0, ALL1, RANDOM}
+	public static final InitType ALL_0= InitType.ALL0;
+	public static final InitType ALL_1= InitType.ALL1;
+	public static final InitType RANDOM= InitType.RANDOM;
 
 	//Real vector containing the info.
-	private byte[] g;
-	
+	public byte[] g;//XXX
+
 	//number of bits contained.
 	private long length;
 
 	BitVector(DoubleFunction fitness) {
 		this(InitType.RANDOM, fitness.precision);
 	}
-	
+
 	/**
 	 * Creates a natural binary representation of the number.
 	 */
 	public BitVector(long unsigned){
 		this(unsigned, minimalLength(unsigned));
 	}
-	
+
 	private static int minimalLength(long unsigned){
 		if(unsigned==0)return 1;
 		int shift;
 		for(shift=0; unsigned>= 0x1<<shift; shift++);
 		return shift;
 	}
-	
+
 	/**
 	 * Creates a natural binary representation of the number,
 	 * and saves it in a vector with given length.
@@ -48,7 +51,7 @@ public class BitVector {
 			}
 		}
 	}
-	
+
 	/**
 	 * Obvious constructor.
 	 */
@@ -56,7 +59,7 @@ public class BitVector {
 		g = vect;
 		length = 8*vect.length;
 	}
-	
+
 	/**
 	 * Initialize as '@param t' a vector of '@param length' bits.
 	 */
@@ -91,7 +94,7 @@ public class BitVector {
 			//delete possible bits in positions > length
 		}*/
 	}
-	
+
 	/**
 	 * @return number of bits contained.
 	 */
@@ -111,13 +114,14 @@ public class BitVector {
 				g[k] = padres[i % 2][i].g[j];
 		//numMax = (long) (Math.pow(2, g.length) - 1);
 	}*/
-	
+
 	/**
 	 * Gets the bit[position]
 	 * @return the specified bit value as a boolean.
 	 */
-	public boolean get(long position) {//FIXME probe it
-		if(position<0||position>=length)return false;
+	public boolean get(long position) {
+		//TODO mask the 8th bit
+		//if(position<0||position>=length)return false;
 		return getBit(g[(int) (position/8)], position%8);
 	}
 
@@ -128,36 +132,35 @@ public class BitVector {
 	/**
 	 * Sets the bit[position]= (boolean)value
 	 */
-	public void set(int position, boolean value) {
+	public void set(long position, boolean value) {
 		if(position<0 || position>=length) return;
-		
+
 		byte oldValue = g[(int)position/8];
-		g[(int)position/8]= setBit(oldValue, position%8, value);
+		g[(int)position/8]= setBit(oldValue, (int)position%8, value);
 	}
 
 	private byte setBit(byte oldValue, int position, boolean value) {
 		if(position>7||position<0) return oldValue;
-		
+
 		if(value) return (byte) (oldValue | 0x1<<position);
-		
+
 		return (byte) (oldValue & ~(0x1<<position));
 	}
-	
+
 	/**
 	 * Given a byte coded in natural binary returns its value.
 	 */
 	public static int byteToUnsigned(byte b){
-		return b+128;
+		return (b+128)^0x1<<7;
 	}
-	
+
 	/**
 	 * Given 0<=natural<=255 returns its codification in natural binary.
 	 */
 	public static byte unsignedToByte(int n){
-		if(n<0||n>255) return 0;
-		return (byte)(n-128);
+		return (byte)((n-128)^0x1<<7);
 	}
-	
+
 	/**
 	 * @returns the value of the vector (as natural).
 	 */
@@ -170,7 +173,7 @@ public class BitVector {
 		}
 		return sum;
 	}
-	
+
 	private static String byteToHex(byte b){
 		int i = byteToUnsigned(b);
 		String result = "";
@@ -189,7 +192,7 @@ public class BitVector {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @returns Binary representation of the bit vector.
 	 */
@@ -200,7 +203,7 @@ public class BitVector {
 		}
 		return result;
 	}
-	
+
 	public String toString(){
 		return "["+toHexString()+"]";
 	}
