@@ -6,7 +6,7 @@ public class DoubleValue extends Individual {
 	BitVector genotype;
 	
 	public DoubleValue(){
-		this.genotype= new BitVector((DoubleFunction)fitness);
+		genotype=new BitVector(BitVector.RANDOM, DoubleFunction.genotypeBits);
 	}
 	
 	public boolean equals(Individual other){

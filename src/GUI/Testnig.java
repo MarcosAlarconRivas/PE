@@ -72,7 +72,7 @@ public class Testnig {
 		*/
 		
 		/*RUNS
-		  for (int i=0; i<256; i++){
+		  for (int i=0; i<1025; i++){
 			  BitVector bv = new BitVector(i);
 			  boolean bit_changed = bv.get(bv.length()-1);
 			  bv.set(bv.length()-1, true);
@@ -85,7 +85,6 @@ public class Testnig {
 				System.out.print("<=>"+bv.toBinaryString());
 				System.out.print("="+bv);
 				System.out.print("="+bv.toUnsigned()+'\n');
-			
 		}*/
 		
 		

@@ -1,8 +1,8 @@
 package DoubleValue;
 
 /**
- * Genotype for DoubleValues.
  * It works as a bit[], but is implemented with a byte[] (for efficiency).
+ * It was created as implementation of DoubleValues genotype.
  */
 public class BitVector {
 	//Type used to initialize the vector with 0s, 1s or randomly 
@@ -16,11 +16,6 @@ public class BitVector {
 
 	//number of bits contained.
 	private long length;
-
-	@SuppressWarnings("static-access")
-	BitVector(DoubleFunction fitness) {
-		this(InitType.RANDOM, fitness.genotypeBits);
-	}
 
 	/**
 	 * Creates a natural binary representation of the number.
@@ -82,18 +77,10 @@ public class BitVector {
 				break;
 			}
 		}
-		/*TRY0
-		 * while(residue>0){
-			g[bytes-1] &= ~(0x1<<--residue);
+		
+		if(residue>0)
+			g[bytes-1] &= ~(0x11111111<<residue);
 			//delete possible bits in positions > length
-		}*/
-		/*TRY1
-		 * int shift = 0x1;
-		while(residue>shift){
-			shift= shift<<1;
-			g[bytes-1] &= ~(shift);
-			//delete possible bits in positions > length
-		}*/
 	}
 
 	/**
@@ -103,30 +90,13 @@ public class BitVector {
 		return length;
 	}
 
-	/*public BitVector(BitVector[] meiosis1, BitVector[] meiosis2) {
-		// Genera un hijo a partir de los genes troceados de 2 padres
-		g = new boolean[meiosis1[0].g.length + meiosis1[1].g.length
-				* (meiosis1.length - 1)];
-		BitVector[][] padres = new BitVector[2][];
-		padres[0] = meiosis1;
-		padres[1] = meiosis2;
-		for (int i = 0, k = 0; i < meiosis1.length; i++)
-			for (int j = 0; j < padres[i % 2][i].g.length; j++, k++)
-				g[k] = padres[i % 2][i].g[j];
-		//numMax = (long) (Math.pow(2, g.length) - 1);
-	}*/
-
 	/**
 	 * Gets the bit[position]
 	 * @return the specified bit value as a boolean.
 	 */
 	public boolean get(long position) {
 		if(position<0||position>=length)return false;
-		return getBit(g[(int) (position/8)], position%8);
-	}
-
-	private static boolean getBit(byte b, long position) {
-		return (b & 0x1<<position) !=0 ;
+		return (g[(int) (position/8)] & (0x1<<position%8)) !=0;
 	}
 
 	/**
@@ -136,7 +106,7 @@ public class BitVector {
 		if(position<0 || position>=length) return;
 
 		byte oldValue = g[(int)position/8];
-		g[(int)position/8]= setBit(oldValue, (int)position%8, value);
+		g[(int)position/8] = setBit(oldValue, (int)position%8, value);
 	}
 
 	private byte setBit(byte oldValue, int position, boolean value) {
@@ -148,7 +118,8 @@ public class BitVector {
 	}
 	
 	/**
-	 * Switches the bit[position]= !bit[position];
+	 * Switches the specified bit:
+	 *  bit[position]= !bit[position];
 	 */
 	public void xor(long position) {
 		if(position<0 || position>=length) return;
