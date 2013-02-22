@@ -13,7 +13,6 @@ public abstract class Individual implements Comparable<Individual>{
 	}
 	
 	/**
-	 * 
 	 * recalces and @returns the fitness of this Individual.
 	 */
 	public double recalce(){

@@ -4,6 +4,11 @@ import GA.Individual;
 import GA.Population;
 import GA.Mutation.Mutation;
 
+/**
+ * This is a trivial Mutation algorithm:
+ * For each allele in each Individual decides (using alleleMutationProb)
+ * switch the bit or not.
+ */
 public class Simplest extends Mutation {
 
 	public Simplest(double alleleMutationProb) {
