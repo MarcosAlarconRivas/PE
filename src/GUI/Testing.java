@@ -6,6 +6,7 @@ public class Testnig {
 
 	public static void main(String[] args) {
 		System.out.println("Project runing");
+		System.out.println("");
 		/* RUNS
 		  for(int i=0; i<256; i++){
 			byte b = BitVector.unsignedToByte(i);
