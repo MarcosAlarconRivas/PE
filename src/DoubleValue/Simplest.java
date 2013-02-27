@@ -6,7 +6,7 @@ import GA.Mutation.Mutation;
 
 /**
  * This is a trivial Mutation algorithm:
- * For each allele in each Individual decides (using alleleMutationProb)
+ * For each allele in each chromosome in each Individual decides (using alleleMutationProb)
  * switch the bit or not.
  */
 public class Simplest extends Mutation {
@@ -20,13 +20,16 @@ public class Simplest extends Mutation {
 	 */
 	@Override
 	public void mutate(Population creatures){
-		long genotypeBits = ((DoubleFunction)creatures.getBest().fitness).genotypeBits;
+		
 		for(Individual ind : creatures.mutable()){
 			boolean mutated = false;
-			for (int bit=0; bit<genotypeBits; bit++){
-				if(Math.random()<baseRate){
-					((DoubleValue)ind).genotype.xor(bit);
-					mutated = true;
+			for(int gen=0; gen<((DoubleValue)ind).genotype.length; gen++){
+				long genotypeBits = ((DoubleFunction)creatures.getBest().fitness).genotypeBits[gen];
+				for (int bit=0; bit<genotypeBits; bit++){
+					if(Math.random()<baseRate){
+						((DoubleValue)ind).genotype[gen].xor(bit);
+						mutated = true;
+					}
 				}
 			}
 			if(mutated)ind.recalce();

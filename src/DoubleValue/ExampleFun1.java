@@ -7,7 +7,8 @@ public class ExampleFun1 extends DoubleFunction{
 	}
 
 	@Override
-	protected double fitnessFun(double f) {
+	protected double fitnessFun(double[] fenotypes) {
+		double f = fenotypes[0];
 		return 2*Math.E*f-3*Math.PI*f*f+12/f;
 	}
 
