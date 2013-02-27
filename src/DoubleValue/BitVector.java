@@ -12,10 +12,10 @@ public class BitVector {
 	public static final InitType RANDOM= InitType.RANDOM;
 
 	//Real vector containing the info.
-	private byte[] g;
+	protected byte[] g;
 
 	//number of bits contained.
-	private long length;
+	protected long length;
 
 	/**
 	 * Creates a natural binary representation of the number.
