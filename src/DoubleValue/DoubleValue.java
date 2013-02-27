@@ -3,12 +3,12 @@ package DoubleValue;
 import GA.Individual;
 
 public class DoubleValue extends Individual {
-	BitVector genotype[];
+	DoubleChromosome genotype[];
 	
 	public DoubleValue(int numOfVars){
-		genotype = new BitVector[numOfVars];
+		genotype = new DoubleChromosome[numOfVars];
 		for(int i=0; i<numOfVars; i++)
-			genotype[i]=new BitVector(BitVector.RANDOM, DoubleFunction.genotypeBits[i]);
+			genotype[i]=new DoubleChromosome(DoubleFunction.genotypeBits[i]);
 	}
 	
 	public boolean equals(Individual other){
