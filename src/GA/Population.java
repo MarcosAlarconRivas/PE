@@ -2,6 +2,8 @@ package GA;
 
 import java.util.Set;
 
+import sun.security.util.Length;
+
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
@@ -10,7 +12,7 @@ public class Population {
 	public Individual[] people;
 	
 	//position in people of the best individual
-	private int best;
+	private int best, second, third, fourth, fifth;
 	
 	protected double fitAverage;
 
@@ -21,6 +23,24 @@ public class Population {
 	public Individual getBest() {
 		return people[best];
 	}
+	
+
+	public Individual getSecond() {
+		return people[second];
+	}
+
+	public Individual getThird() {
+		return people[third];
+	}
+
+	public Individual getFourth() {
+		return people[fourth];
+	}
+
+	public Individual getFifth() {
+		return people[fifth];
+	}
+	
 
 	public double inbreading() {
 		// TODO Implement inbreading calculus
@@ -37,8 +57,21 @@ public class Population {
 			fitAverage += people[i].fitness()/length;
 			
 			//calculating best
-			if(people[i].compareTo(people[best])>0)
-				best= i;
+			if(people[i].compareTo(people[best])>0){
+				fourth = third;
+				third = second;
+				second = best;
+				best = i;
+			} else if(people[i].compareTo(people[second])>0){
+				fourth = third;
+				third = second;
+				second = i;
+			} else if(people[i].compareTo(people[third])>0){
+				fourth = third;
+				third = i;
+			} else if(people[i].compareTo(people[fourth])>0){
+				fourth = i;
+			}
 			
 			//calculating elite
 			if(elite!=null){
@@ -59,5 +92,4 @@ public class Population {
 	public Set<Individual> mutable(){
 		return ((Set<Individual>)java.util.Arrays.asList(people));
 	}
-
 }

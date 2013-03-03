@@ -8,7 +8,7 @@ import GA.Population;
 public class SurvivalOfTheFittest implements Replacement {
 
 	@Override
-	public void replace(List<? extends Individual> children, int[] parents,
+	public void replace(List<? extends Individual> children, Individual[] parents,
 			Population pop) {
 		
 		

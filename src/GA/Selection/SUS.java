@@ -1,5 +1,6 @@
 package GA.Selection;
 
+import GA.Individual;
 import GA.Population;
 
 /** Stochastic universal sampling
@@ -8,7 +9,7 @@ import GA.Population;
 public class SUS implements Selection {
 
 	@Override
-	public int[] select(Population pop) {
+	public Individual[] select(Population pop) {
 		// TODO Auto-generated method stub
 		return null;
 	}

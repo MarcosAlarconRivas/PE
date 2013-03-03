@@ -9,7 +9,7 @@ import GA.Population;
 public class SinglePointCut implements Crossover {
 
 	@Override
-	public LinkedList<Individual> crossover(int[] parent, Population pop) {
+	public LinkedList<Individual> crossover(Individual[] parent, Population pop) {
 		LinkedList<Individual> children = new LinkedList<Individual>();
 		for(int i=0; i<parent.length-1; i+=2){
 			//This 2 are the genotype of parents

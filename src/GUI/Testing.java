@@ -2,7 +2,7 @@ package GUI;
 
 import DoubleValue.BitVector;
 
-public class Testnig {
+public class Testing {
 
 	public static void main(String[] args) {
 		System.out.println("Project runing");

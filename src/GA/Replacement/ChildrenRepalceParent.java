@@ -12,7 +12,7 @@ import GA.Population;
 public class ChildrenRepalceParent implements Replacement {
 
 	@Override
-	public void replace(List<? extends Individual> children, int[] parents,
+	public void replace(List<? extends Individual> children, Individual[] parents,
 			Population pop) {
 		int i = 0;
 		for(Individual ind : children){
