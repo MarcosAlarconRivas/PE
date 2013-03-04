@@ -1,4 +1,4 @@
-package DoubleValue;
+package Utilities;
 
 /**
  * It works as a bit[], but is implemented with a byte[] (for efficiency).

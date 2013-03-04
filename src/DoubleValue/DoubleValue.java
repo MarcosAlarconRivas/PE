@@ -3,14 +3,17 @@ package DoubleValue;
 import GA.Individual;
 
 public class DoubleValue extends Individual {
-	BitVector genotype;
+	DoubleChromosome genotype[];
 	
-	public DoubleValue(){
-		genotype=new BitVector(BitVector.RANDOM, DoubleFunction.genotypeBits);
+	public DoubleValue(int numOfVars){
+		genotype = new DoubleChromosome[numOfVars];
+		for(int i=0; i<numOfVars; i++)
+			genotype[i]=new DoubleChromosome(DoubleFunction.genotypeBits[i]);
 	}
 	
 	public boolean equals(Individual other){
 		if(!(other instanceof DoubleValue))return false;
+		if(!super.equals(other))return false;
 		return genotype==((DoubleValue)other).genotype;
 	}
 }
