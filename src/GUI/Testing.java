@@ -1,7 +1,5 @@
 package GUI;
 
-import DoubleValue.BitVector;
-
 public class Testing {
 
 	public static void main(String[] args) {

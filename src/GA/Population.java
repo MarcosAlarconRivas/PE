@@ -41,6 +41,9 @@ public class Population {
 		return people[fifth];
 	}
 	
+	public Individual getI(int i){
+		return people[i];
+	}
 
 	public double inbreading() {
 		// TODO Implement inbreading calculus

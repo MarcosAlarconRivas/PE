@@ -15,5 +15,4 @@ public class FiveBest implements Selection {
 		list[4] = pop.getFifth();
 		return list;
 	}
-
 }
