@@ -23,7 +23,7 @@ public class Reproduction {
 	 */
 	public void reproduce(Population population) {
 		List<Individual> children;
-		Individual[] parents = selFun.select(population);
+		int[] parents = selFun.select(population);
 		children= xFun.crossover(parents, population);
 		repFun.replace(children, parents, population);
 	}

@@ -2,8 +2,6 @@ package GA;
 
 import java.util.Set;
 
-import sun.security.util.Length;
-
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;

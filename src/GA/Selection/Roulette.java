@@ -8,8 +8,8 @@ import GA.Population;
 
 public class Roulette implements Selection {
 
-	public Individual[] select(Population pop) {
-		Individual[] list = new Individual[pop.people.length]; 
+	public int[] select(Population pop) {
+		/*Individual[] list = new Individual[pop.people.length]; 
 		int pos = 0;
 		double probability;
 		int positionSurvivor;
@@ -23,6 +23,6 @@ public class Roulette implements Selection {
 			list[pos] = pop.getI(positionSurvivor);
 			i++;
 		}
-		return list;
+		return list;*/return null;
 	}
 }

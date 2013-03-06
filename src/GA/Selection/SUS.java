@@ -9,7 +9,7 @@ import GA.Population;
 public class SUS implements Selection {
 
 	@Override
-	public Individual[] select(Population pop) {
+	public int[] select(Population pop) {
 		// TODO Auto-generated method stub
 		return null;
 	}
