@@ -5,6 +5,6 @@ import GA.Population;
 
 public interface Selection {
 	
-	public Individual[] select(Population pop);
+	public int[] select(Population pop);
 	
 }
