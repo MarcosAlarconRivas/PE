@@ -5,6 +5,10 @@ import GA.Individual;
 public class DoubleValue extends Individual {
 	DoubleChromosome genotype[];
 	
+	DoubleValue(DoubleChromosome gen[]){
+		genotype = gen;
+	}
+	
 	public DoubleValue(int numOfVars){
 		genotype = new DoubleChromosome[numOfVars];
 		for(int i=0; i<numOfVars; i++)
