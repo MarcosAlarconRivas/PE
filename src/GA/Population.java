@@ -7,42 +7,21 @@ import sun.security.util.Length;
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
-	
+
 	//current full population
 	public Individual[] people;
-	
+
 	//position in people of the best individual
-	private int best, second, third, fourth, fifth;
-	
+	private int best;
+
 	protected double fitAverage;
 
 	public double average(){
 		return fitAverage;
 	}
-	
+
 	public Individual getBest() {
 		return people[best];
-	}
-	
-
-	public Individual getSecond() {
-		return people[second];
-	}
-
-	public Individual getThird() {
-		return people[third];
-	}
-
-	public Individual getFourth() {
-		return people[fourth];
-	}
-
-	public Individual getFifth() {
-		return people[fifth];
-	}
-	
-	public Individual getI(int i){
-		return people[i];
 	}
 
 	public double inbreading() {
@@ -58,31 +37,18 @@ public class Population {
 		for(int i=0; i<length; i++){
 			//calculating fitAverage
 			fitAverage += people[i].fitness()/length;
-			
+
 			//calculating best
-			if(people[i].compareTo(people[best])>0){
-				fourth = third;
-				third = second;
-				second = best;
-				best = i;
-			} else if(people[i].compareTo(people[second])>0){
-				fourth = third;
-				third = second;
-				second = i;
-			} else if(people[i].compareTo(people[third])>0){
-				fourth = third;
-				third = i;
-			} else if(people[i].compareTo(people[fourth])>0){
-				fourth = i;
-			}
-			
+			if(people[i].compareTo(people[best])>0)
+				best= i;
+
 			//calculating elite
 			if(elite!=null){
 				// TODO Implement elite calculus
 			}
 		}
 	}
-	
+
 	/**
 	 * @returns individuals to crossover.
 	 */
@@ -95,4 +61,5 @@ public class Population {
 	public Set<Individual> mutable(){
 		return ((Set<Individual>)java.util.Arrays.asList(people));
 	}
+
 }
