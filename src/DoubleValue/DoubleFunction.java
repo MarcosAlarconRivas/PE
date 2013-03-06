@@ -8,8 +8,8 @@ public abstract class DoubleFunction implements Fitness {
 	protected static boolean maximization = true;
 	protected static int numOfChromosomes = 1;
 	protected static double lowLimit[], highLimit[];
-	protected static int genotypeBits[] = {16};
-	protected static double failover = 1;
+	static int genotypeBits[] = {16};
+	private static double failover = 1;
 	
 	
 	@Override

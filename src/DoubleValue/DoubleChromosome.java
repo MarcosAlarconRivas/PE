@@ -1,5 +1,7 @@
 package DoubleValue;
 
+import java.util.LinkedList;
+import java.util.List;
 import Utilities.BitVector;
 
 public class DoubleChromosome extends BitVector {
@@ -7,8 +9,13 @@ public class DoubleChromosome extends BitVector {
 		super(RANDOM, length);
 	}
 	
+	/**
+	 * Breaks the bit vector in subvectors
+	 * @param cutPoints ascending ordered points where cut the vector
+	 * @return the bit vector parts as boolean[]
+	 */
 	boolean [][] meiosis(long cutPoints[]){
-		//FIXME 
+		//FIXME read it carefully &/or test it
 		boolean result[][] =  new boolean [cutPoints.length+1][];
 		long head = 0;
 		for (int p = 0; p<= cutPoints.length; head=cutPoints[p++]){
@@ -20,4 +27,14 @@ public class DoubleChromosome extends BitVector {
 		return result;
 	}
 
+	/**
+	 * Rebuilds chromosomes from meiosis results.
+	 */
+	public static LinkedList<DoubleChromosome> rebuid(List<boolean [][]> dna){
+		LinkedList<DoubleChromosome> reslut = new LinkedList<DoubleChromosome>();
+		int numOfChilds = dna.size();//same as numOfParents
+		
+		return reslut;
+		
+	}
 }
