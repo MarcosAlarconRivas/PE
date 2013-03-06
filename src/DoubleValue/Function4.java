@@ -5,18 +5,18 @@ public class Function4 extends DoubleFunction{
 	protected static double lowLimit[]= {0};
 	protected static double highLimit[]={100};
 	protected static int n = 1;
+	protected static int numOfChromosomes = n;
 	
 	public String toString(){
-		return "f(xi, i=1..n) = sum(-x*sen(sqrt(|xi|)))";
+		return "f(xi, i=1..n) = sum(i=1..n)[(-x*sen(sqrt(|xi|)))]";
 	}
 
 	@Override
 	protected double fitnessFun(double[] fenotypes) {
-		double f = fenotypes[0];
-		res = 0;
+		double res = 0;
 		for (int i=1; i<=n; i++){
-			double r1 = f*Math.sin(Math.sqrt(Math.abs(f)));
-			double r = -(Math.abs(r1));
+			double f = fenotypes[i];
+			double r = -(f*Math.sin(Math.sqrt(Math.abs(f))));
 			res += r;
 		}
 		return res;
