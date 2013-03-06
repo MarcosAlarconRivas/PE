@@ -13,7 +13,7 @@ public class Function4 extends DoubleFunction{
 	@Override
 	protected double fitnessFun(double[] fenotypes) {
 		double f = fenotypes[0];
-		res = 0;
+		double res = 0;
 		for (int i=1; i<=n; i++){
 			double r1 = f*Math.sin(Math.sqrt(Math.abs(f)));
 			double r = -(Math.abs(r1));
