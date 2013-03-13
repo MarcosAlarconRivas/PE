@@ -34,7 +34,7 @@ public class DoubleChromosome extends BitVector {
 	/**
 	 * Rebuilds chromosomes from meiosis results.
 	 */
-	public static LinkedList<DoubleChromosome> rebuid(boolean [][][] dna){
+	public static LinkedList<DoubleChromosome> rebuild(boolean [][][] dna){
 		//FIXME debug
 		LinkedList<DoubleChromosome> result = new LinkedList<DoubleChromosome>();
 		

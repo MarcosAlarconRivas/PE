@@ -21,7 +21,7 @@ public class OnePieceOfEach extends VarParentsCross implements Crossover {
 		
 		//Take parents[], divide it in groups of 'numOfParents' size
 		
-		//corss them adding to childsList
+		//cross them adding to childsList
 	
 		return childsList;
 	}

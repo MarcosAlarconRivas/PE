@@ -45,7 +45,7 @@ public class SinglePointCut implements Crossover {
 			boolean parents_dna[][][] = new boolean[2][][];
 			parents_dna[0] = p1.genotype[chr].meiosis(cutPoint);
 			parents_dna[1] = p2.genotype[chr].meiosis(cutPoint);
-			List<DoubleChromosome> mix = DoubleChromosome.rebuid(parents_dna);
+			List<DoubleChromosome> mix = DoubleChromosome.rebuild(parents_dna);
 			child1_dna[chr] = mix.get(0);
 			child2_dna[chr] = mix.get(1);
 		}
