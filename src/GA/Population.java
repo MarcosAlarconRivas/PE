@@ -5,6 +5,7 @@ import java.util.Set;
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
+		//int elitePos[] = null;
 
 	//current full population
 	public Individual[] people;
