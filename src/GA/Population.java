@@ -6,6 +6,8 @@ public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
 		//int elitePos[] = null;
+	
+	Fitness fitnessFunction;
 
 	//current full population
 	public Individual[] people;
@@ -14,6 +16,10 @@ public class Population {
 	private int best;
 
 	protected double fitAverage;
+	
+	public Fitness getFitnessFunction(){
+		return fitnessFunction;
+	}
 
 	public double average(){
 		return fitAverage;

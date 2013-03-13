@@ -24,7 +24,7 @@ public class Simplest extends Mutation {
 		for(Individual ind : creatures.mutable()){
 			boolean mutated = false;
 			for(int gen=0; gen<((DoubleValue)ind).genotype.length; gen++){
-				long genotypeBits = ((DoubleFunction)creatures.getBest().fitness).genotypeBits[gen];
+				long genotypeBits = ((DoubleFunction)creatures.getFitnessFunction()).genotypeBits[gen];
 				for (int bit=0; bit<genotypeBits; bit++){
 					if(Math.random()<baseRate){
 						((DoubleValue)ind).genotype[gen].xor(bit);

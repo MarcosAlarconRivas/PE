@@ -15,7 +15,7 @@ public class SinglePointCut implements Crossover {
 	public LinkedList<Individual> crossover(int[] parent, Population pop) {
 		LinkedList<Individual> childs = new LinkedList<Individual>();
 		@SuppressWarnings("static-access")
-		int genotypeBits[] = ((DoubleFunction)(pop.people[0].fitness)).genotypeBits;
+		int genotypeBits[] = ((DoubleFunction)(pop.getFitnessFunction())).genotypeBits;
 		
 		for( int i=0; i<parent.length-1; i+=2)
 			cross(childs, genotypeBits,
