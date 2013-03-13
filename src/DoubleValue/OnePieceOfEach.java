@@ -14,15 +14,20 @@ import GA.VarParentsCross;
 public class OnePieceOfEach extends VarParentsCross implements Crossover {
 
 	@Override
-	public LinkedList<Individual> crossover(int[] parents, Population pop) {
+	public LinkedList<Individual> crossover(int[] parent, Population pop) {
 		
 		LinkedList<Individual> childsList = new LinkedList<Individual>();
-		// TODO Auto-generated method stub
 		
-		//Take parents[], divide it in groups of 'numOfParents' size
+		@SuppressWarnings("static-access")
+		int genotypeBits[] = ((DoubleFunction)(pop.getFitnessFunction())).genotypeBits;
 		
-		//cross them adding to childsList
-	
+		for( int i=0; i<parent.length-1; i+=2){
+			//generar nueva lista de parents
+			LinkedList<DoubleValue> parents = new LinkedList<DoubleValue>();
+			for (int j=0; j<numOfParents; j++)
+				parents.add((DoubleValue) pop.people[parent[j]]);
+			cross(childsList, genotypeBits, parents);
+		}
 		return childsList;
 	}
 	
