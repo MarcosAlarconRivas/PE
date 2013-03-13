@@ -17,6 +17,23 @@ public class Population {
 
 	protected double fitAverage;
 	
+	public Population(Fitness fitness, int numOfIndividuals, boolean elite){
+		fitnessFunction= fitness;
+		
+		people = new Individual[numOfIndividuals];
+		
+		if(elite) this.elite = new Individual[numOfIndividuals/50];
+			//elite is 2% of total size of population
+		for (int i=0; i<numOfIndividuals; i++) 
+			try {
+				people[i]= fitness.specie().newInstance();
+			}catch (Exception e) {
+				System.out.println(e);
+			}
+		
+		recalculate();
+	}
+	
 	public Fitness getFitnessFunction(){
 		return fitnessFunction;
 	}
