@@ -1,6 +1,9 @@
 package ga;
 
+import java.util.Arrays;
 import java.util.Set;
+
+//import p1.DoubleValue;
 
 public class Population {
 	//copied elite creatures (they are also in people).
@@ -24,6 +27,7 @@ public class Population {
 		
 		if(elite) this.elite = new Individual[numOfIndividuals/50];
 			//elite is 2% of total size of population
+		
 		for (int i=0; i<numOfIndividuals; i++) 
 			try {
 				people[i]= fitness.specie().newInstance();
@@ -47,28 +51,45 @@ public class Population {
 	}
 
 	public double inbreading() {
-		// TODO Implement inbreading calculus
+		/*if(fitnessFunction.specie() instanceof DoubleValue){
+			for(int i=0; i<people.length; i++){
+				for(int c=0; c<fitnessFunction.specie().genotypeBits.length;c++){
+					
+				}
+			}
+		}*/
+		
 		return 0;
 	}
 
 	public void recalculate() {
-		//Arrays.sort(people);
-		best = 0;
+		Arrays.sort(people);
+		best = people.length-1;;
 		fitAverage= 0;
 		int length= people.length;
 		for(int i=0; i<length; i++){
 			//calculating fitAverage
 			fitAverage += people[i].fitness()/length;
 
-			//calculating best
-			if(people[i].compareTo(people[best])>0)
-				best= i;
-
-			//calculating elite
-			if(elite!=null){
-				// TODO Implement elite calculus
+			//calculating best (not necessary when population is ordered).
+			//if(people[i].compareTo(people[best])>0) best= i;
+	
 			}
-		}
+		//calculating elite
+		if(elite!=null)
+			//WRNING just for ordered populations
+			for(int i=0; i<elite.length; i++)
+				elite[i]= people[best-i].clone();
+		
+	}
+	
+	/**
+	 * Overwrite worst individuals with elite (if people is ordered).
+	 */
+	public void restoreElite(){
+		if(elite==null)return;
+		for(int i=0; i<elite.length; i++)
+			people[i]= elite[elite.length-i-1];
 	}
 
 	/**

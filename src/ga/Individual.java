@@ -1,7 +1,7 @@
 package ga;
 
 
-public abstract class Individual implements Comparable<Individual>{
+public abstract class Individual implements Comparable<Individual>, Cloneable{
 	public static Fitness fitness;
 	public double lastEvaluation;
 	
@@ -37,4 +37,6 @@ public abstract class Individual implements Comparable<Individual>{
 		if(other==null)return false;
 		return fitness()==other.fitness();
 	}
+	
+	public abstract Individual clone();
 }

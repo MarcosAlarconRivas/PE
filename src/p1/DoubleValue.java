@@ -20,4 +20,8 @@ public class DoubleValue extends Individual {
 		if(!super.equals(other))return false;
 		return genotype==((DoubleValue)other).genotype;
 	}
+	
+	public Individual clone(){
+		return new DoubleValue(genotype.clone());
+	}
 }

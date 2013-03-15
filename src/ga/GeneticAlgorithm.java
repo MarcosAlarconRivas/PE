@@ -18,6 +18,7 @@ public class GeneticAlgorithm {
 	
 	protected void advanceGeneration(){
 		currentGen++;
+		population.restoreElite();
 		repFun.reproduce(population);
 		mutFun.mutate(population);
 		population.recalculate();
