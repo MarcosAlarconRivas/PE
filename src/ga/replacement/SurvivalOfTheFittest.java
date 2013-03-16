@@ -16,7 +16,7 @@ public class SurvivalOfTheFittest implements Replacement {
 		Individual c[]=(Individual[])children.toArray();
 		Arrays.sort(c);
 		for(int i=c.length, j=c.length; j>=0; j--)
-			if(pop.people[j].compareTo(c[i])>0)
+			if(pop.people[j].compareTo(c[i])<0)
 				pop.people[j]=c[i--];
 		
 	}
