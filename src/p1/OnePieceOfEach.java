@@ -42,7 +42,7 @@ public class OnePieceOfEach extends VarParentsCross implements Crossover {
 			//generate cut points
 			long[] cutPoints = new long[numOfParents-1];
 			for(int cut= 0; cut<numOfParents-1; cut++)
-				cutPoints[cut]= (long)Math.floor(Math.random()*genotypeBits[chr]);
+				cutPoints[cut]= (long)Math.min(Math.floor(Math.random()*genotypeBits[chr]),genotypeBits[chr]-1);
 			Arrays.sort(cutPoints);//order chosen cut points
 			
 			//cut parents chromosomes

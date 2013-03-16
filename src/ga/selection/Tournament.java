@@ -5,17 +5,20 @@ import ga.Population;
 public class Tournament implements Selection {
 	
 	public static int k = 3;
-	public static double prob;
 	//the size of the tournament
 	
-	public Tournament(double p){
-		p=prob;
+	public static double prop;
+	//proportion of the population that will be selected
+	
+	
+	public Tournament(double prob){
+		prob=prop;
 	}
 
 	@Override
 	public int[] select(Population pop) {
 		int t = pop.people.length;
-		int toChoose = (int) Math.round(t*prob);
+		int toChoose = (int) Math.round(t*prop);
 		int choosen[] = new int[toChoose];
 		for(int i=0; i<toChoose; i++){
 			int ch=-1;
