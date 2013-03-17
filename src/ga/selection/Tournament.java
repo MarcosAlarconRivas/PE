@@ -16,9 +16,8 @@ public class Tournament implements Selection {
 	}
 
 	@Override
-	public int[] select(Population pop) {
+	public int[] select(Population pop, int toChoose) {
 		int t = pop.people.length;
-		int toChoose = (int) Math.round(t*prop);
 		int choosen[] = new int[toChoose];
 		for(int i=0; i<toChoose; i++){
 			int ch=-1;
@@ -30,6 +29,11 @@ public class Tournament implements Selection {
 			choosen[i]=ch;
 		}
 		return choosen;
+	}
+
+	@Override
+	public int[] select(Population pop) {
+		return select(pop,(int) Math.round(pop.people.length*prop));
 	}
 
 }

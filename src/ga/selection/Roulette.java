@@ -1,28 +1,50 @@
 package ga.selection;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import ga.Individual;
 import ga.Population;
 
+/**
+ * WARNING this version suppose that population is ordered.
+ */
 public class Roulette implements Selection {
-
-	public int[] select(Population pop) {
-		/*Individual[] list = new Individual[pop.people.length]; 
-		int pos = 0;
-		double probability;
-		int positionSurvivor;
-		Random r = new Random();
-		for (int i=0;i<pop.people.length;i++){
-			probability=r.nextDouble();
-			positionSurvivor=0;
-			while ((probability>pop.getI(positionSurvivor).fitness()) && positionSurvivor<pop.people.length){
-				positionSurvivor++;
-			}
-			list[pos] = pop.getI(positionSurvivor);
-			i++;
-		}
-		return list;*/return null;
+	
+	protected double prop;
+	
+	public Roulette(double prob){
+		prop= prob;
 	}
+	
+	@Override
+	public int[] select(Population pop) {
+		return select(pop, (int)Math.round(pop.people.length*prop));
+	}
+
+	/**
+	 * Selects some individuals form given population using roulette method
+	 * @param pop: population to select
+	 * @param toSelect: number of creatures to select
+	 * @return positions of selected individuals
+	 */
+	public int[] select(Population pop, int toSelect){
+		double minimal = pop.people[0].fitness();
+			//if population is not ordered, search the worst one.
+		
+		if(minimal* pop.getBest().fitness()>=0) minimal=0;
+		
+		int selected[] = new int[toSelect];
+		for(int creature = 0; creature < toSelect; creature++){
+			
+			double acc = Math.abs(Math.random()*pop.average()-minimal)*pop.people.length;
+			//Target accumulate fitness
+			
+			int s =-1;
+			//last creature added to acc
+			
+			while(acc>=0)
+				acc-= Math.abs(pop.people[++s].fitness()-minimal);
+
+			selected[creature]= s;
+		}
+		return selected;
+	}
+
 }
