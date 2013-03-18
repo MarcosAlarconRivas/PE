@@ -87,7 +87,6 @@ public class Window extends javax.swing.JFrame {
      */
     public Window() {
         initComponents();
-        asignaValores();
     }
     
     /**
@@ -398,12 +397,13 @@ public class Window extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	
-    	Population pop = new Population(fit, numInd, elite);
+        asignaValores();
+    	Population pop = new Population(fit, numInd, false);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
     	Simplest mut = new Simplest(alleleMutationProb);
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mut);
-    	
-    	Individual res = ga.search();
+//    	
+//    	Individual res = ga.search();
     	
 //        // example data
 //        double[] x = { 1, 2, 3, 4, 5, 6 };
