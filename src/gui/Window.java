@@ -4,11 +4,36 @@
  */
 package gui;
 
+import ga.Crossover;
+import ga.Fitness;
+import ga.GeneticAlgorithm;
+import ga.Individual;
+import ga.Mutation;
+import ga.Population;
+import ga.Reproduction;
+import ga.replacement.ChildrenRepalceParent;
+import ga.replacement.Replacement;
+import ga.replacement.SurvivalOfTheFittest;
+import ga.selection.NonRepeatingRoulette;
+import ga.selection.Roulette;
+import ga.selection.Selection;
+import ga.selection.Tournament;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
 import org.math.plot.Plot2DPanel;
+
+import p1.Function1;
+import p1.Function2;
+import p1.Function3;
+import p1.Function4;
+import p1.Function5;
+import p1.OnePieceOfEach;
+import p1.Simplest;
+import p1.SinglePointCut;
+import p1.StandarMut;
 
 /**
  *
@@ -16,21 +41,54 @@ import org.math.plot.Plot2DPanel;
  */
 public class Window extends javax.swing.JFrame {
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+//    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider jSlider3;
+    private javax.swing.JSlider jSlider4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private Plot2DPanel plotPane=null;
+    // End of variables declaration//GEN-END:variables
+	private Fitness fit;
+	private int numInd;
+	private boolean elite;
+	private int item;
+	private long numGen;
+	private double alleleMutationProb;
+	private Selection selectionMethod;
+	private Crossover crossMethod;
+	private Replacement repalceMthod;
+	private double reproductionProb;
+	
+	
     /**
      * Creates new form NewJFrame
      */
     public Window() {
         initComponents();
+        asignaValores();
     }
-
-    public Plot2DPanel getPlotPane() {
-		if (plotPane == null) {
-			plotPane = new Plot2DPanel();
-			plotPane.addLegend("SOUTH");
-			
-		}
-		return plotPane;
-	}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -314,12 +372,44 @@ public class Window extends javax.swing.JFrame {
         
     }// </editor-fold>//GEN-END:initComponents
 
+    private void asignaValores(){
+    	numInd = Integer.parseInt(jTextField1.getText());
+    	numGen = Long.parseLong(jTextField2.getText());
+    	alleleMutationProb = Double.parseDouble(jTextField3.getText());
+    	reproductionProb = Double.parseDouble(jTextField4.getText());
+    	elite = jCheckBox1.isSelected();
+    	item = jComboBox1.getSelectedIndex();
+    	if (item==0) fit = new Function1();
+    	else if (item==1) fit = new Function2();
+    	else if (item==2) fit = new Function3();
+    	else if (item==3) fit = new Function4();
+    	else fit = new Function5();
+    	item = jComboBox2.getSelectedIndex();
+    	if (item==0) selectionMethod = new Tournament(reproductionProb);
+    	else if (item==1) selectionMethod = new Roulette(reproductionProb);
+    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	item = jComboBox3.getSelectedIndex();
+    	if (item==0) crossMethod = new SinglePointCut();
+    	else crossMethod = new OnePieceOfEach();
+    	item = jComboBox4.getSelectedIndex();
+    	if (item==0) repalceMthod = new SurvivalOfTheFittest();
+    	else repalceMthod = new ChildrenRepalceParent();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
-        // define your data
-        double[] x = { 1, 2, 3, 4, 5, 6 };
-        double[] y = { 45, 89, 6, 32, 63, 12 };
-
+    	
+    	Population pop = new Population(fit, numInd, elite);
+    	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
+    	Simplest mut = new Simplest(alleleMutationProb);
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mut);
+    	
+    	Individual res = ga.search();
+    	
+//        // example data
+//        double[] x = { 1, 2, 3, 4, 5, 6 };
+//        double[] y = { 45, 89, 6, 32, 63, 12 };
+    	
+    	
         // create your PlotPanel (you can use it as a JPanel)
         Plot2DPanel plot = new Plot2DPanel();
 
@@ -327,10 +417,10 @@ public class Window extends javax.swing.JFrame {
         plot.addLegend("SOUTH");
 
         // add a line plot to the PlotPanel
-        plot.addLinePlot("my plot", x, y);
+//        plot.addLinePlot("my plot", x, y);
 
         // put the PlotPanel in a JFrame like a JPanel
-        JFrame frame = new JFrame("a plot panel");
+        JFrame frame = new JFrame("Plot panel");
         frame.setSize(800, 600);
         frame.setLocation(300, 0);
         frame.setContentPane(plot);
@@ -412,33 +502,4 @@ public class Window extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-//    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider3;
-    private javax.swing.JSlider jSlider4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private Plot2DPanel plotPane=null;
-    // End of variables declaration//GEN-END:variables
 }
