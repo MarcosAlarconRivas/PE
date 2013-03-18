@@ -11,3 +11,5 @@ bin/
 .project
 .settings
 .metadata/
+/nbproject/private/
+/build/
