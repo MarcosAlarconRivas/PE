@@ -29,6 +29,7 @@ public class Roulette implements Selection {
 			//if population is not ordered, search the worst one.
 		
 		if(minimal* pop.getBest().fitness()>=0) minimal=0;
+		//only necessary if fitness of pop has both symbols (+/-)
 		
 		int selected[] = new int[toSelect];
 		for(int creature = 0; creature < toSelect; creature++){
