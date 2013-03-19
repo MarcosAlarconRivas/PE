@@ -21,13 +21,14 @@ public class Simplest extends Mutation {
 	@Override
 	public void mutate(Population creatures){
 		
-		for(Individual ind : creatures.mutable()){
+		for(int i=0; i<creatures.people.length; i++){
+			DoubleValue ind = (DoubleValue)creatures.people[i];
 			boolean mutated = false;
-			for(int gen=0; gen<((DoubleValue)ind).genotype.length; gen++){
+			for(int gen=0; gen<ind.genotype.length; gen++){
 				long genotypeBits = ((DoubleFunction)creatures.getFitnessFunction()).genotypeBits[gen];
 				for (int bit=0; bit<genotypeBits; bit++){
 					if(Math.random()<baseRate){
-						((DoubleValue)ind).genotype[gen].xor(bit);
+						ind.genotype[gen].xor(bit);
 						mutated = true;
 					}
 				}

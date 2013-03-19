@@ -13,11 +13,11 @@ public class SurvivalOfTheFittest implements Replacement {
 
 	@Override
 	public void replace(List<? extends Individual> children, int[] parents, Population pop) {
-		Individual c[]=(Individual[])children.toArray();
+		Object c[]=children.toArray();;
 		Arrays.sort(c);
-		for(int i=c.length, j=c.length; j>=0; j--)
-			if(pop.people[j].compareTo(c[i])<0)
-				pop.people[j]=c[i--];
+		for(int i=c.length-1, j=c.length-1; j>=0; j--)
+			if(pop.people[j].compareTo((Individual)c[i])<0)
+				pop.people[j]=(Individual)c[i--];
 		
 	}
 

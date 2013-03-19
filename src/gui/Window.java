@@ -396,9 +396,7 @@ public class Window extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    	
-        double[] x;
-        double[] y;
+
         asignaValores();
     	Population pop = new Population(fit, numInd, false);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
@@ -411,6 +409,9 @@ public class Window extends javax.swing.JFrame {
         // define the legend position
         plot.addLegend("SOUTH");
 
+        //execute the algorithm
+        System.out.println("Mejor encontrado: "+ga.search().fitness());
+        
         // add a line plot to the PlotPanel
         plot.addLinePlot("Máximo", ga.getBstHistory());
         plot.addLinePlot("Media", ga.getAvgHistory());

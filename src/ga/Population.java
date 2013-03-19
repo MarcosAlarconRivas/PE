@@ -94,19 +94,4 @@ public class Population {
 			people[i]= elite[elite.length-i-1];
 	}
 
-	/**
-	 * @returns individuals to crossover.
-	 */
-	@SuppressWarnings("unchecked")
-	public Set<Individual> fertile(){
-		return ((Set<Individual>)java.util.Arrays.asList(people));
-	}
-	/**
-	 * @returns individuals to mutate.
-	 */
-	@SuppressWarnings("unchecked")
-	public Set<Individual> mutable(){
-		return ((Set<Individual>)java.util.Arrays.asList(people));
-	}
-
 }
