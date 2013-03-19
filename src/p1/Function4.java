@@ -2,14 +2,11 @@ package p1;
 
 public class Function4 extends DoubleFunction{
 	
-	protected static int n = 1;
-	
 	public Function4(){
 		lowLimit= new double[]{0};
 		highLimit=new double[]{100};
-		numOfChromosomes = n;
+		numOfChromosomes = 1;
 	}
-	 
 	
 	public String toString(){
 		return "f(xi, i=1..n) = sum(i=1..n)[(-x*sen(sqrt(|xi|)))]";
@@ -18,14 +15,17 @@ public class Function4 extends DoubleFunction{
 	@Override
 	protected double evaluate(double[] fenotypes) {
 		double res = 0;
-		for (int i=0; i<n; i++){
+		for (int i=0; i<numOfChromosomes; i++){
 			double f = fenotypes[i];
 			double r = -(f*Math.sin(Math.sqrt(Math.abs(f))));
 			res += r;
 		}
 		return res;
 	}
-		
+	
+	/**
+	 * Sets the num of vars for the function.
+	 */
 	public void setN(int n){
 		if(n>numOfChromosomes){
 			double hl = highLimit[0];
@@ -38,6 +38,5 @@ public class Function4 extends DoubleFunction{
 			}
 		}
 		numOfChromosomes = n;
-		
 	}
 }
