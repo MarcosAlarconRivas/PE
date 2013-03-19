@@ -6,6 +6,8 @@ public class GeneticAlgorithm {
 	protected Population population;
 	protected long currentGen;
 	protected long generations;
+	public double average[], best[];
+	
 	
 	public GeneticAlgorithm(long numOfGenerations, Population pop, 
 			Reproduction rep, Mutation mut)
@@ -14,6 +16,8 @@ public class GeneticAlgorithm {
 		repFun = rep;
 		mutFun = mut;
 		generations = numOfGenerations;
+		average = new double[(int)generations];
+		best = new double[(int)generations];
 	}
 	
 	protected void advanceGeneration(){
@@ -22,6 +26,8 @@ public class GeneticAlgorithm {
 		repFun.reproduce(population);
 		mutFun.mutate(population);
 		population.recalculate();
+		average[(int)currentGen-1] = population.average();
+		best[(int)currentGen-1] = population.getBest().fitness();
 	}
 	
 	/**
@@ -36,5 +42,13 @@ public class GeneticAlgorithm {
 		}
 
 		return population.getBest();
+	}
+	
+	public double[] getAvgHistory(){
+		return average;
+	}
+	
+	public double[] getBstHistory(){
+		return best;
 	}
 }

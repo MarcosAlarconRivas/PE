@@ -1,9 +1,7 @@
 package p1;
 
 public class Function5 extends DoubleFunction{
-	
-	protected static int n = 1;
-	
+
 	public Function5(){
 		lowLimit= new double[]{-10};
 		highLimit=new double[]{10};
