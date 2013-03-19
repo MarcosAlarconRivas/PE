@@ -397,28 +397,24 @@ public class Window extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	
+        double[] x;
+        double[] y;
         asignaValores();
     	Population pop = new Population(fit, numInd, false);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
     	Simplest mut = new Simplest(alleleMutationProb);
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mut);
-//    	
-//    	Individual res = ga.search();
-    	
-//        // example data
-//        double[] x = { 1, 2, 3, 4, 5, 6 };
-//        double[] y = { 45, 89, 6, 32, 63, 12 };
-    	
-    	
         // create your PlotPanel (you can use it as a JPanel)
         Plot2DPanel plot = new Plot2DPanel();
+        plot.removeAllPlots();
 
         // define the legend position
         plot.addLegend("SOUTH");
 
         // add a line plot to the PlotPanel
-//        plot.addLinePlot("my plot", x, y);
-
+        plot.addLinePlot("Máximo", ga.getBstHistory());
+        plot.addLinePlot("Media", ga.getAvgHistory());
+        
         // put the PlotPanel in a JFrame like a JPanel
         JFrame frame = new JFrame("Plot panel");
         frame.setSize(800, 600);
