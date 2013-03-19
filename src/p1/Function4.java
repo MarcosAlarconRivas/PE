@@ -7,7 +7,7 @@ public class Function4 extends DoubleFunction{
 	public Function4(){
 		lowLimit= new double[]{0};
 		highLimit=new double[]{100};
-		numOfChromosomes = 1;
+		numOfChromosomes = n;
 	}
 	 
 	
@@ -26,7 +26,18 @@ public class Function4 extends DoubleFunction{
 		return res;
 	}
 		
-	public static void setN(int _n){
-		n = _n;
+	public void setN(int n){
+		if(n>numOfChromosomes){
+			double hl = highLimit[0];
+			double ll = lowLimit[0];
+			highLimit= new double[n];
+			lowLimit= new double[n];
+			for(int i=0; i<n; i++){
+				highLimit[i]= hl;
+				lowLimit[i]= ll;
+			}
+		}
+		numOfChromosomes = n;
+		
 	}
 }

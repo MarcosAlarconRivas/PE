@@ -1,10 +1,6 @@
 package ga;
 
 import java.util.Arrays;
-import java.util.Set;
-
-
-//import p1.DoubleValue;
 
 public class Population {
 	//copied elite creatures (they are also in people).
