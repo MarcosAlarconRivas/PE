@@ -5,6 +5,12 @@ public abstract class Individual implements Comparable<Individual>, Cloneable{
 	public static Fitness fitness;
 	public double lastEvaluation;
 	
+	public Individual(){}
+	
+	public Individual(Fitness fitFun){
+		if(fitness == null && this.getClass() == fitFun.specie())//instanceof falis
+			setStaticFitness(fitFun);
+	}
 	/**
 	 * @returns the fitness of this Individual.
 	 */
@@ -36,6 +42,10 @@ public abstract class Individual implements Comparable<Individual>, Cloneable{
 	public boolean equals(Individual other){
 		if(other==null)return false;
 		return fitness()==other.fitness();
+	}
+	
+	static final void setStaticFitness(Fitness fitFun){
+			fitness= fitFun;
 	}
 	
 	public abstract Individual clone();

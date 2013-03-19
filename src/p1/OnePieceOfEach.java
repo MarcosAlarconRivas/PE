@@ -19,7 +19,6 @@ public class OnePieceOfEach extends VarParentsCross implements Crossover {
 		
 		LinkedList<Individual> childsList = new LinkedList<Individual>();
 		
-		@SuppressWarnings("static-access")
 		int genotypeBits[] = ((DoubleFunction)(pop.getFitnessFunction())).genotypeBits;
 		
 		for( int i=0; i<parent.length-numOfParents; ){

@@ -13,6 +13,7 @@ public class StandarMut extends Mutation {
 	@Override
 	protected void mutate(Individual i) {
 		DoubleValue ind = (DoubleValue)i;
+		@SuppressWarnings("static-access")
 		int chrLen[] = ((DoubleFunction) ind.fitness).genotypeBits;
 		
 		for(int ch=0; ch<chrLen.length; ch++){//for each chromosome

@@ -3,6 +3,7 @@ package ga;
 import java.util.Arrays;
 import java.util.Set;
 
+
 //import p1.DoubleValue;
 
 public class Population {
@@ -28,13 +29,14 @@ public class Population {
 		if(elite) this.elite = new Individual[numOfIndividuals/50];
 			//elite is 2% of total size of population
 		
+		Individual.setStaticFitness(fitness);
+		
 		for (int i=0; i<numOfIndividuals; i++) 
 			try {
 				people[i]= fitness.specie().newInstance();
 			}catch (Exception e) {
 				System.out.println(e);
 			}
-		
 		recalculate();
 	}
 	
@@ -69,7 +71,7 @@ public class Population {
 		int length= people.length;
 		for(int i=0; i<length; i++){
 			//calculating fitAverage
-			fitAverage += people[i].fitness()/length;
+			fitAverage += people[i].recalce()/length;//FIXME optimize recalce
 
 			//calculating best (not necessary when population is ordered).
 			//if(people[i].compareTo(people[best])>0) best= i;
@@ -95,12 +97,14 @@ public class Population {
 	/**
 	 * @returns individuals to crossover.
 	 */
+	@SuppressWarnings("unchecked")
 	public Set<Individual> fertile(){
 		return ((Set<Individual>)java.util.Arrays.asList(people));
 	}
 	/**
 	 * @returns individuals to mutate.
 	 */
+	@SuppressWarnings("unchecked")
 	public Set<Individual> mutable(){
 		return ((Set<Individual>)java.util.Arrays.asList(people));
 	}

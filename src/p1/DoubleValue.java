@@ -5,14 +5,20 @@ import ga.Individual;
 public class DoubleValue extends Individual {
 	DoubleChromosome genotype[];
 	
+	public DoubleValue(){
+		this(((DoubleFunction)fitness).numOfChromosomes);
+	}
+	
 	DoubleValue(DoubleChromosome gen[]){
 		genotype = gen;
+		//recalce();
 	}
 	
 	public DoubleValue(int numOfVars){
 		genotype = new DoubleChromosome[numOfVars];
 		for(int i=0; i<numOfVars; i++)
-			genotype[i]=new DoubleChromosome(DoubleFunction.genotypeBits[i]);
+			genotype[i]=new DoubleChromosome(((DoubleFunction)fitness).genotypeBits[i]);
+		//recalce();
 	}
 	
 	public boolean equals(Individual other){

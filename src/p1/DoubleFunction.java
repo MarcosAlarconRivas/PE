@@ -5,12 +5,11 @@ import ga.Individual;
 
 public abstract class DoubleFunction implements Fitness {
 
-	protected static boolean maximization = true;
-	protected static int numOfChromosomes = 1;
-	protected static double lowLimit[], highLimit[];
-	static int genotypeBits[] = {16};
-	private static double failover = 1;
-	
+	protected boolean maximization = true;
+	protected double lowLimit[], highLimit[];
+	int genotypeBits[] = {16};
+	int numOfChromosomes = 1;
+	private double failover = 1;
 	
 	@Override
 	public Class<? extends Individual> specie() {
@@ -21,8 +20,8 @@ public abstract class DoubleFunction implements Fitness {
 	public double evaluate(Individual creature) {
 		double fenotypes[] = new double[numOfChromosomes];
 		for(int i=0; i<numOfChromosomes; i++)
-			fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;
-		return fitnessFun(fenotypes);
+			fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;	
+		return evaluate(fenotypes);
 	}
 
 	@Override
@@ -30,13 +29,13 @@ public abstract class DoubleFunction implements Fitness {
 		return maximization;
 	}
 	
-	public static void setFailover(double failover){
-		DoubleFunction.failover = failover;
+	public void setFailover(double failover){
+		this.failover = failover;
 		for(int i=0; i<numOfChromosomes; i++)
-			DoubleFunction.genotypeBits[i] = (int)((highLimit[i]-lowLimit[i])/failover+1);
+			genotypeBits[i] = (int)((highLimit[i]-lowLimit[i])/failover+1);
 	}
 	
-	protected abstract double fitnessFun(double[] fenotypes);
+	protected abstract double evaluate(double[] fenotypes);
 	
 
 }

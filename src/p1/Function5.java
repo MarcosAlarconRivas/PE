@@ -2,17 +2,20 @@ package p1;
 
 public class Function5 extends DoubleFunction{
 	
-	protected static double lowLimit[]= {-10};
-	protected static double highLimit[]={10};
 	protected static int n = 1;
-	protected static int numOfChromosomes = 2;
+	
+	public Function5(){
+		lowLimit= new double[]{-10};
+		highLimit=new double[]{10};
+		numOfChromosomes = 1;
+	}
 	
 	public String toString(){
 		return "f(xi, i=1..2) = sum(i=1..5)[(i*cos((i+1)*x1+i))]*sum(i=1..5)[(i*cos((i+1)*x2+i))]";
 	}
 
 	@Override
-	protected double fitnessFun(double[] fenotypes) {
+	protected double evaluate(double[] fenotypes) {
 		double res = 0;
 		for (int i=1; i<=5; i++){
 			double f1 = fenotypes[0];
