@@ -18,7 +18,7 @@ public class Function4 extends DoubleFunction{
 	@Override
 	protected double evaluate(double[] fenotypes) {
 		double res = 0;
-		for (int i=1; i<=n; i++){
+		for (int i=0; i<n; i++){
 			double f = fenotypes[i];
 			double r = -(f*Math.sin(Math.sqrt(Math.abs(f))));
 			res += r;
