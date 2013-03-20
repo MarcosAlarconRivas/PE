@@ -37,11 +37,11 @@ public class Roulette implements Selection {
 			double acc = Math.abs(Math.random()*pop.average()-minimal)*pop.people.length;
 			//Target accumulate fitness
 			
-			int s =-1;
+			int s =pop.people.length;
 			//last creature added to acc
 			
-			while(acc>=0)
-				acc-= Math.abs(pop.people[++s].fitness()-minimal);
+			while(acc>=0 && s>0)
+				acc-= Math.abs(pop.people[--s].fitness()-minimal);
 
 			selected[creature]= s;
 		}
