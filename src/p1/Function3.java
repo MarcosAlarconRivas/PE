@@ -5,6 +5,7 @@ public class Function3 extends DoubleFunction{
 	public Function3(){
 		lowLimit = new double[]{-250};
 		highLimit = new double[]{250};
+		maximization= false;
 	}
 	
 	public String toString(){

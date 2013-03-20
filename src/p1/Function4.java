@@ -6,6 +6,7 @@ public class Function4 extends DoubleFunction{
 		lowLimit= new double[]{0};
 		highLimit=new double[]{100};
 		numOfChromosomes = 1;
+		maximization= false;
 	}
 	
 	public String toString(){
