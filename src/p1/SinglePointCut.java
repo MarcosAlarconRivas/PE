@@ -42,8 +42,7 @@ public class SinglePointCut implements Crossover {
 		
 		Random r =  new Random();
 		for(int chr=0; chr<genotypeBits.length; chr++){
-			//FIXME: homogeneous random cut point?
-			long[] cutPoint ={(long) r.nextInt(genotypeBits[chr])};
+			long[] cutPoint ={r.nextInt(genotypeBits[chr])};
 			boolean parents_dna[][][] = new boolean[2][][];
 			parents_dna[0] = p1.genotype[chr].meiosis(cutPoint);
 			parents_dna[1] = p2.genotype[chr].meiosis(cutPoint);

@@ -14,8 +14,8 @@ public class Function2 extends DoubleFunction{
 
 	@Override
 	protected double evaluate(double[] fenotypes) {
-		double f1 = fenotypes[0];
-		double f2 = fenotypes[1];
-		return 21.5+f1*Math.sin(5*Math.PI*f1)+f2*Math.sin(20*Math.PI*f2);
+		double x = fenotypes[0];
+		double y = fenotypes[1];
+		return 21.5 +x*Math.sin(5*Math.PI*x)+ y*Math.sin(20*Math.PI*y);
 	}
 }

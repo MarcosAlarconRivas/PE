@@ -26,6 +26,7 @@ public class NonRepeatingRoulette extends Roulette implements Selection{
 		LinkedList<Integer> choosable = new LinkedList<Integer>();
 		for(int i=0; i<pop.people.length; i++)
 			choosable.add(new Integer(i));
+			//inits choosable with all pop positions
 		
 		double total = Math.abs(pop.average()-minimal)*pop.people.length;
 		int selected[] = new int[toSelect];

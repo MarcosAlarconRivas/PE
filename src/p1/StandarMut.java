@@ -28,7 +28,7 @@ public class StandarMut extends Mutation {
 			
 			//mutate n alleles
 			while(n-->0)
-				ind.genotype[ch].xor((long)r.nextInt(chrLen[ch]));
+				ind.genotype[ch].xor(r.nextInt(chrLen[ch]));
 			
 			
 		}

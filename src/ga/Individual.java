@@ -11,8 +11,9 @@ public abstract class Individual implements Comparable<Individual>, Cloneable{
 		if(fitness == null && this.getClass() == fitFun.specie())//instanceof falis
 			setStaticFitness(fitFun);
 	}
+	
 	/**
-	 * @returns the fitness of this Individual.
+	 * @returns the last fitness calculated for this Individual.
 	 */
 	public double fitness(){
 		return lastEvaluation;
