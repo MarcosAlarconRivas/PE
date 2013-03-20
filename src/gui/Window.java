@@ -563,20 +563,17 @@ public class Window extends javax.swing.JFrame {
     }                                          
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        jTextField10.setText(jSlider7.getValue()/100 + "." + jSlider7.getValue() % 100);
     }                                            
 
     private void jSlider7StateChanged(javax.swing.event.ChangeEvent evt) {                                      
-        // TODO add your handling code here:
+    	jTextField10.setText(jSlider7.getValue()/100 + "." + jSlider7.getValue() % 100);
     }                                     
 
     private void jSlider8StateChanged(javax.swing.event.ChangeEvent evt) {                                      
-        // TODO add your handling code here:
+    	jTextField11.setText(jSlider8.getValue()/100 + "." + jSlider8.getValue() % 100);
     }                                     
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        jTextField11.setText(jSlider8.getValue()/100 + "." + jSlider8.getValue() % 100);
-    }                                            
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {}                                            
                                       
                 
     
