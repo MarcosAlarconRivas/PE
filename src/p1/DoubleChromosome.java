@@ -40,7 +40,7 @@ public class DoubleChromosome extends BitVector {
 		LinkedList<DoubleChromosome> result = new LinkedList<DoubleChromosome>();
 		
 		long total_length = 0;
-		int numOfCuts= dna [0][0].length;
+		int numOfCuts= dna [0].length;
 		int numOfParents = dna.length;
 		
 		for(int i=0;i<dna[0].length;i++)
@@ -49,7 +49,7 @@ public class DoubleChromosome extends BitVector {
 		for(int child=0; child<numOfParents; child++){
 			DoubleChromosome newC = new DoubleChromosome(total_length, false);
 			long bit = 0;
-			for(int cut=0; cut<numOfCuts; cut++){//FIXME array out of index
+			for(int cut=0; cut<numOfCuts; cut++){
 				bit=newC.paste(dna[(child+cut)%numOfParents][(child+cut)%numOfCuts], bit);
 			}
 			result.add(newC);
