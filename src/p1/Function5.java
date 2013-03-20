@@ -3,9 +3,9 @@ package p1;
 public class Function5 extends DoubleFunction{
 
 	public Function5(){
-		lowLimit= new double[]{-10};
-		highLimit=new double[]{10};
-		numOfChromosomes = 1;
+		lowLimit= new double[]{-10, -10};
+		highLimit=new double[]{ 10, 10};
+		numOfChromosomes = 2;
 	}
 	
 	public String toString(){
