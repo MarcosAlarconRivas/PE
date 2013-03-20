@@ -17,13 +17,14 @@ public class Function4 extends DoubleFunction{
 	 */
 	public void setN(int n){
 		if(n>numOfChromosomes){
-			genotypeBits = new int[n];
 			double hl = highLimit[0];
 			double ll = lowLimit[0];
+			int bits = genotypeBits[0];
 			highLimit= new double[n];
 			lowLimit= new double[n];
+			genotypeBits = new int[n];
 			for(int i=0; i<n; i++){
-				genotypeBits[i]=genotypeBits[0];
+				genotypeBits[i]= bits;
 				highLimit[i]= hl;
 				lowLimit[i]= ll;
 			}
