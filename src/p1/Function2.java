@@ -6,6 +6,8 @@ public class Function2 extends DoubleFunction{
 		lowLimit= new double[]{-3.0, 4.1};
 		highLimit=new double[]{12.1, 5.8};
 		numOfChromosomes = 2;
+		genotypeBits = new int[2];
+		genotypeBits[1]=genotypeBits[0];
 	}
 	
 	public String toString(){
