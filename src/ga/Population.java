@@ -1,5 +1,7 @@
 package ga;
 
+import ga.replacement.SurvivalOfTheFittest;
+
 import java.util.Arrays;
 
 public class Population {
@@ -90,7 +92,7 @@ public class Population {
 		if(elite==null)return;
 		Arrays.sort(people);
 		for(int i=0; i<elite.length; i++)
-			elite[i]= people[best-i].clone();
+			elite[elite.length-i-1]= people[best-i].clone();
 	}
 	
 	/**
@@ -98,13 +100,7 @@ public class Population {
 	 */
 	public void restoreElite(){
 		if(elite==null)return;
-		Arrays.sort(people);
-		for(int i=elite.length-1, j=elite.length-1; j>=0; j--){
-			Individual e = elite[j];
-			if(people[i].compareTo(e)<0)
-				people[i--]= e;
-		}
-			
+		SurvivalOfTheFittest.insert(elite, people);
 	}
 
 }
