@@ -103,6 +103,7 @@ public class Window extends javax.swing.JFrame {
 	private double endogamia;
 	private JScrollPane jScrollPane1;
 	private double precision;
+	private String maxminString;
 	 
 	
     /**
@@ -586,11 +587,11 @@ public class Window extends javax.swing.JFrame {
     	reproductionProb = Double.parseDouble(jTextField4.getText());
     	elite = jCheckBox1.isSelected();
     	item = jComboBox1.getSelectedIndex();
-    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); }
-    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); }
-    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); }
-    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros);  ((DoubleFunction)fit).setFailover(precision); }
-    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); }
+    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo"; }
+    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo";}
+    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo";}
+    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
+    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
@@ -623,7 +624,7 @@ public class Window extends javax.swing.JFrame {
         System.out.println("Mejor encontrado: "+ga.search().fitness());
         
         // add a line plot to the PlotPanel
-        plot.addLinePlot("Máximo", ga.getBstHistory());
+        plot.addLinePlot(maxminString, ga.getBstHistory());
         plot.addLinePlot("Media", ga.getAvgHistory());
         
         // put the PlotPanel in a JFrame like a JPanel
