@@ -11,6 +11,7 @@ import ga.Individual;
 import ga.Mutation;
 import ga.Population;
 import ga.Reproduction;
+import ga.VarParentsCross;
 import ga.replacement.ChildrenRepalceParent;
 import ga.replacement.Replacement;
 import ga.replacement.SurvivalOfTheFittest;
@@ -31,6 +32,7 @@ import javax.swing.JTextField;
 
 import org.math.plot.Plot2DPanel;
 
+import p1.DoubleFunction;
 import p1.Function1;
 import p1.Function2;
 import p1.Function3;
@@ -104,6 +106,7 @@ public class Window extends javax.swing.JFrame {
 	private double enfriamiento;
 	private double endogamia;
 	private JScrollPane jScrollPane1;
+	private long precision;
 	 
 	
     /**
@@ -579,6 +582,7 @@ public class Window extends javax.swing.JFrame {
     
     private void asignaValores(){
     	numInd = Integer.parseInt(jTextField1.getText());
+    	precision = Long.parseLong(jTextField5.getText()); //failover
     	numGen = Long.parseLong(jTextField2.getText());
     	numCortes = Integer.parseInt(jTextField6.getText()) + 1;
     	numParametros = Integer.parseInt(jTextField7.getText());
@@ -588,18 +592,18 @@ public class Window extends javax.swing.JFrame {
     	reproductionProb = Double.parseDouble(jTextField4.getText());
     	elite = jCheckBox1.isSelected();
     	item = jComboBox1.getSelectedIndex();
-    	if (item==0) fit = new Function1();
-    	else if (item==1) fit = new Function2();
-    	else if (item==2) fit = new Function3();
-    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros); }
-    	else fit = new Function5();
+    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); }
+    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); }
+    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); }
+    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros);  ((DoubleFunction)fit).setFailover(precision); }
+    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); }
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
     	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) crossMethod = new SinglePointCut();
-    	else crossMethod = new OnePieceOfEach();
+    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numCortes);}
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
     	else repalceMthod = new ChildrenRepalceParent();

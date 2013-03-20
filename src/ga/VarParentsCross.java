@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public abstract class VarParentsCross implements Crossover {
 	protected static int numOfParents = 2;
 	
-	public static void setNumOfParents(int num){
+	public void setNumOfParents(int num){
 		numOfParents = num;
 	}
 	

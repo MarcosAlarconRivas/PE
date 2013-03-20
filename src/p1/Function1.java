@@ -16,6 +16,6 @@ public class Function1 extends DoubleFunction{
 		double f = fenotypes[0];
 		double r1 = Math.pow(Math.E, -0.2*Math.abs(f));
 		double r2 = Math.pow(Math.E, Math.cos(2*Math.PI*f));
-		return 20+(-20)*Math.E*r1-r2;
+		return 20+Math.E+((-20)*r1)-r2;
 	}
 }
