@@ -19,15 +19,15 @@ public class DoubleChromosome extends BitVector {
 	 * @return the bit vector parts as boolean[]
 	 */
 	boolean [][] meiosis(long cutPoints[]){
-		//FIXME debug
-		boolean result[][] =  new boolean [cutPoints.length+1][];
+		int cuts = cutPoints.length;
+		boolean result[][] =  new boolean [cuts+1][];
 		long head = 0;
-		for (int p = 0; p<= cutPoints.length; head=cutPoints[p++]){//XXX array out of index 1
-			long tail= (p<cutPoints.length)?cutPoints[p]:length;
+		for (int p = 0; p<=cuts; p++){
+			long tail= (p<cuts)?cutPoints[p]:length;
 			result[p]= new boolean[(int)(tail-head)];
 			for(int i=0; i<tail-head; i++)
 				result[p][i]= get(head+i);
-
+			head=tail;
 		}
 		return result;
 	}
@@ -70,4 +70,5 @@ public class DoubleChromosome extends BitVector {
 		
 		return begin_bit + bits_to_copy.length;
 	}
+
 }
