@@ -72,7 +72,7 @@ public class Population {
 
 			//calculating best (not necessary when population is ordered).
 			//if(people[i].compareTo(people[best])>0) best= i;
-			
+			System.out.println(people[i].fitness());//XXX
 		}
 		Arrays.sort(people);
 		best = people.length-1;
@@ -82,6 +82,8 @@ public class Population {
 			//WRNING just for ordered populations
 			for(int i=0; i<elite.length; i++)
 				elite[i]= people[best-i].clone();
+		
+		
 		
 	}
 	

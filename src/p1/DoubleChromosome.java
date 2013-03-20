@@ -49,7 +49,7 @@ public class DoubleChromosome extends BitVector {
 		for(int child=0; child<numOfParents; child++){
 			DoubleChromosome newC = new DoubleChromosome(total_length, false);
 			long bit = 0;
-			for(int cut=0; cut<numOfCuts; cut++){
+			for(int cut=0; cut<numOfCuts; cut++){//FIXME array out of index
 				bit=newC.paste(dna[(child+cut)%numOfParents][(child+cut)%numOfCuts], bit);
 			}
 			result.add(newC);

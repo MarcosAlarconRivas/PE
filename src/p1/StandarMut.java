@@ -1,5 +1,7 @@
 package p1;
 
+import java.util.Random;
+
 import ga.Individual;
 import ga.Mutation;
 
@@ -15,17 +17,18 @@ public class StandarMut extends Mutation {
 		DoubleValue ind = (DoubleValue)i;
 		@SuppressWarnings("static-access")
 		int chrLen[] = ((DoubleFunction) ind.fitness).genotypeBits;
+		Random r =  new Random();
 		
 		for(int ch=0; ch<chrLen.length; ch++){//for each chromosome
 			
 			//generate n (number of mutations)
 			int n= (int) Math.min(
-					Math.floor(Math.random()*chrLen[ch]),
-					Math.floor(Math.random()*chrLen[ch]));
+					r.nextInt(chrLen[ch]),
+					r.nextInt(chrLen[ch]));
 			
 			//mutate n alleles
 			while(n-->0)
-				ind.genotype[ch].xor((long)Math.floor(Math.random()*chrLen[ch]));
+				ind.genotype[ch].xor((long)r.nextInt(chrLen[ch]));
 			
 			
 		}

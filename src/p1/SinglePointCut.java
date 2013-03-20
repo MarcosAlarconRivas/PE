@@ -2,6 +2,7 @@ package p1;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import ga.Crossover;
 import ga.Individual;
@@ -39,9 +40,10 @@ public class SinglePointCut implements Crossover {
 		DoubleChromosome[] child1_dna = new DoubleChromosome[genotypeBits.length];
 		DoubleChromosome[] child2_dna = new DoubleChromosome[genotypeBits.length];
 		
+		Random r =  new Random();
 		for(int chr=0; chr<genotypeBits.length; chr++){
 			//FIXME: homogeneous random cut point?
-			long[] cutPoint ={(long) Math.floor(Math.random()*genotypeBits[chr])};
+			long[] cutPoint ={(long) r.nextInt(genotypeBits[chr])};
 			boolean parents_dna[][][] = new boolean[2][][];
 			parents_dna[0] = p1.genotype[chr].meiosis(cutPoint);
 			parents_dna[1] = p2.genotype[chr].meiosis(cutPoint);

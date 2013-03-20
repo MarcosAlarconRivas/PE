@@ -3,6 +3,7 @@ package p1;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import ga.Crossover;
 import ga.Individual;
@@ -40,8 +41,9 @@ public class OnePieceOfEach extends VarParentsCross implements Crossover {
 			
 			//generate cut points
 			long[] cutPoints = new long[numOfParents-1];
+			Random r =  new Random();
 			for(int cut= 0; cut<numOfParents-1; cut++)
-				cutPoints[cut]= (long)Math.min(Math.floor(Math.random()*genotypeBits[chr]),genotypeBits[chr]-1);
+				cutPoints[cut]= (long)r.nextInt(genotypeBits[chr]);
 			Arrays.sort(cutPoints);//order chosen cut points
 			
 			//cut parents chromosomes

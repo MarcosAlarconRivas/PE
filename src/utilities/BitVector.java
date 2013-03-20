@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.Random;
+
 /**
  * It works as a bit[], but is implemented with a byte[] (for efficiency).
  * It was created as implementation of DoubleValues genotype.
@@ -64,6 +66,7 @@ public class BitVector {
 		int residue = (int) (length%8);
 		int bytes = (int)(length/8 +(residue>0?1:0));
 		g = new byte[bytes];
+		Random r = new Random();
 		for (int i= 0; i< bytes; i++) {
 			switch (t) {
 			case ALL0:
@@ -73,7 +76,7 @@ public class BitVector {
 				g[i] = unsignedToByte(255);
 				break;
 			case RANDOM:
-				g[i] = unsignedToByte((int)Math.ceil(Math.random()*255));
+				g[i] = unsignedToByte(r.nextInt(256));//FIXME
 				break;
 			}
 		}
