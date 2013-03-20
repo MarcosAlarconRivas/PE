@@ -1,5 +1,6 @@
 package p1;
 
+import utilities.BitVector;
 import ga.Fitness;
 import ga.Individual;
 
@@ -32,7 +33,7 @@ public abstract class DoubleFunction implements Fitness {
 	public void setFailover(double failover){
 		this.failover = failover;
 		for(int i=0; i<numOfChromosomes; i++)
-			genotypeBits[i] = (int)((highLimit[i]-lowLimit[i])/failover+1);
+			genotypeBits[i] = BitVector.minimalLength((int)Math.ceil((highLimit[i]-lowLimit[i])/failover)+1);
 	}
 	
 	protected abstract double evaluate(double[] fenotypes);

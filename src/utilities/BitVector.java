@@ -26,7 +26,7 @@ public class BitVector {
 		this(unsigned, minimalLength(unsigned));
 	}
 
-	private static int minimalLength(long unsigned){
+	public static int minimalLength(long unsigned){
 		if(unsigned==0)return 1;
 		int shift;
 		for(shift=0; unsigned>= 0x1<<shift; shift++);
