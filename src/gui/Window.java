@@ -79,6 +79,7 @@ public class Window extends javax.swing.JFrame {
 	private boolean elite;
 	private int item;
 	private long numGen;
+	private JFrame frame;
 	private double alleleMutationProb;
 	private Selection selectionMethod;
 	private Crossover crossMethod;
@@ -93,12 +94,13 @@ public class Window extends javax.swing.JFrame {
 	private int numCortes;
 	private Mutation mutationMthod;
 	private int numParametros;
-	
+	 
 	
     /**
      * Creates new form NewJFrame
      */
     public Window() {
+    	frame = new JFrame("Plot panel");
         initComponents();
     }
     
@@ -533,7 +535,6 @@ public class Window extends javax.swing.JFrame {
         plot.addLinePlot("Media", ga.getAvgHistory());
         
         // put the PlotPanel in a JFrame like a JPanel
-        JFrame frame = new JFrame("Plot panel");
         frame.setSize(800, 600);
         frame.setLocation(300, 0);
         frame.setContentPane(plot);
