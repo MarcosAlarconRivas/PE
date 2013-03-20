@@ -103,7 +103,7 @@ public class Window extends javax.swing.JFrame {
 	private double enfriamiento;
 	private double endogamia;
 	private JScrollPane jScrollPane1;
-	private long precision;
+	private double precision;
 	 
 	
     /**
@@ -577,7 +577,7 @@ public class Window extends javax.swing.JFrame {
     
     private void asignaValores(){
     	numInd = Integer.parseInt(jTextField1.getText());
-    	precision = Long.parseLong(jTextField5.getText()); //failover
+    	precision = Double.parseDouble(jTextField5.getText()); //failover
     	numGen = Long.parseLong(jTextField2.getText());
     	numCortes = Integer.parseInt(jTextField6.getText()) + 1;
     	numParametros = Integer.parseInt(jTextField7.getText());
@@ -611,8 +611,7 @@ public class Window extends javax.swing.JFrame {
         asignaValores();
     	Population pop = new Population(fit, numInd, elite);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
-    	Mutation mut = mutationMthod;
-    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mut);
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
     	
     	Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
