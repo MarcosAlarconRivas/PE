@@ -6,6 +6,7 @@ public class Function5 extends DoubleFunction{
 		lowLimit= new double[]{-10, -10};
 		highLimit=new double[]{ 10, 10};
 		numOfChromosomes = 2;
+		genotypeBits= new int[]{4, 4};
 	}
 	
 	public String toString(){
