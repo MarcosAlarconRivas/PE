@@ -30,6 +30,8 @@ public class Population {
 		if(elite) this.elite = new Individual[numOfIndividuals/50];
 			//elite is 2% of total size of population
 		
+		best = numOfIndividuals-1;
+		
 		Individual.setStaticFitness(fitness);
 		
 		for (int i=0; i<numOfIndividuals; i++) 
@@ -70,22 +72,25 @@ public class Population {
 		inbreading= 0;
 		
 		//orders all population by fitness
-		Arrays.sort(people);
+		findElite();
 		
 		//calculating best
-		best = length-1;
+		//best = length-1;
 		
 		//calculating fitAverage
 		for(int i=0; i<length; i++){
 			fitAverage += people[i].fitness()/length;
 		}
-		
-		//calculating elite
-		if(elite!=null)
-			//WRNING just for ordered populations
-			for(int i=0; i<elite.length; i++)
-				elite[i]= people[best-i].clone();
-		
+	}
+	
+	/**
+	 * Copies the best individuals in elite (and orders the people).
+	 */
+	public void findElite(){
+		if(elite==null)return;
+		Arrays.sort(people);
+		for(int i=0; i<elite.length; i++)
+			elite[i]= people[best-i].clone();
 	}
 	
 	/**
@@ -93,8 +98,12 @@ public class Population {
 	 */
 	public void restoreElite(){
 		if(elite==null)return;
-		for(int i=0; i<elite.length; i++)
-			people[i]= elite[elite.length-i-1];
+		for(int i=elite.length-1, j=elite.length-1; j>=0; j--){
+			Individual e = elite[j];
+			if(people[i].compareTo(e)<0)
+				people[i--]= e;
+		}
+			
 	}
 
 }
