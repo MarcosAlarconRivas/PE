@@ -94,10 +94,11 @@ public class Population {
 	}
 	
 	/**
-	 * Overwrite worst individuals with elite (if people is ordered).
+	 * Overwrite worst individuals with elite.
 	 */
 	public void restoreElite(){
 		if(elite==null)return;
+		Arrays.sort(people);
 		for(int i=elite.length-1, j=elite.length-1; j>=0; j--){
 			Individual e = elite[j];
 			if(people[i].compareTo(e)<0)
