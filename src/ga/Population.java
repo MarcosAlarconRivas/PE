@@ -16,6 +16,8 @@ public class Population {
 	private int best;
 
 	protected double fitAverage;
+
+	protected double inbreading;
 	
 	public Population(Fitness fitness, int numOfIndividuals, boolean elite){
 		fitnessFunction= fitness;
@@ -49,30 +51,32 @@ public class Population {
 	}
 
 	public double inbreading() {
-		/*if(fitnessFunction.specie() instanceof DoubleValue){
-			for(int i=0; i<people.length; i++){
-				for(int c=0; c<fitnessFunction.specie().genotypeBits.length;c++){
-					
-				}
-			}
-		}*/
+		inbreading=0;
+		int length = people.length;
 		
-		return 0;
+		//not a great inbreading calcle, FIXME
+		for(int i=0; i<length; i++)
+			inbreading+=Math.abs((people[i].fitness()-fitAverage)/fitAverage)/length;
+		
+		return Math.min(inbreading, 1);
 	}
 
 	public void recalculate() {
-		Arrays.sort(people);
-		best = people.length-1;;
-		fitAverage= 0;
 		int length= people.length;
+		fitAverage= 0;
+		inbreading= 0;
 		for(int i=0; i<length; i++){
 			//calculating fitAverage
-			fitAverage += people[i].recalce()/length;//FIXME optimize recalce
+			fitAverage += people[i].recalce()/length;
+			//FIXME optimize: recalcule only new & modif ind
 
 			//calculating best (not necessary when population is ordered).
 			//if(people[i].compareTo(people[best])>0) best= i;
-	
-			}
+			
+		}
+		Arrays.sort(people);
+		best = people.length-1;
+		
 		//calculating elite
 		if(elite!=null)
 			//WRNING just for ordered populations

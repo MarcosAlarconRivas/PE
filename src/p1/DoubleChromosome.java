@@ -22,11 +22,12 @@ public class DoubleChromosome extends BitVector {
 		//FIXME debug
 		boolean result[][] =  new boolean [cutPoints.length+1][];
 		long head = 0;
-		for (int p = 0; p<= cutPoints.length; head=cutPoints[p++]){
+		for (int p = 0; p<= cutPoints.length; head=cutPoints[p++]){//XXX array out of index 1
 			long tail= (p<cutPoints.length)?cutPoints[p]:length;
 			result[p]= new boolean[(int)(tail-head)];
 			for(int i=0; i<tail-head; i++)
 				result[p][i]= get(head+i);
+
 		}
 		return result;
 	}
