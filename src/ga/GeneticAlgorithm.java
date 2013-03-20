@@ -40,14 +40,21 @@ public class GeneticAlgorithm {
 		while(currentGen<generations){
 			advanceGeneration();
 		}
-
 		return population.getBest();
 	}
 	
+	/**
+	 * Returns all the averages of fitness
+	 * of the population in each generation.
+	 */
 	public double[] getAvgHistory(){
 		return average;
 	}
 	
+	/**
+	 * Returns all the maximums of fitness
+	 * of the population in each generation.
+	 */
 	public double[] getBstHistory(){
 		return best;
 	}

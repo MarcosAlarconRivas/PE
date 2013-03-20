@@ -11,17 +11,6 @@ public class Function4 extends DoubleFunction{
 	public String toString(){
 		return "f(xi, i=1..n) = sum(i=1..n)[(-x*sen(sqrt(|xi|)))]";
 	}
-
-	@Override
-	protected double evaluate(double[] fenotypes) {
-		double res = 0;
-		for (int i=0; i<numOfChromosomes; i++){
-			double f = fenotypes[i];
-			double r = -(f*Math.sin(Math.sqrt(Math.abs(f))));
-			res += r;
-		}
-		return res;
-	}
 	
 	/**
 	 * Sets the num of vars for the function.
@@ -38,5 +27,16 @@ public class Function4 extends DoubleFunction{
 			}
 		}
 		numOfChromosomes = n;
+	}
+
+	@Override
+	protected double evaluate(double[] fenotypes) {
+		double res = 0;
+		for (int i=0; i<numOfChromosomes; i++){
+			double f = fenotypes[i];
+			double r = -(f*Math.sin(Math.sqrt(Math.abs(f))));
+			res += r;
+		}
+		return res;
 	}
 }

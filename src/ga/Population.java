@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
-		//int elitePos[] = null;
 	
+	//Fitness used to evaluate individuals
 	Fitness fitnessFunction;
 
 	//current full population
@@ -15,9 +15,12 @@ public class Population {
 	//position in people of the best individual
 	private int best;
 
+	//agv of all population fitness
 	protected double fitAverage;
 
+	//inbreading of population
 	protected double inbreading;
+	
 	
 	public Population(Fitness fitness, int numOfIndividuals, boolean elite){
 		fitnessFunction= fitness;
@@ -50,11 +53,11 @@ public class Population {
 		return people[best];
 	}
 
+	//FIXME This is a real bad way to calculate inbreading, change it
 	public double inbreading() {
 		inbreading=0;
 		int length = people.length;
-		
-		//not a great inbreading calcle, FIXME
+
 		for(int i=0; i<length; i++)
 			inbreading+=Math.abs((people[i].fitness()-fitAverage)/fitAverage)/length;
 		
@@ -65,25 +68,23 @@ public class Population {
 		int length= people.length;
 		fitAverage= 0;
 		inbreading= 0;
-		for(int i=0; i<length; i++){
-			//calculating fitAverage
-			fitAverage += people[i].recalce()/length;
-			//FIXME optimize: recalcule only new & modif ind
-
-			//calculating best (not necessary when population is ordered).
-			//if(people[i].compareTo(people[best])>0) best= i;
-
-		}
+		
+		//orders all population by fitness
 		Arrays.sort(people);
-		best = people.length-1;
+		
+		//calculating best
+		best = length-1;
+		
+		//calculating fitAverage
+		for(int i=0; i<length; i++){
+			fitAverage += people[i].fitness()/length;
+		}
 		
 		//calculating elite
 		if(elite!=null)
 			//WRNING just for ordered populations
 			for(int i=0; i<elite.length; i++)
 				elite[i]= people[best-i].clone();
-		
-		
 		
 	}
 	
