@@ -13,9 +13,10 @@ public class Function1 extends DoubleFunction{
 
 	@Override
 	protected double evaluate(double[] fenotypes) {
-		double f = fenotypes[0];
-		double r1 = Math.pow(Math.E, -0.2*Math.abs(f));
-		double r2 = Math.pow(Math.E, Math.cos(2*Math.PI*f));
-		return 20+(-20)*Math.E*r1-r2;
+		double x = fenotypes[0];
+		double r1 = Math.exp(-0.2*Math.abs(x));
+		double r2 = Math.exp( Math.cos(2*Math.PI*x));
+		System.out.println(x+"->"+r1+" "+r2);//XXX
+		return 20+ -20*Math.E*r1  -r2;
 	}
 }

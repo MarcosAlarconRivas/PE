@@ -72,7 +72,7 @@ public class Population {
 
 			//calculating best (not necessary when population is ordered).
 			//if(people[i].compareTo(people[best])>0) best= i;
-			System.out.println(people[i].fitness());//XXX
+
 		}
 		Arrays.sort(people);
 		best = people.length-1;
