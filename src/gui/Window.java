@@ -250,7 +250,7 @@ public class Window extends javax.swing.JFrame {
         
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            	jButton1ActionPerformed(evt);
             }
         });
 
@@ -484,7 +484,7 @@ public class Window extends javax.swing.JFrame {
     private void asignaValores(){
     	numInd = Integer.parseInt(jTextField1.getText());
     	numGen = Long.parseLong(jTextField2.getText());
-    	numCortes = Integer.parseInt(jTextField6.getText());
+    	numCortes = Integer.parseInt(jTextField6.getText()) + 1;
     	numParametros = Integer.parseInt(jTextField7.getText());
     	alleleMutationProb = Double.parseDouble(jTextField3.getText());
     	reproductionProb = Double.parseDouble(jTextField4.getText());
@@ -508,12 +508,12 @@ public class Window extends javax.swing.JFrame {
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
     	//else mutationMthod = new StandarMut();
+    	//los parámetros de la stantardMut no sé que eran así que no los he puesto en la interfaz, los metemos aquí fijos
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
         asignaValores();
-    	Population pop = new Population(fit, numInd, false);
+    	Population pop = new Population(fit, numInd, elite);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
     	Mutation mut = mutationMthod;
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mut);
@@ -525,6 +525,7 @@ public class Window extends javax.swing.JFrame {
         plot.addLegend("SOUTH");
 
         //execute the algorithm
+        System.out.println(fit.toString());
         System.out.println("Mejor encontrado: "+ga.search().fitness());
         
         // add a line plot to the PlotPanel
@@ -537,7 +538,6 @@ public class Window extends javax.swing.JFrame {
         frame.setLocation(300, 0);
         frame.setContentPane(plot);
         frame.setVisible(true);
-
     } 
   
     /**
