@@ -16,6 +16,8 @@ public class Population {
 
 	//position in people of the best individual
 	private int best;
+	
+	private Individual bestOfAll;
 
 	//agv of all population fitness
 	protected double fitAverage;
@@ -42,6 +44,8 @@ public class Population {
 			}catch (Exception e) {
 				System.out.println(e);
 			}
+		findElite();
+		bestOfAll = people[best].clone();
 		recalculate();
 	}
 	
@@ -55,6 +59,10 @@ public class Population {
 
 	public Individual getBest() {
 		return people[best];
+	}
+	
+	public Individual getBestOfAll(){
+		return bestOfAll;
 	}
 
 	//FIXME This is a real bad way to calculate inbreading, change it
@@ -74,15 +82,19 @@ public class Population {
 		inbreading= 0;
 		
 		//orders all population by fitness
+		restoreElite();
 		findElite();
 		
 		//calculating best
 		//best = length-1;
+		if(people[best].compareTo(bestOfAll)>0)
+			bestOfAll = people[best].clone();
 		
 		//calculating fitAverage
 		for(int i=0; i<length; i++){
 			fitAverage += people[i].fitness()/length;
 		}
+		
 	}
 	
 	/**
@@ -100,6 +112,7 @@ public class Population {
 	 */
 	public void restoreElite(){
 		if(elite==null)return;
+		Arrays.sort(people);
 		SurvivalOfTheFittest.insert(elite, people);
 	}
 

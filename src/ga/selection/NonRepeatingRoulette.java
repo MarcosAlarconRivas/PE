@@ -24,7 +24,7 @@ public class NonRepeatingRoulette extends Roulette implements Selection{
 		//i can't choose more than total population size.
 		
 		LinkedList<Integer> choosable = new LinkedList<Integer>();
-		for(int i=pop.people.length-1; i>=0; i++)
+		for(int i=pop.people.length-1; i>=0; i--)
 			choosable.add(new Integer(i));
 			//inits choosable with all pop positions
 		

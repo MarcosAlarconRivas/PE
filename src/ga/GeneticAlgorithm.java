@@ -24,7 +24,6 @@ public class GeneticAlgorithm {
 		currentGen++;
 		repFun.reproduce(population);
 		mutFun.mutate(population);
-		population.restoreElite();
 		population.recalculate();
 		average[(int)currentGen-1] = population.average();
 		best[(int)currentGen-1] = population.getBest().fitness();
@@ -40,7 +39,7 @@ public class GeneticAlgorithm {
 		while(currentGen<generations){
 			advanceGeneration();
 		}
-		return population.getBest();
+		return population.getBestOfAll();
 	}
 	
 	/**
