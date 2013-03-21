@@ -21,7 +21,6 @@ public abstract class DoubleFunction implements Fitness {
 	int numOfChromosomes = 1;
 	//how many vars is specting for entry
 	
-	private double failover = 1;
 	//density of the search (this is the difference between 2 contiguous) possible values
 	
 	@Override
@@ -34,7 +33,9 @@ public abstract class DoubleFunction implements Fitness {
 		double fenotypes[] = new double[numOfChromosomes];
 		for(int i=0; i<numOfChromosomes; i++){
 			//fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;
-			fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*(highLimit[i]-lowLimit[i])/((DoubleValue) creature).genotype[i].rage();
+			double failover= (highLimit[i]-lowLimit[i])/((DoubleValue) creature).genotype[i].rage();;
+			double inc = ((DoubleValue) creature).genotype[i].toUnsigned()*failover;
+			fenotypes[i]=lowLimit[i]+inc; 
 		}
 		return evaluate(fenotypes);
 	}
@@ -45,9 +46,10 @@ public abstract class DoubleFunction implements Fitness {
 	}
 	
 	public void setFailover(double failover){
-		this.failover = failover;
-		for(int i=0; i<numOfChromosomes; i++)
+		for(int i=0; i<numOfChromosomes; i++){
 			genotypeBits[i] = BitVector.minimalLength((int)Math.ceil((highLimit[i]-lowLimit[i])/failover)+1);
+		}
+		
 	}
 	
 	protected abstract double evaluate(double[] fenotypes);
