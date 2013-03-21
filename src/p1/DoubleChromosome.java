@@ -67,6 +67,19 @@ public class DoubleChromosome extends BitVector {
 	}
 	
 	/**
+	 * Give the rage of the var, returns the value of the chromosome.
+	 */
+	double toFenotype(double min, double max) {
+		long dec = toUnsigned();
+		long rage = rage();
+		double f = min + dec * (max - min) / rage;
+		if (f < min || f > max) {
+			System.err.println("Out of rage " + f + " fenotype.");
+		}
+		return f;
+	}
+	
+	/**
 	 * Copies a boolean vector in given position and nexts
 	 * @param bits_to_copy
 	 * @param begin_bit
