@@ -90,7 +90,7 @@ public class BitVector {
 		}
 		
 		if(residue>0)
-			g[bytes-1] &= ~(0x11111111<<residue);
+			g[bytes-1] &= ~(0xff<<residue);
 			//delete possible bits in positions > length
 	}
 

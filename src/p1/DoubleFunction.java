@@ -32,11 +32,13 @@ public abstract class DoubleFunction implements Fitness {
 	public double evaluate(Individual creature) {
 		double fenotypes[] = new double[numOfChromosomes];
 		for(int i=0; i<numOfChromosomes; i++){
-			//fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;
-			double r = BitVector.rage(genotypeBits[i]);//TODO Debug
-			double failover= (highLimit[i]-lowLimit[i])/r;
-			double inc = ((DoubleValue) creature).genotype[i].toUnsigned()*failover;
-			fenotypes[i]=Math.min(lowLimit[i]+inc, highLimit[i]);
+			double space = BitVector.rage(genotypeBits[i]);
+			double range = highLimit[i]-lowLimit[i];
+			double inc = range/space;
+			double dis = ((DoubleValue) creature).genotype[i].toUnsigned()*inc;
+			double v = lowLimit[i]+dis;
+			if(v<lowLimit[i]||v>highLimit[i])System.err.println("fuera de rango");
+			fenotypes[i]=v;
 		}
 		return evaluate(fenotypes);
 	}
