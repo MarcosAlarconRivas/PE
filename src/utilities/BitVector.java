@@ -34,7 +34,11 @@ public class BitVector {
 	}
 	
 	public long rage(){
-		return Math.round(Math.pow(2, length+1)-1);
+		return rage(length);
+	}
+	
+	public static long rage(long bits){
+		return (0x1<<bits)-1;
 	}
 
 	/**
