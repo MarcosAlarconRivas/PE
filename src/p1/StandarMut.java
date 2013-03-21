@@ -4,7 +4,10 @@ import java.util.Random;
 
 import ga.Individual;
 import ga.Mutation;
-
+/**
+ * Normal Mutation algorithm, 
+ * it produces a random number of alele's mutations in given individual.
+ */
 public class StandarMut extends Mutation {
 
 	public StandarMut(double mutationRate, double inbreedingControl, 

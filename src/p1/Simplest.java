@@ -6,8 +6,10 @@ import ga.Population;
 
 /**
  * This is a trivial Mutation algorithm:
- * For each allele in each chromosome in each Individual decides (using alleleMutationProb)
- * switch the bit or not.
+ * For each allele in each chromosome in each Individual 
+ * decides (using alleleMutationProb) switch the bit or not.
+ * 
+ * Doesn't work with inbreedingControl or annealingFactor.
  */
 public class Simplest extends Mutation {
 

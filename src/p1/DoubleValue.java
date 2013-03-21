@@ -1,7 +1,10 @@
 package p1;
 
 import ga.Individual;
-
+/**
+ * Individual representing a (or some) double values
+ * for the entry of a function (see DoubleFunction)
+ */
 public class DoubleValue extends Individual {
 	DoubleChromosome genotype[];
 	

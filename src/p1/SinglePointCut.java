@@ -9,6 +9,7 @@ import ga.Individual;
 import ga.Population;
 /**
  * Reproduce parents 2 by 2 with a single random cut point
+ * It's the same that OnePieceOfEach set to 2 parents.
  */
 public class SinglePointCut implements Crossover {
 

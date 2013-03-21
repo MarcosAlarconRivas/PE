@@ -5,10 +5,19 @@ import utilities.BitVector;
 
 public class DoubleChromosome extends BitVector {
 	
+	/**
+	 * Creates a random binary vector of given length.
+	 * @param length
+	 */
 	DoubleChromosome(long length){
 		super(RANDOM, length);
 	}
 	
+	/**
+	 * Creates a binary vector of given length and set's it to 1(true) or 0 (false) 
+	 * @param length
+	 * @param setValue
+	 */
 	DoubleChromosome(long length, boolean setValue){
 		super(setValue?ALL_1:ALL_0, length);
 	}
