@@ -17,6 +17,7 @@ public class StandarMut extends Mutation {
 		DoubleValue ind = (DoubleValue)i;
 		@SuppressWarnings("static-access")
 		int chrLen[] = ((DoubleFunction) ind.fitness).genotypeBits;
+		//== int chrLen[] = ((DoubleFunction) DoubleValue.fitness).genotypeBits;
 		Random r =  new Random();
 		
 		for(int ch=0; ch<chrLen.length; ch++){//for each chromosome

@@ -33,9 +33,11 @@ public abstract class Mutation {
 			rate= Math.min(rate, 1);
 		}
 		
-		for(int i=0; i<creatures.people.length; i++){
-			if(Math.random()<rate) mutate(creatures.people[i]);
-		}
+		for(int i=0; i<creatures.people.length; i++)
+			if(Math.random()<rate){ 
+				mutate(creatures.people[i]);
+				creatures.people[i].recalce();
+			}
 		
 		baseRate *= annealingFactor;
 	}
