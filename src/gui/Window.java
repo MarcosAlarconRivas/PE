@@ -262,7 +262,7 @@ public class Window extends javax.swing.JFrame {
 
         jLabel8.setText("Cruce");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce simple", "Cruce complejo" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Monopunto", "Multipunto" }));
 
         jButton1.setText("Calcular");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

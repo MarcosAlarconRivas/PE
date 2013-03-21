@@ -77,22 +77,20 @@ public class Population {
 	}
 
 	public void recalculate() {
-		int length= people.length;
-		fitAverage= 0;
 		inbreading= 0;
 		
 		//orders all population by fitness
 		restoreElite();
 		findElite();
 		
-		//calculating best
-		//best = length-1;
+		Arrays.sort(people);//FIXME
 		if(people[best].compareTo(bestOfAll)>0)
 			bestOfAll = people[best].clone();
 		
+		fitAverage= 0;
 		//calculating fitAverage
-		for(int i=0; i<length; i++){
-			fitAverage += people[i].fitness()/length;
+		for(int i=0; i<people.length; i++){
+			fitAverage += people[i].fitness()/people.length;
 		}
 		
 	}

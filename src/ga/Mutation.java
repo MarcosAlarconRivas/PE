@@ -30,6 +30,7 @@ public abstract class Mutation {
 		
 		if(inbreedingMult>0){
 			rate+= inbreedingMult*creatures.inbreading();
+			rate= Math.min(rate, 1);
 		}
 		
 		for(int i=0; i<creatures.people.length; i++){
