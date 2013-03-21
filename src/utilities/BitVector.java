@@ -32,6 +32,10 @@ public class BitVector {
 		for(shift=0; unsigned>= 0x1<<shift; shift++);
 		return shift;
 	}
+	
+	public long rage(){
+		return Math.round(Math.pow(2, length+1)-1);
+	}
 
 	/**
 	 * Creates a natural binary representation of the number,

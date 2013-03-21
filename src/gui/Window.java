@@ -90,7 +90,7 @@ public class Window extends javax.swing.JFrame {
 	private JLabel jLabel11;
 	private JTextField jTextField6;
 	private JLabel jLabel10;
-	private int numCortes;
+	private int numPadres;
 	private Mutation mutationMthod;
 	private int numParametros;
 	private JTextField jTextField10;
@@ -579,7 +579,7 @@ public class Window extends javax.swing.JFrame {
     	numInd = Integer.parseInt(jTextField1.getText());
     	precision = Double.parseDouble(jTextField5.getText()); //failover
     	numGen = Long.parseLong(jTextField2.getText());
-    	numCortes = Integer.parseInt(jTextField6.getText()) + 1;
+    	numPadres = Integer.parseInt(jTextField6.getText()) + 1;
     	numParametros = Integer.parseInt(jTextField7.getText());
     	alleleMutationProb = Double.parseDouble(jTextField3.getText());
     	enfriamiento = Double.parseDouble(jTextField10.getText());
@@ -598,7 +598,7 @@ public class Window extends javax.swing.JFrame {
     	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) crossMethod = new SinglePointCut();
-    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numCortes);}
+    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
     	else repalceMthod = new ChildrenRepalceParent();

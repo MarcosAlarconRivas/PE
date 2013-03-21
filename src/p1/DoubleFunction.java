@@ -32,8 +32,10 @@ public abstract class DoubleFunction implements Fitness {
 	@Override
 	public double evaluate(Individual creature) {
 		double fenotypes[] = new double[numOfChromosomes];
-		for(int i=0; i<numOfChromosomes; i++)
-			fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;	
+		for(int i=0; i<numOfChromosomes; i++){
+			//fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*failover;
+			fenotypes[i]=lowLimit[i]+((DoubleValue) creature).genotype[i].toUnsigned()*(highLimit[i]-lowLimit[i])/((DoubleValue) creature).genotype[i].rage();
+		}
 		return evaluate(fenotypes);
 	}
 
