@@ -6,7 +6,7 @@ public class GeneticAlgorithm {
 	protected Population population;
 	protected long currentGen;
 	protected long generations;
-	public double average[], best[];
+	public double average[], best[], bestInc[];
 	
 	
 	public GeneticAlgorithm(long numOfGenerations, Population pop, 
@@ -18,6 +18,7 @@ public class GeneticAlgorithm {
 		generations = numOfGenerations;
 		average = new double[(int)generations];
 		best = new double[(int)generations];
+		bestInc = new double[(int)generations];
 	}
 	
 	protected void advanceGeneration(){
@@ -27,6 +28,7 @@ public class GeneticAlgorithm {
 		population.recalculate();
 		average[(int)currentGen-1] = population.average();
 		best[(int)currentGen-1] = population.getBest().fitness();
+		bestInc[(int)currentGen-1] = population.getBestOfAll().fitness();
 	}
 	
 	/**
@@ -56,5 +58,13 @@ public class GeneticAlgorithm {
 	 */
 	public double[] getBstHistory(){
 		return best;
+	}
+	
+	/**
+	 * Returns the best fitness found before each generation
+	 * also if owner individual was death.
+	 */
+	public double[] getBstOfAllHistory(){
+		return bestInc;
 	}
 }

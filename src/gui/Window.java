@@ -624,8 +624,9 @@ public class Window extends javax.swing.JFrame {
         System.out.println("Mejor encontrado: "+ga.search().fitness());
         
         // add a line plot to the PlotPanel
-        plot.addLinePlot(maxminString, ga.getBstHistory());
-        plot.addLinePlot("Media", ga.getAvgHistory());
+        plot.addLinePlot(maxminString+" actual", ga.getBstHistory());
+        plot.addLinePlot("Media actual", ga.getAvgHistory());
+        plot.addLinePlot("Mejor historico", ga.getBstOfAllHistory());
         
         // put the PlotPanel in a JFrame like a JPanel
         frame.setSize(800, 600);
