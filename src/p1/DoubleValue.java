@@ -38,4 +38,14 @@ public class DoubleValue extends Individual {
 	public Individual clone(){
 		return new DoubleValue(genotype.clone(), lastEvaluation);
 	}
+	
+	public double[] fenotypes(){
+		int nCh= genotype.length;
+		DoubleFunction f = ((DoubleFunction)fitness);
+		double fenotypes[] = new double[nCh];
+		for(int i=0; i<nCh; i++){
+			fenotypes[i]=genotype[i].toFenotype(f.lowLimit[i], f.highLimit[i]);
+		}
+		return fenotypes;
+	}
 }

@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import org.math.plot.Plot2DPanel;
 
 import p1.DoubleFunction;
+import p1.DoubleValue;
 import p1.Function1;
 import p1.Function2;
 import p1.Function3;
@@ -620,8 +621,16 @@ public class Window extends javax.swing.JFrame {
         plot.addLegend("SOUTH");
 
         //execute the algorithm
+        DoubleValue best = (DoubleValue) ga.search();
+        System.out.println("---------------------------");
         System.out.println(fit.toString());
-        System.out.println("Mejor encontrado: "+ga.search().fitness());
+        System.out.println("Mejor encontrado: "+best.fitness());
+        double fenotipos[] = best.fenotypes();
+        if(fenotipos.length>1){
+        	System.out.println("con fenotipos:");
+        	for(int i=0; i<fenotipos.length; i++)
+        		System.out.println("\t X"+(i+1)+"= "+fenotipos[i]);
+        }else System.out.println("con fenotipo: X= "+fenotipos[0]);
         
         // add a line plot to the PlotPanel
         plot.addLinePlot(maxminString+" actual", ga.getBstHistory());

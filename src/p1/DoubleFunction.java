@@ -18,7 +18,7 @@ public abstract class DoubleFunction implements Fitness {
 	int genotypeBits[] = {16};
 	//size of chormosome representation of each var
 	
-	int numOfChromosomes = 1;
+	public int numOfChromosomes = 1;
 	//how many vars is specting for entry
 	
 	//density of the search (this is the difference between 2 contiguous) possible values
