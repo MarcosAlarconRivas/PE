@@ -16,15 +16,18 @@ public class Function5 extends DoubleFunction{
 
 	@Override
 	protected double evaluate(double[] fenotypes) {
-		double res = 0;
+		double sum1 = 0;
+		double sum2 = 0;
+		
+		double x = fenotypes[0];
+		double y = fenotypes[1];
+		
 		for (int i=1; i<=5; i++){
-			double f1 = fenotypes[0];
-			double f2 = fenotypes[1];
-			double r1 = i*Math.cos((i+1)*f1+i);
-			double r2 = i*Math.cos((i+1)*f2+i);
-			res += r1*r2;
+			sum1 += i*Math.cos((i+1)*x+i);
+			sum2 += i*Math.cos((i+1)*y+i);
 		}
-		return res;
+		
+		return sum1*sum2;
 	}
 	
 }
