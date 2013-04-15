@@ -48,4 +48,26 @@ public class DoubleValue extends Individual {
 		}
 		return fenotypes;
 	}
+	
+	
+	@SuppressWarnings("static-access")
+	public double kinship(Individual other) {
+		if(!(other instanceof DoubleValue)) return 0;
+		
+		DoubleFunction f = ((DoubleFunction)fitness);
+		
+		if(other.fitness != f) return 0;
+		if(other==this)return 1;
+		
+		double[] cousinFen = ((DoubleValue) other).fenotypes();
+		double[] myFen = fenotypes();
+		int numGen= genotype.length;
+		double kinship = 0;
+		
+		for(int g =0 ; g<numGen; g++)
+			kinship += Math.abs(cousinFen[g]-myFen[g]/(f.highLimit[g]-f.lowLimit[g]));
+		
+		return kinship/numGen;
+	}
+	
 }

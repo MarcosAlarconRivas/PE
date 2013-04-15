@@ -65,13 +65,12 @@ public class Population {
 		return bestOfAll;
 	}
 
-	//FIXME This is a real bad way to calculate inbreading, change it
 	public double inbreading() {
 		inbreading=0;
 		int length = people.length;
 
-		for(int i=0; i<length; i++)
-			inbreading+=Math.abs((people[i].fitness()-fitAverage)/fitAverage)/length;
+		for(int i=0; i<length-1; i++)
+			inbreading+=Math.abs(people[i].kinship(people[i+1])/people.length);
 		
 		return Math.min(inbreading, 1);
 	}

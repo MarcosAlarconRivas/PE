@@ -44,9 +44,20 @@ public abstract class Individual implements Comparable<Individual>, Cloneable{
 		if(other==null)return false;
 		return fitness()==other.fitness();
 	}
-	
+	/**
+	 * Changes the evaluation function for this individual;
+	 */
 	static final void setStaticFitness(Fitness fitFun){
 			fitness= fitFun;
+	}
+
+	/**
+	 * This is used to measure inbreading of the population.
+	 * It should be overwrite in each kind of individual.
+	 */
+	public double kinship(Individual individual) {
+		if(this==individual) return 1;
+		return 0;
 	}
 	
 	public abstract Individual clone();

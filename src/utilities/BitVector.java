@@ -3,7 +3,13 @@ package utilities;
 import java.util.Random;
 
 /**
- * It works as a bit[], but is implemented with a byte[] (for efficiency).
+ * It works as a bit[], but is implemented with a byte[].
+ * 
+ * ADVISE:
+ ** When i wrote this class i thought java stores/access memory as bytes,
+ ** now i now it's smallest unit is a word,
+ ** so i recommend to use a int[] instead this byte[].
+ * 
  * It was created as implementation of DoubleValues genotype.
  */
 public class BitVector {
