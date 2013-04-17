@@ -37,16 +37,16 @@ public class UnbrokenRows extends VarParentsCross implements Crossover {
 	private void addChildrenNewChildren(LinkedList<Individual> children, Population pop, 
 			int[] parents, int firstPar) {
 		
-		for(int child=0; child<numOfParents; child++){
-			//generate new child
-			Sudoku newChild = new Sudoku();
-			int row;
-			for(int par=child; ; par= (par+1)%numOfParents){
-				
-			}
-			
-			
-			//add in children
+		int nPar = Math.min(parents.length-firstPar, numOfParents);
+		
+		for(int child=0; child<nPar; child++){
+			int dna[][] = new int[9][];
+			 for(int row=0; row<9; row++){
+				int p = ((child+row)%nPar)+firstPar;
+				Sudoku parent=(Sudoku)pop.people[parents[p]];
+				dna[row]= parent.rows[row].clone();
+			 }
+			children.add(new Sudoku(dna));
 		}
 	}
 

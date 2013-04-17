@@ -12,9 +12,19 @@ public class Sudoku extends Individual {
 
 	protected int rows[][] = new int[9][9];
 	
-	/** new empty sudoku**/
-	Sudoku(){
+	public static int[][] inputData = new int[9][9]; 
+	
+	public static void setUserInput(int data[][]){
+		inputData = data;
+	}
+	
+	/** new sudoku**/
+	public Sudoku(boolean empty){
 		super(Conflicts.getInstance());
+		if(!empty)
+			for(int i=0; i<9; i++)
+				rows[i]= generateRow(inputData[i]);
+			
 	}
 	
 	/**
@@ -102,7 +112,7 @@ public class Sudoku extends Individual {
 	
 	@Override
 	public Individual clone() {
-		Sudoku copy = new Sudoku();
+		Sudoku copy = new Sudoku(true);
 		copy.rows = rows.clone();
 		return copy;
 	}
