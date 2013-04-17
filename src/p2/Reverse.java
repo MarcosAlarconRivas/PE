@@ -38,24 +38,25 @@ public class Reverse extends Mutation {
 			
 			Sudoku newOne  = (Sudoku)sudoku.clone();
 			
-			int a1=0,a2=0;
 			while (cut1 < cut2){
 				while (sudoku.rows[row][cut1]<0){
-					a1++;
+					cut1++;
 				}
 				while (sudoku.rows[row][cut2]<0){
-					a2--;
+					cut2--;
 				}
-				int p = newOne.rows[row][cut1];
-				newOne.rows[row][cut1]= newOne.rows[row][cut2];
-				newOne.rows[row][cut2]= p;
-				a1++; a2--;
+				if (cut1 < cut2){
+					int p = newOne.rows[row][cut1];
+					newOne.rows[row][cut1]= newOne.rows[row][cut2];
+					newOne.rows[row][cut2]= p;
+					cut1++; cut2--;
+				}
 			}
 			
 			newOne.recalce();
 			
 			if(newOne.compareTo(sudoku)>0)//choose the best one
-				sudoku= newOne;
+				sudoku = newOne;
 		}
 
 	}
