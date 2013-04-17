@@ -10,6 +10,7 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
 
 /**
@@ -17,11 +18,10 @@ import org.math.plot.Plot2DPanel;
  * 
  */
 public class P2 extends javax.swing.JFrame {
-
+    
     /** Creates new form inicio */
     public P2() {
         initComponents();
-        iniciar();
     }
 
     /** This method is called from within the constructor to
@@ -583,6 +583,11 @@ public class P2 extends javax.swing.JFrame {
         jLabelSudoku.setText("SUDOKU");
 
         jButton1.setLabel("Resolver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Tamaño de población");
 
@@ -756,7 +761,7 @@ public class P2 extends javax.swing.JFrame {
                 .addGroup(jLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1022,11 +1027,11 @@ public class P2 extends javax.swing.JFrame {
                     .addComponent(t86, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(t87, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(t88, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(83, 83, 83)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1069,7 +1074,7 @@ public class P2 extends javax.swing.JFrame {
                         .addComponent(t36, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(t37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(t38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(246, Short.MAX_VALUE)))
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Sudoku", null, jPanel1, "");
@@ -1084,10 +1089,10 @@ public class P2 extends javax.swing.JFrame {
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gr�fica", jInternalFrame1);
+        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1099,7 +1104,7 @@ public class P2 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Grafica");
@@ -1382,76 +1387,77 @@ public class P2 extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
-    p2.RellenaSudoku ng = new p2.RellenaSudoku();
-
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        iniciar();
+    } 
+    
     private void iniciar() {
-
-        ng.cargar_juego();
-        t00.setText(String.valueOf(ng.matriz[0][0]));
+        t00.setText("1");
         t00.setEditable(false);
-        t02.setText(String.valueOf(ng.matriz[0][2]));
+        t02.setText("9");
         t02.setEditable(false);
 
-        t74.setText(String.valueOf(ng.matriz[7][4]));
+        t74.setText("");
         t74.setEditable(false);
-        t33.setText(String.valueOf(ng.matriz[3][3]));
+        t33.setText("");
         t33.setEditable(false);
-        t55.setText(String.valueOf(ng.matriz[5][5]));
+        t55.setText("");
         t55.setEditable(false);
 
-        t05.setText(String.valueOf(ng.matriz[0][5]));
+        t05.setText("");
         t05.setEditable(false);
-        t06.setText(String.valueOf(ng.matriz[0][6]));
+        t06.setText("");
         t06.setEditable(false);
-        t07.setText(String.valueOf(ng.matriz[0][7]));
+        t07.setText("");
         t07.setEditable(false);
-        t18.setText(String.valueOf(ng.matriz[1][8]));
+        t18.setText("");
         t18.setEditable(false);
-        t21.setText(String.valueOf(ng.matriz[2][1]));
+        t21.setText("");
         t21.setEditable(false);
-        t22.setText(String.valueOf(ng.matriz[2][2]));
+        t22.setText("");
         t22.setEditable(false);
-        t24.setText(String.valueOf(ng.matriz[2][4]));
+        t24.setText("");
         t24.setEditable(false);
-        t26.setText(String.valueOf(ng.matriz[2][6]));
+        t26.setText("");
         t26.setEditable(false);
-        t35.setText(String.valueOf(ng.matriz[3][5]));
+        t35.setText("");
         t35.setEditable(false);
-        t36.setText(String.valueOf(ng.matriz[3][6]));
+        t36.setText("");
         t36.setEditable(false);
-        t37.setText(String.valueOf(ng.matriz[3][7]));
+        t37.setText("");
         t37.setEditable(false);
-        t41.setText(String.valueOf(ng.matriz[4][1]));
+        t41.setText("");
         t41.setEditable(false);
-        t42.setText(String.valueOf(ng.matriz[4][2]));
+        t42.setText("");
         t42.setEditable(false);
-        t46.setText(String.valueOf(ng.matriz[4][6]));
+        t46.setText("");
         t46.setEditable(false);
-        t47.setText(String.valueOf(ng.matriz[4][7]));
+        t47.setText("");
         t47.setEditable(false);
-        t51.setText(String.valueOf(ng.matriz[5][1]));
+        t51.setText("");
         t51.setEditable(false);
-        t52.setText(String.valueOf(ng.matriz[5][2]));
+        t52.setText("");
         t52.setEditable(false);
-        t53.setText(String.valueOf(ng.matriz[5][3]));
+        t53.setText("");
         t53.setEditable(false);
-        t62.setText(String.valueOf(ng.matriz[6][2]));
+        t62.setText("");
         t62.setEditable(false);
-        t64.setText(String.valueOf(ng.matriz[6][4]));
+        t64.setText("");
         t64.setEditable(false);
-        t66.setText(String.valueOf(ng.matriz[6][6]));
+        t66.setText("");
         t66.setEditable(false);
-        t67.setText(String.valueOf(ng.matriz[6][7]));
+        t67.setText("");
         t67.setEditable(false);
-        t70.setText(String.valueOf(ng.matriz[7][0]));
+        t70.setText("");
         t70.setEditable(false);
-        t81.setText(String.valueOf(ng.matriz[8][1]));
+        t81.setText("");
         t81.setEditable(false);
-        t82.setText(String.valueOf(ng.matriz[8][2]));
+        t82.setText("");
         t82.setEditable(false);
-        t83.setText(String.valueOf(ng.matriz[8][3]));
+        t83.setText("");
         t83.setEditable(false);
-        t87.setText(String.valueOf(ng.matriz[8][7]));
+        t87.setText("");
         t87.setEditable(false);
         
         Plot2DPanel plot = new Plot2DPanel();
