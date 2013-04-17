@@ -19,6 +19,7 @@ public class ChooseOne extends Mutation {
 	@Override
 	protected void mutate(Individual indiv) {
 		Sudoku sudoku = (Sudoku)indiv;
+		Sudoku best = (Sudoku)sudoku.clone();
 		Random r = new Random();
 		
 		for(int i=0; i<numOfTries; i++){
@@ -33,17 +34,18 @@ public class ChooseOne extends Mutation {
 				continue;
 			
 			Sudoku newOne  = (Sudoku)sudoku.clone();
+			
+			//switch c1 & c2
 			int p = newOne.rows[row][c1];
 			newOne.rows[row][c1]= newOne.rows[row][c2];
 			newOne.rows[row][c2]= p;
 			
 			newOne.recalce();
 			
-			if(newOne.compareTo(sudoku)>0)//choose the best one
-				sudoku= newOne;//FIXME ref arg?
-		
+			if(newOne.compareTo(best)>0)//choose the best one
+				best= newOne;
 		}
-
+		indiv=best;
 	}
 
 }
