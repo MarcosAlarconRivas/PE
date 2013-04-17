@@ -17,7 +17,8 @@ public class ChooseOne extends Mutation {
 	}
 
 	@Override
-	protected void mutate(Individual sudoku) {
+	protected void mutate(Individual indiv) {
+		Sudoku sudoku = (Sudoku)indiv;
 		Random r = new Random();
 		
 		for(int i=0; i<numOfTries; i++){
@@ -28,7 +29,8 @@ public class ChooseOne extends Mutation {
 			int c1= r.nextInt(9);
 			int c2 = r.nextInt(9);
 			
-			if(c1==c2 || c1<0 || c2<0) continue;
+			if(c1==c2 || sudoku.rows[row][c1]<0 || sudoku.rows[row][c2]<0)
+				continue;
 			
 			Sudoku newOne  = (Sudoku)sudoku.clone();
 			int p = newOne.rows[row][c1];

@@ -23,7 +23,8 @@ public class UnbrokenRows extends VarParentsCross implements Crossover {
 
 	@Override
 	public LinkedList<Individual> crossover(int[] parents, Population pop) {
-		// TODO Auto-generated method stub
+		LinkedList<Individual> children = new LinkedList<Individual> ();
+		
 		return null;
 	}
 
