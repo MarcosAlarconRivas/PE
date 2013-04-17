@@ -9,16 +9,28 @@ import ga.Individual;
  * Negative values represents input data (positions that can't change).
  */
 public class Sudoku extends Individual {
+	
+	//data for initalition of the new individuals
+	protected static int[][] inputData = new int[9][9]; 
 
+	//chromosome
 	protected int rows[][] = new int[9][9];
 	
-	public static int[][] inputData = new int[9][9]; 
-	
+	/**
+	 * This method is used by the gui to assign initial positions of the sudoku. 
+	 */
 	public static void setUserInput(int data[][]){
 		inputData = data;
 	}
 	
-	/** new sudoku**/
+	/**
+	 * Creates a new random sudoku with 'inputData' positions fixed.
+	 */
+	public Sudoku(){
+		this(false);
+	}
+	
+	/** Creates a new sudoku if not 'empty' uses 'inputData'**/
 	public Sudoku(boolean empty){
 		super(Conflicts.getInstance());
 		if(!empty)
@@ -64,50 +76,6 @@ public class Sudoku extends Individual {
 		}
 
 		return row;
-	}
-
-	/**
-	 * 0->[___][___][___]
-	 * 1->[...
-	 * 2->
-	 * ...
-	 * 8->[___][___][___]
-	 */
-	public int[] getRow(int r){
-		return rows[r].clone();
-	}
-	
-	/**
-	 * 0 1 2 | 3 4 5 | 6 7 8
-	 * | | |   | | |   | | |
-	 * v v v   v v v   v v v 
-	 * [][][]| [][][]| [][][]
-	 * [][][]| ......| ......
-	 * .....
-	 */
-	public int[] getCol(int c){
-		int[] column = new int[9];
-		
-		for(int r=0;r<9;r++)
-			column[r] = rows[r][c];
-			
-		return column;
-	}
-	
-	/**
-	 *  ________
-	 * |0 |1 |2 |
-	 * |3 |4 |5 |
-	 * |6 |7 |8 |
-	 */
-	public int[] getblk(int b){
-		int[] block = new int[9];
-		
-		for(int r=0; r<3; r++)
-			for(int c=0; c<3; c++)
-				block[r+c]= rows[b/3+r][b%3+c];
-		
-		return block;
 	}
 	
 	@Override
