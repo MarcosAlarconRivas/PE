@@ -28,14 +28,14 @@ public class ChooseOne extends Mutation {
 			int c1= r.nextInt(9);
 			int c2 = r.nextInt(9);
 			
-			if(c1==c2 |c1<0 || c2<0) break;
+			if(c1==c2 |c1<0 || c2<0) continue;
 			
 			Sudoku newOne  = (Sudoku)sudoku.clone();
 			int p = newOne.rows[row][c1];
 			newOne.rows[row][c1]= newOne.rows[row][c2];
 			newOne.rows[row][c2]= p;
 			
-			//FIXME evaluate newOne ?
+			newOne.recalce();
 			
 			if(newOne.compareTo(sudoku)>0)//choose the best one
 				sudoku= newOne;//FIXME ref arg?

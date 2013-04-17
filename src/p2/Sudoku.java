@@ -1,5 +1,8 @@
 package p2;
 
+import java.util.LinkedList;
+import java.util.Random;
+
 import ga.Individual;
 /**
  * Individual representing a Sudoku
@@ -28,8 +31,29 @@ public class Sudoku extends Individual {
 	 * Generate a valid row using the given positions
 	 */
 	private int[] generateRow(int[] input) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<Integer> checkList  = new LinkedList<Integer>();
+		Random r =  new  Random();
+		int row[] = new int[9];
+		for(int i=1; i<10; i++)
+			checkList.add(i);
+		
+		for(int i=0; i<9; i++){
+			int num = Math.abs(input[i]);
+			if(num>9||num==0)
+				row[i]=0;
+			else{ 
+				row[i]= -num;
+				checkList.removeFirstOccurrence(num);
+			}
+		}
+		
+		for(int i=0; i<9; i++){
+			if(row[i]!=0)continue;
+			if(checkList.isEmpty()) break;
+			row[i]= checkList.remove(r.nextInt(checkList.size()));
+		}
+
+		return row;
 	}
 
 	/**
