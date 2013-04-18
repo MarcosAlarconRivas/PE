@@ -10,9 +10,32 @@
  */
 package gui;
 
+import ga.Crossover;
+import ga.GeneticAlgorithm;
+import ga.Mutation;
+import ga.Reproduction;
+import ga.VarParentsCross;
+import ga.replacement.ChildrenRepalceParent;
+import ga.replacement.SurvivalOfTheFittest;
+import ga.selection.NonRepeatingRoulette;
+import ga.selection.Roulette;
+import ga.selection.Tournament;
+
 import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
 
+import p1.DoubleFunction;
+import p1.Function1;
+import p1.Function2;
+import p1.Function3;
+import p1.Function4;
+import p1.Function5;
+import p1.OnePieceOfEach;
+import p1.Simplest;
+import p1.SinglePointCut;
+import p1.StandarMut;
+import p2.Reverse;
+import p2.Cross;
 import p2.Sudoku;
 
 /**
@@ -21,7 +44,14 @@ import p2.Sudoku;
  */
 public class P2 extends javax.swing.JFrame {
     
-    /** Creates new form inicio */
+    private int numInd;
+	private long numGen;
+	private double reproductionProb;
+	private double probMut;
+	private Mutation mutationMthod;
+	private int item;
+	private Reproduction crossMethod;
+	/** Creates new form inicio */
     public P2() {
         initComponents();
     }
@@ -1486,8 +1516,35 @@ public class P2 extends javax.swing.JFrame {
     	if (t87.getText().isEmpty()) matriz[8][7]=0; else matriz[8][7]=Integer.parseInt(t87.getText());
     	if (t88.getText().isEmpty()) matriz[8][8]=0; else matriz[8][8]=Integer.parseInt(t88.getText());
         
-    	Sudoku s = new Sudoku();
-    	s.setUserInput(matriz);
+    	numInd = Integer.parseInt(jTextField1.getText());
+    	probMut = Double.parseDouble(jTextField4.getText()); //failover
+    	numGen = Long.parseLong(jTextField2.getText());
+    	reproductionProb = Double.parseDouble(jTextField3.getText());
+//    	elite = jCheckBox1.isSelected();
+//    	item = jComboBox1.getSelectedIndex();
+//    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo"; }
+//    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo";}
+//    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo";}
+//    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
+//    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
+//    	item = jComboBox2.getSelectedIndex();
+//    	if (item==0) selectionMethod = new Tournament(reproductionProb);
+//    	else if (item==1) selectionMethod = new Roulette(reproductionProb);
+//    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	item = jComboBox4.getSelectedIndex();
+//    	if (item==0) crossMethod = new Cross();
+//    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
+//    	item = jComboBox4.getSelectedIndex();
+//    	if (item==0) repalceMthod = new SurvivalOfTheFittest();
+//    	else repalceMthod = new ChildrenRepalceParent();
+//    	item = jComboBox5.getSelectedIndex();
+//    	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
+    	mutationMthod = new Reverse(probMut, 0.5, 0.5);
+    	
+    	Sudoku sudoku = new Sudoku();
+    	sudoku.setUserInput(matriz);
+    	
+//    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, sudoku, crossMethod, mutationMthod);
     	
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
