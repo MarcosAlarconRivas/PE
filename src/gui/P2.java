@@ -13,6 +13,8 @@ package gui;
 import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
 
+import p2.Sudoku;
+
 /**
  *
  * 
@@ -1393,73 +1395,100 @@ public class P2 extends javax.swing.JFrame {
     } 
     
     private void iniciar() {
-        t00.setText("1");
-        t00.setEditable(false);
-        t02.setText("9");
-        t02.setEditable(false);
-
-        t74.setText("");
-        t74.setEditable(false);
-        t33.setText("");
-        t33.setEditable(false);
-        t55.setText("");
-        t55.setEditable(false);
-
-        t05.setText("");
-        t05.setEditable(false);
-        t06.setText("");
-        t06.setEditable(false);
-        t07.setText("");
-        t07.setEditable(false);
-        t18.setText("");
-        t18.setEditable(false);
-        t21.setText("");
-        t21.setEditable(false);
-        t22.setText("");
-        t22.setEditable(false);
-        t24.setText("");
-        t24.setEditable(false);
-        t26.setText("");
-        t26.setEditable(false);
-        t35.setText("");
-        t35.setEditable(false);
-        t36.setText("");
-        t36.setEditable(false);
-        t37.setText("");
-        t37.setEditable(false);
-        t41.setText("");
-        t41.setEditable(false);
-        t42.setText("");
-        t42.setEditable(false);
-        t46.setText("");
-        t46.setEditable(false);
-        t47.setText("");
-        t47.setEditable(false);
-        t51.setText("");
-        t51.setEditable(false);
-        t52.setText("");
-        t52.setEditable(false);
-        t53.setText("");
-        t53.setEditable(false);
-        t62.setText("");
-        t62.setEditable(false);
-        t64.setText("");
-        t64.setEditable(false);
-        t66.setText("");
-        t66.setEditable(false);
-        t67.setText("");
-        t67.setEditable(false);
-        t70.setText("");
-        t70.setEditable(false);
-        t81.setText("");
-        t81.setEditable(false);
-        t82.setText("");
-        t82.setEditable(false);
-        t83.setText("");
-        t83.setEditable(false);
-        t87.setText("");
-        t87.setEditable(false);
+    	matriz=new int[9][9];
+    	if (t00.getText().isEmpty()) matriz[0][0]=0; else matriz[0][0]=Integer.parseInt(t00.getText());
+    	if (t01.getText().isEmpty()) matriz[0][1]=0; else matriz[0][1]=Integer.parseInt(t01.getText());
+    	if (t02.getText().isEmpty()) matriz[0][2]=0; else matriz[0][2]=Integer.parseInt(t02.getText());
+    	if (t03.getText().isEmpty()) matriz[0][3]=0; else matriz[0][3]=Integer.parseInt(t03.getText());
+    	if (t04.getText().isEmpty()) matriz[0][4]=0; else matriz[0][4]=Integer.parseInt(t04.getText());
+    	if (t05.getText().isEmpty()) matriz[0][5]=0; else matriz[0][5]=Integer.parseInt(t05.getText());
+    	if (t06.getText().isEmpty()) matriz[0][6]=0; else matriz[0][6]=Integer.parseInt(t06.getText());
+    	if (t07.getText().isEmpty()) matriz[0][7]=0; else matriz[0][7]=Integer.parseInt(t07.getText());
+    	if (t08.getText().isEmpty()) matriz[0][8]=0; else matriz[0][8]=Integer.parseInt(t08.getText());
         
+    	if (t10.getText().isEmpty()) matriz[1][0]=0; else matriz[1][0]=Integer.parseInt(t10.getText());
+    	if (t11.getText().isEmpty()) matriz[1][1]=0; else matriz[1][1]=Integer.parseInt(t11.getText());
+    	if (t12.getText().isEmpty()) matriz[1][2]=0; else matriz[1][2]=Integer.parseInt(t12.getText());
+    	if (t13.getText().isEmpty()) matriz[1][3]=0; else matriz[1][3]=Integer.parseInt(t13.getText());
+    	if (t14.getText().isEmpty()) matriz[1][4]=0; else matriz[1][4]=Integer.parseInt(t14.getText());
+    	if (t15.getText().isEmpty()) matriz[1][5]=0; else matriz[1][5]=Integer.parseInt(t15.getText());
+    	if (t16.getText().isEmpty()) matriz[1][6]=0; else matriz[1][6]=Integer.parseInt(t16.getText());
+    	if (t17.getText().isEmpty()) matriz[1][7]=0; else matriz[1][7]=Integer.parseInt(t17.getText());
+    	if (t18.getText().isEmpty()) matriz[1][8]=0; else matriz[1][8]=Integer.parseInt(t18.getText());
+        
+    	if (t20.getText().isEmpty()) matriz[2][0]=0; else matriz[2][0]=Integer.parseInt(t20.getText());
+    	if (t21.getText().isEmpty()) matriz[2][1]=0; else matriz[2][1]=Integer.parseInt(t21.getText());
+    	if (t22.getText().isEmpty()) matriz[2][2]=0; else matriz[2][2]=Integer.parseInt(t22.getText());
+    	if (t23.getText().isEmpty()) matriz[2][3]=0; else matriz[2][3]=Integer.parseInt(t23.getText());
+    	if (t24.getText().isEmpty()) matriz[2][4]=0; else matriz[2][4]=Integer.parseInt(t24.getText());
+    	if (t25.getText().isEmpty()) matriz[2][5]=0; else matriz[2][5]=Integer.parseInt(t25.getText());
+    	if (t26.getText().isEmpty()) matriz[2][6]=0; else matriz[2][6]=Integer.parseInt(t26.getText());
+    	if (t27.getText().isEmpty()) matriz[2][7]=0; else matriz[2][7]=Integer.parseInt(t27.getText());
+    	if (t28.getText().isEmpty()) matriz[2][8]=0; else matriz[2][8]=Integer.parseInt(t28.getText());
+
+    	if (t30.getText().isEmpty()) matriz[3][0]=0; else matriz[3][0]=Integer.parseInt(t30.getText());
+    	if (t31.getText().isEmpty()) matriz[3][1]=0; else matriz[3][1]=Integer.parseInt(t31.getText());
+    	if (t32.getText().isEmpty()) matriz[3][2]=0; else matriz[3][2]=Integer.parseInt(t32.getText());
+    	if (t33.getText().isEmpty()) matriz[3][3]=0; else matriz[3][3]=Integer.parseInt(t33.getText());
+    	if (t34.getText().isEmpty()) matriz[3][4]=0; else matriz[3][4]=Integer.parseInt(t34.getText());
+    	if (t35.getText().isEmpty()) matriz[3][5]=0; else matriz[3][5]=Integer.parseInt(t35.getText());
+    	if (t36.getText().isEmpty()) matriz[3][6]=0; else matriz[3][6]=Integer.parseInt(t36.getText());
+    	if (t37.getText().isEmpty()) matriz[3][7]=0; else matriz[3][7]=Integer.parseInt(t37.getText());
+    	if (t38.getText().isEmpty()) matriz[3][8]=0; else matriz[3][8]=Integer.parseInt(t38.getText());
+        
+    	if (t40.getText().isEmpty()) matriz[4][0]=0; else matriz[4][0]=Integer.parseInt(t40.getText());
+    	if (t41.getText().isEmpty()) matriz[4][1]=0; else matriz[4][1]=Integer.parseInt(t41.getText());
+    	if (t42.getText().isEmpty()) matriz[4][2]=0; else matriz[4][2]=Integer.parseInt(t42.getText());
+    	if (t43.getText().isEmpty()) matriz[4][3]=0; else matriz[4][3]=Integer.parseInt(t43.getText());
+    	if (t44.getText().isEmpty()) matriz[4][4]=0; else matriz[4][4]=Integer.parseInt(t44.getText());
+    	if (t45.getText().isEmpty()) matriz[4][5]=0; else matriz[4][5]=Integer.parseInt(t45.getText());
+    	if (t46.getText().isEmpty()) matriz[4][6]=0; else matriz[4][6]=Integer.parseInt(t46.getText());
+    	if (t47.getText().isEmpty()) matriz[4][7]=0; else matriz[4][7]=Integer.parseInt(t47.getText());
+    	if (t48.getText().isEmpty()) matriz[4][8]=0; else matriz[4][8]=Integer.parseInt(t48.getText());
+    	
+    	if (t50.getText().isEmpty()) matriz[5][0]=0; else matriz[5][0]=Integer.parseInt(t50.getText());
+    	if (t51.getText().isEmpty()) matriz[5][1]=0; else matriz[5][1]=Integer.parseInt(t51.getText());
+    	if (t52.getText().isEmpty()) matriz[5][2]=0; else matriz[5][2]=Integer.parseInt(t52.getText());
+    	if (t53.getText().isEmpty()) matriz[5][3]=0; else matriz[5][3]=Integer.parseInt(t53.getText());
+    	if (t54.getText().isEmpty()) matriz[5][4]=0; else matriz[5][4]=Integer.parseInt(t54.getText());
+    	if (t55.getText().isEmpty()) matriz[5][5]=0; else matriz[5][5]=Integer.parseInt(t55.getText());
+    	if (t56.getText().isEmpty()) matriz[5][6]=0; else matriz[5][6]=Integer.parseInt(t56.getText());
+    	if (t57.getText().isEmpty()) matriz[5][7]=0; else matriz[5][7]=Integer.parseInt(t57.getText());
+    	if (t58.getText().isEmpty()) matriz[5][8]=0; else matriz[5][8]=Integer.parseInt(t58.getText());
+    	
+    	if (t60.getText().isEmpty()) matriz[6][0]=0; else matriz[6][0]=Integer.parseInt(t60.getText());
+    	if (t61.getText().isEmpty()) matriz[6][1]=0; else matriz[6][1]=Integer.parseInt(t61.getText());
+    	if (t62.getText().isEmpty()) matriz[6][2]=0; else matriz[6][2]=Integer.parseInt(t62.getText());
+    	if (t63.getText().isEmpty()) matriz[6][3]=0; else matriz[6][3]=Integer.parseInt(t63.getText());
+    	if (t64.getText().isEmpty()) matriz[6][4]=0; else matriz[6][4]=Integer.parseInt(t64.getText());
+    	if (t65.getText().isEmpty()) matriz[6][5]=0; else matriz[6][5]=Integer.parseInt(t65.getText());
+    	if (t66.getText().isEmpty()) matriz[6][6]=0; else matriz[6][6]=Integer.parseInt(t66.getText());
+    	if (t67.getText().isEmpty()) matriz[6][7]=0; else matriz[6][7]=Integer.parseInt(t67.getText());
+    	if (t68.getText().isEmpty()) matriz[6][8]=0; else matriz[6][8]=Integer.parseInt(t68.getText());
+    	
+    	if (t70.getText().isEmpty()) matriz[7][0]=0; else matriz[7][0]=Integer.parseInt(t70.getText());
+    	if (t71.getText().isEmpty()) matriz[7][1]=0; else matriz[7][1]=Integer.parseInt(t71.getText());
+    	if (t72.getText().isEmpty()) matriz[7][2]=0; else matriz[7][2]=Integer.parseInt(t72.getText());
+    	if (t73.getText().isEmpty()) matriz[7][3]=0; else matriz[7][3]=Integer.parseInt(t73.getText());
+    	if (t74.getText().isEmpty()) matriz[7][4]=0; else matriz[7][4]=Integer.parseInt(t74.getText());
+    	if (t75.getText().isEmpty()) matriz[7][5]=0; else matriz[7][5]=Integer.parseInt(t75.getText());
+    	if (t76.getText().isEmpty()) matriz[7][6]=0; else matriz[7][6]=Integer.parseInt(t76.getText());
+    	if (t77.getText().isEmpty()) matriz[7][7]=0; else matriz[7][7]=Integer.parseInt(t77.getText());
+    	if (t78.getText().isEmpty()) matriz[7][8]=0; else matriz[7][8]=Integer.parseInt(t78.getText());
+    	
+    	if (t80.getText().isEmpty()) matriz[8][0]=0; else matriz[8][0]=Integer.parseInt(t80.getText());
+    	if (t81.getText().isEmpty()) matriz[8][1]=0; else matriz[8][1]=Integer.parseInt(t81.getText());
+    	if (t82.getText().isEmpty()) matriz[8][2]=0; else matriz[8][2]=Integer.parseInt(t82.getText());
+    	if (t83.getText().isEmpty()) matriz[8][3]=0; else matriz[8][3]=Integer.parseInt(t83.getText());
+    	if (t84.getText().isEmpty()) matriz[8][4]=0; else matriz[8][4]=Integer.parseInt(t84.getText());
+    	if (t85.getText().isEmpty()) matriz[8][5]=0; else matriz[8][5]=Integer.parseInt(t85.getText());
+    	if (t86.getText().isEmpty()) matriz[8][6]=0; else matriz[8][6]=Integer.parseInt(t86.getText());
+    	if (t87.getText().isEmpty()) matriz[8][7]=0; else matriz[8][7]=Integer.parseInt(t87.getText());
+    	if (t88.getText().isEmpty()) matriz[8][8]=0; else matriz[8][8]=Integer.parseInt(t88.getText());
+        
+    	Sudoku s = new Sudoku();
+    	s.setUserInput(matriz);
+    	
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
 
@@ -1616,6 +1645,7 @@ public class P2 extends javax.swing.JFrame {
     private javax.swing.JTextField t86;
     private javax.swing.JTextField t87;
     private javax.swing.JTextField t88;
+    int[][] matriz;
     // End of variables declaration//GEN-END:variables
 
 }
