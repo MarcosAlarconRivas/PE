@@ -3,14 +3,14 @@ package p2;
 import java.util.Random;
 
 import ga.Individual;
-import ga.Mutation;
+import ga.VarTriesMut;
 /**
  * This mutation tries 'numOfTries' times to change two positions of the same row.
  * returns the best one of them.
  */
-public class ChooseOne extends Mutation {
+public class ChooseOne extends VarTriesMut {
 	
-	public static int numOfTries= 3;
+	protected static int numOfTries= 3;
 
 	public ChooseOne(double baseProb, double inbreedingControl, double annealingControl) {
 		super(baseProb, inbreedingControl, annealingControl);
@@ -19,7 +19,7 @@ public class ChooseOne extends Mutation {
 	@Override
 	protected void mutate(Individual indiv) {
 		Sudoku sudoku = (Sudoku)indiv;
-		Sudoku best = (Sudoku)sudoku.clone();
+		Sudoku best = null;
 		Random r = new Random();
 		
 		for(int i=0; i<numOfTries; i++){
@@ -42,10 +42,13 @@ public class ChooseOne extends Mutation {
 			
 			newOne.recalce();
 			
-			if(newOne.compareTo(best)>0)//choose the best one
+			if(best==null||newOne.compareTo(best)>0)//choose the best one
 				best= newOne;
 		}
-		indiv=best;
+		if(best==null)return;
+		
+		sudoku.rows = best.rows;
+		sudoku.lastEvaluation = best.lastEvaluation;
 	}
 
 }

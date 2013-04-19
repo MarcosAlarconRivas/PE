@@ -3,12 +3,11 @@ package p2;
 import java.util.Random;
 
 import ga.Individual;
-import ga.Mutation;
+import ga.VarTriesMut;
 /**
- * This mutation tries 'numOfTries' times to change two positions of the same row.
- * returns the best one of them.
+ * This mutation tries 'numOfTries' times reverse some positions in a row.
  */
-public class Reverse extends Mutation {
+public class Reverse extends VarTriesMut {
 	
 	public static int numOfTries= 3;
 
@@ -55,8 +54,10 @@ public class Reverse extends Mutation {
 			
 			newOne.recalce();
 			
-			if(newOne.compareTo(sudoku)>0)//choose the best one
-				sudoku = newOne;
+			if(newOne.compareTo(sudoku)>0){//choose the best one
+				sudoku.rows = newOne.rows;
+				sudoku.lastEvaluation = newOne.lastEvaluation;
+			}
 		}
 
 	}

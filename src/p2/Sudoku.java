@@ -33,9 +33,11 @@ public class Sudoku extends Individual {
 	/** Creates a new sudoku if not 'empty' uses 'inputData'**/
 	public Sudoku(boolean empty){
 		super(Conflicts.getInstance());
-		if(!empty)
+		if(!empty){
 			for(int i=0; i<9; i++)
 				rows[i]= generateRow(inputData[i]);
+			this.recalce();
+		}
 			
 	}
 	
@@ -47,6 +49,7 @@ public class Sudoku extends Individual {
 		for(int i=0; i<9; i++)
 			rows[i]= generateRow(rowsMatrix[i]);
 		
+		this.recalce();
 	}
 	
 	/**
@@ -82,7 +85,27 @@ public class Sudoku extends Individual {
 	public Individual clone() {
 		Sudoku copy = new Sudoku(true);
 		copy.rows = rows.clone();
+		copy.lastEvaluation = lastEvaluation;
 		return copy;
+	}
+	
+	@Override
+	@SuppressWarnings("static-access")
+	public double kinship(Individual indi) {
+		if(this==indi) return 1;
+		if(fitness!=indi.fitness)return 0;
+		int hit  = 0;
+		int miss = 0;
+		int n;
+		Sudoku oth = (Sudoku) indi;
+		for (int r=0; r<9; r++)
+			for(int c=0; c<9; c++)
+				if((n=rows[r][c])>0)
+					if(n==oth.rows[r][c])hit++;
+					else miss++;
+		
+		if(hit+miss==0)return 1;
+		return hit/hit+miss;
 	}
 	
 }
