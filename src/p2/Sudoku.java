@@ -79,7 +79,7 @@ public class Sudoku extends Individual {
 	/**
 	 * Returns current configuration of the table.
 	 */
-	public int[][] getTable(){
+	public int[][] fenotype(){
 		return rows.clone();
 	}
 	
