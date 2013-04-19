@@ -81,6 +81,13 @@ public class Sudoku extends Individual {
 		return row;
 	}
 	
+	/**
+	 * Returns current configuration of the table.
+	 */
+	public int[][] getTable(){
+		return rows.clone();
+	}
+	
 	@Override
 	public Individual clone() {
 		Sudoku copy = new Sudoku(true);
