@@ -11,15 +11,22 @@
 package gui;
 
 import ga.Crossover;
+import ga.Fitness;
 import ga.GeneticAlgorithm;
+import ga.Individual;
 import ga.Mutation;
+import ga.Population;
 import ga.Reproduction;
 import ga.VarParentsCross;
 import ga.replacement.ChildrenRepalceParent;
+import ga.replacement.Replacement;
 import ga.replacement.SurvivalOfTheFittest;
 import ga.selection.NonRepeatingRoulette;
 import ga.selection.Roulette;
+import ga.selection.Selection;
 import ga.selection.Tournament;
+
+import item.jComboBox2.getSelectedIndex;
 
 import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
@@ -50,7 +57,12 @@ public class P2 extends javax.swing.JFrame {
 	private double probMut;
 	private Mutation mutationMthod;
 	private int item;
-	private Reproduction crossMethod;
+	private Crossover crossMethod;
+	private Object elite;
+	private Selection selectionMethod;
+	private Replacement repalceMthod;
+	private double alleleMutationProb;
+	private Fitness fit;
 	/** Creates new form inicio */
     public P2() {
         initComponents();
@@ -1520,31 +1532,37 @@ public class P2 extends javax.swing.JFrame {
     	probMut = Double.parseDouble(jTextField4.getText()); //failover
     	numGen = Long.parseLong(jTextField2.getText());
     	reproductionProb = Double.parseDouble(jTextField3.getText());
-//    	elite = jCheckBox1.isSelected();
-//    	item = jComboBox1.getSelectedIndex();
+    	elite = jCheckBox1.isSelected();
+    	item = jComboBox1.getSelectedIndex();
+    	alleleMutationProb = Double.parseDouble(jTextField5.getText());
+//      fit
 //    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo"; }
 //    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo";}
 //    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo";}
 //    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
 //    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
-//    	item = jComboBox2.getSelectedIndex();
-//    	if (item==0) selectionMethod = new Tournament(reproductionProb);
-//    	else if (item==1) selectionMethod = new Roulette(reproductionProb);
-//    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	item = jComboBox2.getSelectedIndex();
+    	if (item==0) selectionMethod = new Tournament(reproductionProb);
+    	else if (item==1) selectionMethod = new Roulette(reproductionProb);
+    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	item = jComboBox4.getSelectedIndex();
-//    	if (item==0) crossMethod = new Cross();
-//    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
-//    	item = jComboBox4.getSelectedIndex();
-//    	if (item==0) repalceMthod = new SurvivalOfTheFittest();
-//    	else repalceMthod = new ChildrenRepalceParent();
-//    	item = jComboBox5.getSelectedIndex();
-//    	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
+    	if (item==0) crossMethod = new Cross();
+    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
+    	item = jComboBox5.getSelectedIndex();
+    	if (item==0) repalceMthod = new SurvivalOfTheFittest();
+    	else repalceMthod = new ChildrenRepalceParent();
+    	item = jComboBox3.getSelectedIndex();
+    	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
     	mutationMthod = new Reverse(probMut, 0.5, 0.5);
     	
     	Sudoku sudoku = new Sudoku();
     	sudoku.setUserInput(matriz);
     	
-//    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, sudoku, crossMethod, mutationMthod);
+    	Population pop = new Population(fit, numInd, elite);
+    	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
+    	
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, sudoku, crossMethod, mutationMthod);
     	
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
@@ -1594,6 +1612,7 @@ public class P2 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
