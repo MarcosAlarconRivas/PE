@@ -20,9 +20,5 @@ public abstract class VarTriesMut extends Mutation {
 	public static int getNumOfTies(){
 		return numOfTries;
 	}
-	
-	
-
-
 
 }

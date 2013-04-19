@@ -32,13 +32,7 @@ public class Sudoku extends Individual {
 	
 	/** Creates a new sudoku if not 'empty' uses 'inputData'**/
 	public Sudoku(boolean empty){
-		super(Conflicts.getInstance());
-		if(!empty){
-			for(int i=0; i<9; i++)
-				rows[i]= generateRow(inputData[i]);
-			this.recalce();
-		}
-			
+		this(empty?null:inputData);
 	}
 	
 	/**
@@ -46,6 +40,7 @@ public class Sudoku extends Individual {
 	 */
 	public Sudoku(int rowsMatrix[][]){
 		super(Conflicts.getInstance());
+		if(rowsMatrix==null)return;
 		for(int i=0; i<9; i++)
 			rows[i]= generateRow(rowsMatrix[i]);
 		
