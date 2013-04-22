@@ -633,7 +633,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Tamaño de población");
+        jLabel2.setText("Tamaï¿½o de poblaciï¿½n");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -642,7 +642,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Número de generaciones");
+        jLabel3.setText("Nï¿½mero de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -651,7 +651,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducción");
+        jLabel4.setText("Probabilidad de reproducciï¿½n");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -667,7 +667,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutación");
+        jLabel5.setText("Probabilidad de mutaciï¿½n");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -676,17 +676,17 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutación");
+        jLabel6.setText("Probabilidad de mutaciï¿½n");
 
-        jLabel7.setText("Función de fitness");
+        jLabel7.setText("Funciï¿½n de fitness");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel8.setText("Función de selección");
+        jLabel8.setText("Funciï¿½n de selecciï¿½n");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel9.setText("Función de mutación");
+        jLabel9.setText("Funciï¿½n de mutaciï¿½n");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -698,7 +698,7 @@ public class P2 extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel12.setText("Número de cortes");
+        jLabel12.setText("Nï¿½mero de cortes");
 
         jTextField6.setText("1");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -709,7 +709,7 @@ public class P2 extends javax.swing.JFrame {
 
         jCheckBox1.setText("Elite");
 
-        jLabel13.setText("Número de padres");
+        jLabel13.setText("Nï¿½mero de padres");
 
         jTextField7.setText("2");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -1197,7 +1197,7 @@ public class P2 extends javax.swing.JFrame {
             .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
+        jTabbedPane1.addTab("Grï¿½fica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1636,8 +1636,26 @@ public class P2 extends javax.swing.JFrame {
     			new Reproduction(selectionMethod, crossMethod, repalceMthod), 
     			mutationMthod);
     	
-    	//TODO poner en el tablero de la interfaz la matriz "ga.search().fenotype()"
+    	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
     	matriz=((Sudoku)ga.search()).fenotype();
+    	refreshMatrix();
+    	    	
+    	
+        Plot2DPanel plot = new Plot2DPanel();
+        plot.removeAllPlots();
+
+        // define the legend position
+        plot.addLegend("SOUTH");
+        
+        // put the PlotPanel in a JFrame like a JPanel
+        jInternalFrame1.setContentPane(plot);
+        setVisible(true);
+    }
+    
+/**
+ * (re)writes 'matriz' in the interface
+ */
+    private void refreshMatrix() {
     	t00.setText(String.valueOf(matriz[0][0]));
     	t01.setText(String.valueOf(matriz[0][1]));
     	t02.setText(String.valueOf(matriz[0][2]));
@@ -1727,20 +1745,11 @@ public class P2 extends javax.swing.JFrame {
     	t85.setText(String.valueOf(matriz[8][5]));
     	t86.setText(String.valueOf(matriz[8][6]));
     	t87.setText(String.valueOf(matriz[8][7]));
-    	t88.setText(String.valueOf(matriz[8][8]));    	
-    	
-        Plot2DPanel plot = new Plot2DPanel();
-        plot.removeAllPlots();
+    	t88.setText(String.valueOf(matriz[8][8]));
+		
+	}
 
-        // define the legend position
-        plot.addLegend("SOUTH");
-        
-        // put the PlotPanel in a JFrame like a JPanel
-        jInternalFrame1.setContentPane(plot);
-        setVisible(true);
-    }
-
-    /**
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
