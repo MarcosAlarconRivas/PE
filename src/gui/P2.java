@@ -694,7 +694,7 @@ public class P2 extends javax.swing.JFrame {
             .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gr�fica", jInternalFrame1);
+        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
