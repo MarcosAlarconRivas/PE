@@ -26,7 +26,7 @@ import ga.selection.Roulette;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 
-import item.jComboBox2.getSelectedIndex;
+//import item.jComboBox2.getSelectedIndex;
 
 import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
@@ -1536,12 +1536,7 @@ public class P2 extends javax.swing.JFrame {
     	elite = jCheckBox1.isSelected();
     	item = jComboBox1.getSelectedIndex();
     	alleleMutationProb = Double.parseDouble(jTextField5.getText());
-//      fit
-//    	if (item==0) { fit = new Function1(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo"; }
-//    	else if (item==1) { fit = new Function2(); ((DoubleFunction)fit).setFailover(precision); maxminString="Máximo";}
-//    	else if (item==2) { fit = new Function3(); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo";}
-//    	else if (item==3) { fit = new Function4(); ((Function4)fit).setN(numParametros); ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
-//    	else { fit = new Function5();  ((DoubleFunction)fit).setFailover(precision); maxminString="Mínimo"; }
+
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
@@ -1559,12 +1554,12 @@ public class P2 extends javax.swing.JFrame {
 
     	Sudoku.setUserInput(matriz);
     	
-    	Population pop = new Population(Conflicts.getInstance(), numInd, elite);
-    	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
-    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
+    			new Population(Conflicts.getInstance(), numInd, elite),
+    			new Reproduction(selectionMethod, crossMethod, repalceMthod), 
+    			mutationMthod);
     	
-    	ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
-    	
+
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
 
