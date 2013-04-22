@@ -41,6 +41,7 @@ import p1.OnePieceOfEach;
 import p1.Simplest;
 import p1.SinglePointCut;
 import p1.StandarMut;
+import p2.Conflicts;
 import p2.Reverse;
 import p2.Cross;
 import p2.Sudoku;
@@ -58,7 +59,7 @@ public class P2 extends javax.swing.JFrame {
 	private Mutation mutationMthod;
 	private int item;
 	private Crossover crossMethod;
-	private Object elite;
+	private boolean elite;
 	private Selection selectionMethod;
 	private Replacement repalceMthod;
 	private double alleleMutationProb;
@@ -1555,14 +1556,14 @@ public class P2 extends javax.swing.JFrame {
     	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
     	mutationMthod = new Reverse(probMut, 0.5, 0.5);
     	
-    	Sudoku sudoku = new Sudoku();
-    	sudoku.setUserInput(matriz);
+
+    	Sudoku.setUserInput(matriz);
     	
-    	Population pop = new Population(fit, numInd, elite);
+    	Population pop = new Population(Conflicts.getInstance(), numInd, elite);
     	Reproduction rep = new Reproduction(selectionMethod, crossMethod, repalceMthod);
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
     	
-    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, sudoku, crossMethod, mutationMthod);
+    	ga = new GeneticAlgorithm(numGen, pop, rep, mutationMthod);
     	
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
