@@ -54,7 +54,7 @@ public class P2 extends javax.swing.JFrame {
 	private JLabel jLabel14;
 	private JTextField jTextField8;
 	
-	private JTextField casillas[][]= null;
+	private JTextField casillas[][]= new JTextField[9][9];
 	
 	/** Creates new form inicio */
     public P2() {

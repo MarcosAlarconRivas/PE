@@ -115,7 +115,7 @@ public class Sudoku extends Individual {
 					else miss++;
 		
 		if(hit+miss==0)return 1;
-		return hit/hit+miss;
+		return hit/(hit+miss);
 	}
 	
 }
