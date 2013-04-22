@@ -13,7 +13,6 @@ package gui;
 import ga.Crossover;
 import ga.Fitness;
 import ga.GeneticAlgorithm;
-import ga.Individual;
 import ga.Mutation;
 import ga.Population;
 import ga.Reproduction;
@@ -25,27 +24,8 @@ import ga.selection.NonRepeatingRoulette;
 import ga.selection.Roulette;
 import ga.selection.Selection;
 import ga.selection.Tournament;
-
-//import item.jComboBox2.getSelectedIndex;
-
-import java.awt.Component;
-import java.awt.event.ActionEvent;
 import org.math.plot.Plot2DPanel;
-
-import p1.DoubleFunction;
-import p1.Function1;
-import p1.Function2;
-import p1.Function3;
-import p1.Function4;
-import p1.Function5;
-import p1.OnePieceOfEach;
-import p1.Simplest;
-import p1.SinglePointCut;
-import p1.StandarMut;
-import p2.Conflicts;
-import p2.Reverse;
-import p2.Cross;
-import p2.Sudoku;
+import p2.*;
 
 /**
  *
@@ -53,7 +33,8 @@ import p2.Sudoku;
  */
 public class P2 extends javax.swing.JFrame {
     
-    private int numInd;
+	private static final long serialVersionUID = 1L;
+	private int numInd;
 	private long numGen;
 	private double reproductionProb;
 	private double probMut;
@@ -63,8 +44,6 @@ public class P2 extends javax.swing.JFrame {
 	private boolean elite;
 	private Selection selectionMethod;
 	private Replacement repalceMthod;
-	private double alleleMutationProb;
-	private Fitness fit;
 	private int numPadres;
 	/** Creates new form inicio */
     public P2() {
@@ -632,14 +611,14 @@ public class P2 extends javax.swing.JFrame {
         jLabelSudoku.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelSudoku.setText("SUDOKU");
 
-        jButton1.setLabel("Resolver");
+        jButton1.setText("Resolver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Tamaño de población");
+        jLabel2.setText("Tamaï¿½o de poblaciï¿½n");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -648,7 +627,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Número de generaciones");
+        jLabel3.setText("Nï¿½mero de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -657,7 +636,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducción");
+        jLabel4.setText("Probabilidad de reproducciï¿½n");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -673,7 +652,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutación");
+        jLabel5.setText("Probabilidad de mutaciï¿½n");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -682,17 +661,17 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutación");
+        jLabel6.setText("Probabilidad de mutaciï¿½n");
 
-        jLabel7.setText("Función de fitness");
+        jLabel7.setText("Funciï¿½n de fitness");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel8.setText("Función de selección");
+        jLabel8.setText("Funciï¿½n de selecciï¿½n");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel9.setText("Función de mutación");
+        jLabel9.setText("Funciï¿½n de mutaciï¿½n");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -704,7 +683,7 @@ public class P2 extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel12.setText("Número de cortes");
+        jLabel12.setText("Nï¿½mero de cortes");
 
         jTextField6.setText("1");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -715,7 +694,7 @@ public class P2 extends javax.swing.JFrame {
 
         jCheckBox1.setText("Elite");
 
-        jLabel13.setText("Número de padres");
+        jLabel13.setText("Nï¿½mero de padres");
 
         jTextField7.setText("2");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -1167,7 +1146,7 @@ public class P2 extends javax.swing.JFrame {
             .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
+        jTabbedPane1.addTab("Grï¿½fica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1578,14 +1557,17 @@ public class P2 extends javax.swing.JFrame {
     	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) crossMethod = new Cross();
-    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
+    	else crossMethod = new UnbrokenRows();
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
     	else repalceMthod = new ChildrenRepalceParent();
     	item = jComboBox3.getSelectedIndex();
-    	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
-    	mutationMthod = new Reverse(probMut, 0.5, 0.5);
+    	if (item==0) mutationMthod = new ChooseOne(probMut,endogamia,enfriamiento);
+    	else mutationMthod = new Reverse(probMut,endogamia,enfriamiento);
+    	//TODO aÃ±adir la endogamia y el emfriamiento
     	
+    	 if(crossMethod instanceof VarParentsCross)
+    		 ((VarParentsCross)crossMethod).setNumOfParents(numPadres);
 
     	Sudoku.setUserInput(matriz);
     	
@@ -1595,6 +1577,8 @@ public class P2 extends javax.swing.JFrame {
     			mutationMthod);
     	
 
+    	//TODO poner en el tablero de la interfaz la matriz "ga.search().fenotype()"
+    	
         Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
 

@@ -599,13 +599,17 @@ public class P1 extends javax.swing.JFrame {
     	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) crossMethod = new SinglePointCut();
-    	else { crossMethod = new OnePieceOfEach(); ((VarParentsCross)crossMethod).setNumOfParents(numPadres);}
+    	else crossMethod = new OnePieceOfEach();
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
     	else repalceMthod = new ChildrenRepalceParent();
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) mutationMthod = new Simplest(alleleMutationProb);
     	else mutationMthod = new StandarMut(alleleMutationProb,endogamia,enfriamiento);
+    
+    
+    	 if(crossMethod instanceof VarParentsCross)
+    		 ((VarParentsCross)crossMethod).setNumOfParents(numPadres);
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
