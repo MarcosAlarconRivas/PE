@@ -27,22 +27,30 @@ public class Sudoku extends Individual {
 	 * Creates a new random sudoku with 'inputData' positions fixed.
 	 */
 	public Sudoku(){
-		this(false);
+		this(inputData, true);
 	}
 	
 	/** Creates a new sudoku if not 'empty' uses 'inputData'**/
 	public Sudoku(boolean empty){
-		this(empty?null:inputData);
+		this(empty?null:inputData, true);
+	}
+	
+	/**
+	 * Creates a new sudoku with a full matrix.
+	 */
+	public Sudoku(int rowsMatrix[][]){
+		this(rowsMatrix, false);
 	}
 	
 	/**
 	 * Creates a new random sudoku with the fixed positions in rows.
 	 */
-	public Sudoku(int rowsMatrix[][]){
+	private Sudoku(int rowsMatrix[][], boolean uncompleteMatrix){
 		super(Conflicts.getInstance());
 		if(rowsMatrix==null)return;
 		for(int i=0; i<9; i++)
-			rows[i]= generateRow(rowsMatrix[i]);
+			if(uncompleteMatrix)rows[i]= generateRow(rowsMatrix[i]);
+			else rows[i]= rowsMatrix[i];
 		
 		this.recalce();
 	}
@@ -85,7 +93,7 @@ public class Sudoku extends Individual {
 	
 	@Override
 	public Individual clone() {
-		Sudoku copy = new Sudoku(true);
+		Sudoku copy = new Sudoku(null);
 		copy.rows = rows.clone();
 		copy.lastEvaluation = lastEvaluation;
 		return copy;
