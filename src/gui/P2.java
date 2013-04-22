@@ -1548,7 +1548,7 @@ public class P2 extends javax.swing.JFrame {
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
     	item = jComboBox1.getSelectedIndex();
-    	alleleMutationProb = Double.parseDouble(jTextField5.getText());
+    	probMut = Double.parseDouble(jTextField5.getText());
     	numPadres=Integer.parseInt(jTextField7.getText());
 
     	item = jComboBox2.getSelectedIndex();
