@@ -175,7 +175,7 @@ public class P2 extends javax.swing.JFrame {
         
         jLabel8.setText("Función de selección");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones", "SUS", "Ranking" }));
 
         jLabel9.setText("Función de mutación");
 
@@ -772,13 +772,16 @@ public class P2 extends javax.swing.JFrame {
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
     	else if (item==2) selectionMethod = new NonRepeatingRoulette(reproductionProb);
     	else if (item==3) selectionMethod = new SUS(reproductionProb);
+    	
     	else selectionMethod = new Ranking(reproductionProb);
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) crossMethod = new Cross();
     	else crossMethod = new UnbrokenRows();
+    	
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
     	else repalceMthod = new ChildrenRepalceParent();
+    	
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) mutationMthod = new ChooseOne(probMut,endogamia,enfriamiento);
     	else mutationMthod = new Reverse(probMut,endogamia,enfriamiento);
@@ -804,12 +807,7 @@ public class P2 extends javax.swing.JFrame {
         plot.addLegend("SOUTH");
         
         // add a line plot to the PlotPanel
-        plot.addLinePlot("Actual", ga.getBstHistory());
-        plot.addLinePlot("Media actual", ga.getAvgHistory());
-        plot.addLinePlot("Mejor historico", ga.getBstOfAllHistory());
-        
-        // add a line plot to the PlotPanel
-        plot.addLinePlot("Mejor actual", ga.getBstHistory());
+        plot.addLinePlot("Mejor Actual", ga.getBstHistory());
         plot.addLinePlot("Media actual", ga.getAvgHistory());
         plot.addLinePlot("Mejor historico", ga.getBstOfAllHistory());
         
