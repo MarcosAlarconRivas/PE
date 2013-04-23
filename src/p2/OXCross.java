@@ -40,7 +40,7 @@ public class OXCross implements Crossover {
 				cut2=temp;
 			}
 			
-			ArrayList<Integer> al = new ArrayList<>();
+			ArrayList<Integer> al = new ArrayList<Integer>();
 			
 			for (int col=0; col<9; col++){
 				if (col<=cut1 || col>=cut2){

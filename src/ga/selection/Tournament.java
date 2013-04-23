@@ -14,7 +14,7 @@ public class Tournament implements Selection {
 	
 	
 	public Tournament(double prob){
-		prob=prop;
+		prop=prob;
 	}
 
 	@Override
