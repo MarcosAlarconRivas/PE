@@ -132,7 +132,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Tama�o de poblaci�n");
+        jLabel2.setText("Tamaño de población");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("N�mero de generaciones");
+        jLabel3.setText("Número de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +150,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducci�n");
+        jLabel4.setText("Probabilidad de reproducción");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +166,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutaci�n");
+        jLabel5.setText("Probabilidad de mutación");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -175,15 +175,15 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutaci�n");
+        jLabel6.setText("Probabilidad de mutación");
 
         jComboBox1.setVisible(false);
         
-        jLabel8.setText("Funci�n de selecci�n");
+        jLabel8.setText("Función de selección");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones" }));
 
-        jLabel9.setText("Funci�n de mutaci�n");
+        jLabel9.setText("Función de mutación");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ChooseOne", "Reverse"}));
 
@@ -195,7 +195,7 @@ public class P2 extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
 
-        jLabel12.setText("N�mero de cortes");
+        jLabel12.setText("Número de cortes");
 
         jTextField6.setText("1");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +206,7 @@ public class P2 extends javax.swing.JFrame {
 
         jCheckBox1.setText("Elite");
 
-        jLabel13.setText("N�mero de padres");
+        jLabel13.setText("Número de padres");
 
         jTextField7.setText("2");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -694,7 +694,7 @@ public class P2 extends javax.swing.JFrame {
             .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gr�fica", jInternalFrame1);
+        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
