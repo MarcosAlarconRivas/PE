@@ -27,6 +27,8 @@ import ga.selection.Roulette;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
+
+import p1.DoubleValue;
 import p2.*;
 
 /**
@@ -800,11 +802,27 @@ public class P2 extends javax.swing.JFrame {
     	refreshGUIMatrix(matriz);
     	    	
     	
-        Plot2DPanel plot = new Plot2DPanel();
+    	Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
 
         // define the legend position
         plot.addLegend("SOUTH");
+
+        //execute the algorithm
+        DoubleValue best = (DoubleValue) ga.search();
+        System.out.println("---------------------------");
+        System.out.println("Mejor encontrado: "+best.fitness());
+        double fenotipos[] = best.fenotypes();
+        if(fenotipos.length>1){
+        	System.out.println("con fenotipos:");
+        	for(int i=0; i<fenotipos.length; i++)
+        		System.out.println("\t X"+(i+1)+"= "+fenotipos[i]);
+        }else System.out.println("con fenotipo: X= "+fenotipos[0]);
+        
+        // add a line plot to the PlotPanel
+        plot.addLinePlot("Actual", ga.getBstHistory());
+        plot.addLinePlot("Media actual", ga.getAvgHistory());
+        plot.addLinePlot("Mejor historico", ga.getBstOfAllHistory());
         
         // put the PlotPanel in a JFrame like a JPanel
         jInternalFrame1.setContentPane(plot);
