@@ -49,10 +49,10 @@ public class MiddleInterchangeCross implements Crossover {
 					dna2[row][col]= parent1.rows[row][col];
 				}
 			}
-						
-			children.add(new Sudoku(dna1));
-			children.add(new Sudoku(dna2));
 		}
+		
+		children.add(new Sudoku(dna1));
+		children.add(new Sudoku(dna2));
 		return children;
 	}
 }
