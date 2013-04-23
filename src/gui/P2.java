@@ -130,7 +130,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Tamaño de población");
+        jLabel2.setText("Tamaï¿½o de poblaciï¿½n");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +139,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Número de generaciones");
+        jLabel3.setText("Nï¿½mero de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducción");
+        jLabel4.setText("Probabilidad de reproducciï¿½n");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +164,7 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutación");
+        jLabel5.setText("Probabilidad de mutaciï¿½n");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -173,15 +173,15 @@ public class P2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutación");
+        jLabel6.setText("Probabilidad de mutaciï¿½n");
 
         jComboBox1.setVisible(false);
         
-        jLabel8.setText("Función de selección");
+        jLabel8.setText("Funciï¿½n de selecciï¿½n");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones" }));
 
-        jLabel9.setText("Función de mutación");
+        jLabel9.setText("Funciï¿½n de mutaciï¿½n");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ChooseOne", "Reverse"}));
 
@@ -193,7 +193,7 @@ public class P2 extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
 
-        jLabel12.setText("Número de cortes");
+        jLabel12.setText("Nï¿½mero de cortes");
 
         jTextField6.setText("1");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +204,7 @@ public class P2 extends javax.swing.JFrame {
 
         jCheckBox1.setText("Elite");
 
-        jLabel13.setText("Número de padres");
+        jLabel13.setText("Nï¿½mero de padres");
 
         jTextField7.setText("2");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -692,7 +692,7 @@ public class P2 extends javax.swing.JFrame {
             .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gráfica", jInternalFrame1);
+        jTabbedPane1.addTab("Grï¿½fica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -796,8 +796,7 @@ public class P2 extends javax.swing.JFrame {
     			mutationMthod);
     	
     	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
-    	matriz=((Sudoku)ga.search()).fenotype();
-    	refreshGUIMatrix(matriz);
+    	refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
     	    	
     	
         Plot2DPanel plot = new Plot2DPanel();
@@ -805,6 +804,11 @@ public class P2 extends javax.swing.JFrame {
 
         // define the legend position
         plot.addLegend("SOUTH");
+        
+        // add a line plot to the PlotPanel
+        plot.addLinePlot("Mejor actual", ga.getBstHistory());
+        plot.addLinePlot("Media actual", ga.getAvgHistory());
+        plot.addLinePlot("Mejor historico", ga.getBstOfAllHistory());
         
         // put the PlotPanel in a JFrame like a JPanel
         jInternalFrame1.setContentPane(plot);
