@@ -3,7 +3,8 @@ package ga.selection;
 import ga.Population;
 
 /**
- * WARNING this code is copied from theory because is required in specifications of p2, 
+ * WARNING:
+ * This code is copied from theory because is required in specifications of p2, 
  * is not good implementation for my architecture, i do not recommend this method.
  */
 public class Ranking implements Selection {
