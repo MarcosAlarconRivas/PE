@@ -12,19 +12,11 @@ import ga.Population;
  * SOURCE:
  * http://en.wikipedia.org/wiki/Stochastic_universal_sampling
  */
-public class SUS implements Selection {
-	
-	protected double prop;
+public class SUS extends Roulette implements Selection {
 	
 	public SUS(double prob){
-		prop= prob;
+		super(prob);
 	}
-	
-	@Override
-	public int[] select(Population pop) {
-		return select(pop, (int)Math.round(pop.people.length*prop));
-	}
-
 	
 	/**
 	 	SUS(Population, N)
@@ -79,12 +71,8 @@ public class SUS implements Selection {
 
 					selected[creature] = i;
 					// save it in selected
-
-					choosable.remove(choosable.indexOf(i));
-					// delete it from choosable
 					break;
 				}
-
 		}
 		return selected;
 	}
