@@ -60,11 +60,7 @@ public class Ranking implements Selection {
 			probOfIth = probOfIth * 2 * (Beta - 1);
 			probOfIth = Beta - probOfIth;
 			probOfIth = (double) probOfIth * ((double) 1 / populationSize);
-			if (i != 0)
-				fitnessSegments[i] = (i != 0) ? fitnessSegments[i - 1]
-						: 0 + probOfIth;
-			else
-				fitnessSegments[i] = probOfIth;
+			fitnessSegments[i] = probOfIth +((i== 0)?0:fitnessSegments[i - 1]);
 		}
 		return fitnessSegments;
 	}
