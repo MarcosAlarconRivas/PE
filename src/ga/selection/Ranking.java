@@ -37,13 +37,13 @@ public class Ranking implements Selection {
 		while (numOfParents < futureParents.length) {
 			double x = (double) (Math.random() * entireSegment);
 			if (x <= fitnessSegments[0]) {
-				/*** First Idividual was Selected **/
+				// First Idividual was Selected
 				futureParents[numOfParents] = 0;
 				numOfParents++;
 			} else
 				for (int i = 1; i < futureParents.length; i++)
-					if (x > fitnessSegments[i - 1] && x <= fitnessSegments[i]) {
-						/*** i'th Idividual was Selected **/
+					if (x > fitnessSegments[i - 1] && x <= fitnessSegments[i]){
+						// i'th Idividual was Selected
 						futureParents[numOfParents] = i;
 						numOfParents++;
 					}
@@ -60,7 +60,7 @@ public class Ranking implements Selection {
 			probOfIth = probOfIth * 2 * (Beta - 1);
 			probOfIth = Beta - probOfIth;
 			probOfIth = (double) probOfIth * ((double) 1 / populationSize);
-			fitnessSegments[i] = probOfIth +((i== 0)?0:fitnessSegments[i - 1]);
+			fitnessSegments[i] = probOfIth +((i==0)?0:fitnessSegments[i-1]);
 		}
 		return fitnessSegments;
 	}

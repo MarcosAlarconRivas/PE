@@ -19,16 +19,10 @@ import ga.Mutation;
 import ga.Population;
 import ga.Reproduction;
 import ga.VarParentsCross;
-import ga.replacement.ChildrenRepalceParent;
-import ga.replacement.Replacement;
-import ga.replacement.SurvivalOfTheFittest;
-import ga.selection.NonRepeatingRoulette;
-import ga.selection.Roulette;
-import ga.selection.Selection;
-import ga.selection.Tournament;
+import ga.replacement.*;
+import ga.selection.*;
 import org.math.plot.Plot2DPanel;
 
-import p1.DoubleValue;
 import p2.*;
 
 /**
@@ -776,7 +770,9 @@ public class P2 extends javax.swing.JFrame {
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
-    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	else if (item==2) selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	else if (item==3) selectionMethod = new SUS(reproductionProb);
+    	else selectionMethod = new Ranking(reproductionProb);
     	item = jComboBox4.getSelectedIndex();
     	if (item==0) crossMethod = new Cross();
     	else crossMethod = new UnbrokenRows();
@@ -806,17 +802,6 @@ public class P2 extends javax.swing.JFrame {
 
         // define the legend position
         plot.addLegend("SOUTH");
-
-        //execute the algorithm
-        DoubleValue best = (DoubleValue) ga.search();
-        System.out.println("---------------------------");
-        System.out.println("Mejor encontrado: "+best.fitness());
-        double fenotipos[] = best.fenotypes();
-        if(fenotipos.length>1){
-        	System.out.println("con fenotipos:");
-        	for(int i=0; i<fenotipos.length; i++)
-        		System.out.println("\t X"+(i+1)+"= "+fenotipos[i]);
-        }else System.out.println("con fenotipo: X= "+fenotipos[0]);
         
         // add a line plot to the PlotPanel
         plot.addLinePlot("Actual", ga.getBstHistory());
