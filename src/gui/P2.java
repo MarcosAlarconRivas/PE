@@ -32,6 +32,7 @@ import p2.*;
 public class P2 extends javax.swing.JFrame {
     
 	private static final long serialVersionUID = 1L;
+	private boolean estado = true;
 	private int numInd;
 	private long numGen;
 	private double reproductionProb;
@@ -122,7 +123,7 @@ public class P2 extends javax.swing.JFrame {
         jButton1.setText("Resolver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton();
             }
         });
 
@@ -130,43 +131,33 @@ public class P2 extends javax.swing.JFrame {
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel3.setText("Número de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel4.setText("Probabilidad de reproducción");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jTextField4.setText("0.5");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel5.setText("Probabilidad de mutación");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel6.setText("Probabilidad de mutación");
@@ -193,9 +184,7 @@ public class P2 extends javax.swing.JFrame {
 
         jTextField6.setText("1");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jCheckBox1.setText("Elite");
@@ -204,27 +193,21 @@ public class P2 extends javax.swing.JFrame {
 
         jTextField7.setText("2");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel14.setText("Enfriamiento");
 
         jTextField8.setText("0.5");
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel15.setText("Endogamia");
 
         jTextField9.setText("0.5");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         javax.swing.GroupLayout jLabel1Layout = new javax.swing.GroupLayout(jLabel1);
@@ -708,46 +691,16 @@ public class P2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold> 
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-    
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        //add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-    
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-    	//add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed                                      
-
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-    	//add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed          
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        iniciar();
-    } 
-    
+    private void boton(){
+    	if(estado)iniciar();
+    	else{
+    		for(int i=0; i<9; i++)
+    			for(int j=0;j<9;j++)
+    				casillas[i][j].setText("");
+    	}
+    	estado = !estado;
+    	jButton1.setText((estado)?"Resolver":"Borrar");
+    }
     private void iniciar() {
     	matriz=new int[9][9];
     	
@@ -825,7 +778,6 @@ public class P2 extends javax.swing.JFrame {
 	}
 
 	private void refreshGUIMatrix(int[][] matrix) {
-		
 		for(int i=0; i<9; i++)
 			for(int j=0;j<9;j++)
 				casillas[i][j].setText(String.valueOf(matrix[i][j]));
