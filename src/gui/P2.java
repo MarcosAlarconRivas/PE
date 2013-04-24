@@ -168,9 +168,9 @@ public class P2 extends javax.swing.JFrame {
 
  */
 
-        jComboBox1.setVisible(false);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No autocarga", "T1", "T2", "T3" }));
         
-        jLabel8.setText("Función de selección");
+        jLabel8.setText("Tablero");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones", "SUS", "Ranking" }));
 
@@ -710,12 +710,36 @@ public class P2 extends javax.swing.JFrame {
     	jButton1.setText((estado)?"Resolver":"Borrar");
     }
     private void iniciar() {
+
     	matriz=new int[9][9];
     	
-    	for(int i=0; i<9; i++)
-    		for(int j=0; j<9; j++)
-    			iniciaCasilla(i, j);
-    	
+		item = jComboBox1.getSelectedIndex();
+		if (item==0){
+			
+	    	for(int i=0; i<9; i++)
+	    		for(int j=0; j<9; j++)
+	    			iniciaCasilla(i, j);
+		}
+		
+		else{
+			if (item==1){
+				int[] tab = {3,0,4,2,9,1,0,0,6,0,1,7,0,8,0,0,9,2,9,2,0,0,0,5,1,0,4,1,6,2,0,5,0,3,0,8,0,0,5,0,2,8,0,6,7,0,0,0,6,0,4,2,0,0,0,9,3,5,0,0,6,7,0,2,0,0,8,1,9,0,5,0,0,4,0,3,0,6,8,0,0};
+				for(int i=0; i<9; i++)
+		    		for(int j=0; j<9; j++)
+		    			rellenaCasillaDesdeArray(i, j, tab);
+			} else if (item==2){
+				int[] tab = {4,0,0,6,0,1,0,0,2,1,6,3,0,2,0,7,4,5,0,0,0,4,0,7,0,0,0,6,0,4,0,0,0,5,0,9,0,1,0,5,4,6,0,2,0,7,0,5,0,0,0,6,0,4,0,0,0,3,0,4,0,0,0,9,3,6,0,7,0,4,5,8,8,0,0,9,0,5,0,0,3};
+				for(int i=0; i<9; i++)
+		    		for(int j=0; j<9; j++)
+		    			rellenaCasillaDesdeArray(i, j, tab);
+			} else if (item==3){
+	    		int [] tab= {0,6,0,1,0,4,0,5,0,0,0,8,3,0,5,6,0,0,2,0,0,0,0,0,0,0,1,8,0,0,4,0,7,0,0,6,0,0,6,0,0,0,3,0,0,7,0,0,9,0,1,0,0,4,5,0,0,0,0,0,0,0,2,0,0,7,2,0,6,9,0,0,0,4,0,5,0,8,0,7,0};
+	    		for(int i=0; i<9; i++)
+		    		for(int j=0; j<9; j++)
+		    			rellenaCasillaDesdeArray(i, j, tab);
+			}			
+			
+		}
     	
     	numInd = Integer.parseInt(jTextField1.getText());
     	probMut = Double.parseDouble(jTextField4.getText());
@@ -724,7 +748,6 @@ public class P2 extends javax.swing.JFrame {
     	numGen = Long.parseLong(jTextField2.getText());
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
-    	item = jComboBox1.getSelectedIndex();
     	probMut = Double.parseDouble(jTextField4.getText());
     	numPadres=Integer.parseInt(jTextField7.getText());
 
@@ -783,6 +806,18 @@ public class P2 extends javax.swing.JFrame {
 		if (tf.getText().isEmpty()){
 			matriz[i][j]=0;
 		}else{
+			matriz[i][j]=Integer.parseInt(tf.getText());
+		}
+	}
+	
+	private void rellenaCasillaDesdeArray( int i, int j, int[] tab) {
+		int valor = tab[(i*9)+j];
+		JTextField tf= casillas[i][j];
+		if (valor==0){
+			matriz[i][j]=0;
+			tf.setText("0");
+		}else{
+			tf.setText(String.valueOf(valor));
 			matriz[i][j]=Integer.parseInt(tf.getText());
 		}
 	}

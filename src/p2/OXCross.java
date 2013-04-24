@@ -52,17 +52,18 @@ public class OXCross implements Crossover {
 					dna2[row][col]= parent1.rows[row][col];
 				}
 			}
-			int i=0; int col1=0, col2=0;
-			while (i<9){
+			
+			int i=al.size()-1; int col1=0, col2=0;
+			while (i>=0){
 				int elem = al.get(i);
-				if (i==cut1) i=cut2;			
+				if (i==cut2) i=cut1;			
 				if (!contains(elem,dna1[row],cut1,cut2)){
 					dna1[row][col1]=elem; col1++;
 				}
 				else{ 
 					dna2[row][col2]=elem; col2++;
 				}
-				i++;
+				i--;
 			}
 		}
 		children.add(new Sudoku(dna1));
