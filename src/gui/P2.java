@@ -89,7 +89,7 @@ public class P2 extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        //jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
@@ -143,24 +143,28 @@ public class P2 extends javax.swing.JFrame {
 
         jLabel4.setText("Probabilidad de reproducción");
 
-        jTextField3.setText("0.5");
+        jTextField3.setText("0.7");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
-        jTextField4.setText("0.5");
+        jLabel5.setText("Probabilidad de mutación");
+        
+        jTextField4.setText("0.33");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
-        jLabel5.setText("Probabilidad de mutación");
-
+        
+/*
+        jLabel6.setText("Probabilidad de mutación");
+        
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
-        jLabel6.setText("Probabilidad de mutación");
+ */
 
         jComboBox1.setVisible(false);
         
@@ -198,14 +202,14 @@ public class P2 extends javax.swing.JFrame {
 
         jLabel14.setText("Enfriamiento");
 
-        jTextField8.setText("0.5");
+        jTextField8.setText("1");
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
 
         jLabel15.setText("Endogamia");
 
-        jTextField9.setText("0.5");
+        jTextField9.setText("0.0");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
@@ -245,8 +249,8 @@ public class P2 extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(jLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jTextField3)
-                                            .addComponent(jTextField4)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jTextField4,javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                           // .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLabel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addGap(69, 69, 69)
@@ -305,8 +309,8 @@ public class P2 extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    //.addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -717,7 +721,7 @@ public class P2 extends javax.swing.JFrame {
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
     	item = jComboBox1.getSelectedIndex();
-    	probMut = Double.parseDouble(jTextField5.getText());
+    	probMut = Double.parseDouble(jTextField4.getText());
     	numPadres=Integer.parseInt(jTextField7.getText());
 
     	item = jComboBox2.getSelectedIndex();
@@ -847,7 +851,7 @@ public class P2 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    //private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     int[][] matriz;
