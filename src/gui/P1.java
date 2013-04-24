@@ -11,13 +11,8 @@ import ga.Mutation;
 import ga.Population;
 import ga.Reproduction;
 import ga.VarParentsCross;
-import ga.replacement.ChildrenRepalceParent;
-import ga.replacement.Replacement;
-import ga.replacement.SurvivalOfTheFittest;
-import ga.selection.NonRepeatingRoulette;
-import ga.selection.Roulette;
-import ga.selection.Selection;
-import ga.selection.Tournament;
+import ga.replacement.*;
+import ga.selection.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -257,7 +252,7 @@ public class P1 extends javax.swing.JFrame {
 
         jLabel6.setText("Función de finess");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torneo", "Ruleta", "Ruleta sin repeticiones", "Ranking" }));
 
         jLabel7.setText("Selección");
 
@@ -596,7 +591,8 @@ public class P1 extends javax.swing.JFrame {
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
-    	else selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	else if (item==2) selectionMethod = new NonRepeatingRoulette(reproductionProb);
+    	else selectionMethod = new Ranking(reproductionProb);
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) crossMethod = new SinglePointCut();
     	else crossMethod = new OnePieceOfEach();
