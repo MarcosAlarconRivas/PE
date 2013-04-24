@@ -43,7 +43,7 @@ public class OXCross implements Crossover {
 			ArrayList<Integer> al = new ArrayList<Integer>();
 			
 			for (int col=0; col<9; col++){
-				if (col<=cut1 || col>=cut2){
+				if ((col<=cut1 || col>=cut2) && parent1.rows[row][col]>0){
 					al.add(parent1.rows[row][col]);
 					al.add(parent2.rows[row][col]);
 				}
