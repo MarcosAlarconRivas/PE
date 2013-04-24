@@ -10,6 +10,8 @@
  */
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -782,9 +784,15 @@ public class P2 extends javax.swing.JFrame {
 	}
 
 	private void refreshGUIMatrix(int[][] matrix) {
+		Color c1 = Color.GRAY;
+		Color c2 = Color.WHITE;
 		for(int i=0; i<9; i++)
-			for(int j=0;j<9;j++)
-				casillas[i][j].setText(String.valueOf(matrix[i][j]));
+			for(int j=0;j<9;j++){
+				int n = matrix[i][j];
+				casillas[i][j].setBackground((n<0)?c1:c2);
+				casillas[i][j].setText(String.valueOf(Math.abs(n)));
+			}
+				
 	}
 
 	/**
