@@ -38,10 +38,10 @@ public class Reverse extends VarTriesMut {
 			Sudoku newOne  = (Sudoku)sudoku.clone();
 			
 			while (cut1 < cut2){
-				while (sudoku.rows[row][cut1]<0){
+				while (cut1<9 && sudoku.rows[row][cut1]<0){
 					cut1++;
 				}
-				while (sudoku.rows[row][cut2]<0){
+				while (cut2>=0 && sudoku.rows[row][cut2]<0){
 					cut2--;
 				}
 				if (cut1 < cut2){
