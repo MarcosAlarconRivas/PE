@@ -1,8 +1,5 @@
 package ga.selection;
 
-import java.util.LinkedList;
-import java.util.Random;
-
 import ga.Population;
 /**
  * WARNING:
@@ -19,63 +16,32 @@ public class SUS extends Roulette implements Selection {
 	}
 	
 	/**
-	 	SUS(Population, N)
-    	F := total fitness of population
-    	N := number of offspring to keep
-    	P := distance between the pointers (F/N)
-    	Start := random number between 0 and P
-    	Pointers := [Start + i*P | i in [0..N-1]]
-    	Keep = []
-    	i := 0
-    	for P in Points
-        	while fitness of Population[i] < P
-            	i++
-        	add Population[i] to Keep
-    	return Keep
-    */
+	 * This is like rolette except the points are taken uniformly
+	 * Instead of randomly
+	 */
 	@Override
-	public int[] select(Population pop, int numToSelect) {
-		Random r = new Random();
-		double totalFit = pop.average() * pop.people.length;
-		int p = (int) Math.round(totalFit / numToSelect);
-		int start = r.nextInt(p);
-
-		LinkedList<Integer> choosable = new LinkedList<Integer>();
-		for (int i = 0; i < numToSelect; i++)
-			choosable.addLast(start + i * p);
-
+	public int[] select(Population pop, int toSelect) {
 		double minimal = pop.people[0].fitness();
 		// if population is not ordered, search the worst one.
 
-		if (minimal * pop.getBest().fitness() >= 0)
-			minimal = 0;
+		if (minimal * pop.getBest().fitness() >= 0) minimal = 0;
 		// only necessary if fitness of pop has both symbols (+/-)
 
-		numToSelect = Math.min(numToSelect, pop.people.length);
-		// i can't choose more than total population size.
+		int selected[] = new int[toSelect];
+		for (int creature = 0; creature < toSelect; creature++) {
 
-		double total = Math.abs(pop.average() - minimal) * pop.people.length;
-		int selected[] = new int[numToSelect];
-
-		for (int creature = 0; creature < numToSelect; creature++) {
-
-			double acc = Math.random() * total;
+			double acc = Math.abs((creature/toSelect)*pop.average()-minimal)*pop.people.length;
 			// Target accumulate fitness
 
-			for (Integer i : choosable)
-				if (0 > (acc -= Math.abs(pop.people[i].fitness() - minimal))) {
-					// if is the one i was looking for:
+			int s = pop.people.length;
+			// last creature added to acc
 
-					total -= Math.abs(pop.people[i].fitness() - minimal);
-					// calculate total fitness of population
+			while (acc >= 0 && s > 0)
+				acc -= Math.abs(pop.people[--s].fitness() - minimal);
 
-					selected[creature] = i;
-					// save it in selected
-					break;
-				}
+			selected[creature] = s;
 		}
 		return selected;
 	}
-
 
 }

@@ -10,7 +10,7 @@ import ga.VarTriesMut;
  */
 public class ChooseOne extends VarTriesMut {
 	
-	protected static int numOfTries= 3;
+	protected static int numOfTries= 12;
 
 	public ChooseOne(double baseProb, double inbreedingControl, double annealingControl) {
 		super(baseProb, inbreedingControl, annealingControl);
