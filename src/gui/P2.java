@@ -755,7 +755,7 @@ public class P2 extends javax.swing.JFrame {
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
     	else if (item==2) selectionMethod = new NonRepeatingRoulette(reproductionProb);
-    	else if (item==3) selectionMethod = new Roulette(reproductionProb);//new SUS(reproductionProb);
+    	else if (item==3) selectionMethod = new SUS(reproductionProb);
     	else selectionMethod = new Ranking(reproductionProb);
     	
     	item = jComboBox4.getSelectedIndex();
