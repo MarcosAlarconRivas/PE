@@ -180,7 +180,7 @@ public class P2 extends javax.swing.JFrame {
 
         jLabel10.setText("Cruce");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MiddleInterchangeCross", "UnbrokenRows", "OXCross" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  "UnbrokenRows", "MiddleInterchangeCross", "OXCross" }));
 
         jLabel11.setText("Reemplazo");
 
@@ -759,8 +759,8 @@ public class P2 extends javax.swing.JFrame {
     	else selectionMethod = new Ranking(reproductionProb);
     	
     	item = jComboBox4.getSelectedIndex();
-    	if (item==0) crossMethod = new MiddleInterchangeCross();
-    	else if (item==1) crossMethod = new UnbrokenRows();
+    	if (item==1) crossMethod = new MiddleInterchangeCross();
+    	else if (item==0) crossMethod = new UnbrokenRows();
     	else crossMethod = new MiddleInterchangeCross();
     	
     	item = jComboBox5.getSelectedIndex();
