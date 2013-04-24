@@ -45,8 +45,10 @@ public class MiddleInterchangeCross implements Crossover {
 					dna2[row][col]= parent2.rows[row][col];
 				}
 				else{
-					dna1[row][col]= parent2.rows[row][col];
-					dna2[row][col]= parent1.rows[row][col];
+					int a = parent1.rows[row][col];
+					if (!contains(a,dna1[row])) dna1[row][col]=a;
+					int b = parent2.rows[row][col];
+					if (!contains(b,dna2[row])) dna2[row][col]=b;
 				}
 			}
 		}
@@ -54,5 +56,11 @@ public class MiddleInterchangeCross implements Crossover {
 		children.add(new Sudoku(dna1));
 		children.add(new Sudoku(dna2));
 		return children;
+	}
+	
+	private boolean contains(Integer integer, int[] row) {
+		for (int i=0; i<9; i++)
+			if (row[i]==integer) return true;
+		return false;
 	}
 }
