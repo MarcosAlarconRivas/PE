@@ -701,8 +701,10 @@ public class P2 extends javax.swing.JFrame {
     	if(estado)iniciar();
     	else{
     		for(int i=0; i<9; i++)
-    			for(int j=0;j<9;j++)
+    			for(int j=0;j<9;j++){
     				casillas[i][j].setText("");
+    				casillas[i][j].setBackground(c2);
+    			}
     	}
     	estado = !estado;
     	jButton1.setText((estado)?"Resolver":"Borrar");
@@ -712,7 +714,7 @@ public class P2 extends javax.swing.JFrame {
     	
     	for(int i=0; i<9; i++)
     		for(int j=0; j<9; j++)
-    			iniciaCasilla(casillas[i][j], i, j);
+    			iniciaCasilla(i, j);
     	
     	
     	numInd = Integer.parseInt(jTextField1.getText());
@@ -776,16 +778,16 @@ public class P2 extends javax.swing.JFrame {
         setVisible(true);
     }
 
-	private void iniciaCasilla(JTextField tf, int i, int j) {
-		if (tf.getText().isEmpty())
-			matriz[i][j]=0; 
-		else 
+	private void iniciaCasilla( int i, int j) {
+		JTextField tf= casillas[i][j];
+		if (tf.getText().isEmpty()){
+			matriz[i][j]=0;
+		}else{
 			matriz[i][j]=Integer.parseInt(tf.getText());
+		}
 	}
 
 	private void refreshGUIMatrix(int[][] matrix) {
-		Color c1 = Color.GRAY;
-		Color c2 = Color.WHITE;
 		for(int i=0; i<9; i++)
 			for(int j=0;j<9;j++){
 				int n = matrix[i][j];
@@ -863,6 +865,8 @@ public class P2 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     int[][] matriz;
+	private Color c1 = Color.GRAY;
+	private Color c2 = Color.WHITE;
     // End of variables declaration//GEN-END:variables
 
 }
