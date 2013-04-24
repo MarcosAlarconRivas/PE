@@ -16,8 +16,8 @@ public class SUS extends Roulette implements Selection {
 	}
 	
 	/**
-	 * This is like rolette except the points are taken uniformly
-	 * Instead of randomly
+	 * This is like roulette except the points
+	 * are taken uniformly instead of randomly.
 	 */
 	@Override
 	public int[] select(Population pop, int toSelect) {
@@ -27,10 +27,13 @@ public class SUS extends Roulette implements Selection {
 		if (minimal * pop.getBest().fitness() >= 0) minimal = 0;
 		// only necessary if fitness of pop has both symbols (+/-)
 
+		double tot_acc = Math.abs(pop.average()-minimal)*pop.people.length;
+		double org_acc = Math.random()*tot_acc;
+		
 		int selected[] = new int[toSelect];
 		for (int creature = 0; creature < toSelect; creature++) {
 
-			double acc = Math.abs((creature/toSelect)*pop.average()-minimal)*pop.people.length;
+			double acc=(org_acc+ creature*tot_acc/toSelect)%tot_acc;
 			// Target accumulate fitness
 
 			int s = pop.people.length;
