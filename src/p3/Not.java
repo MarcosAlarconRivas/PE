@@ -3,6 +3,7 @@ package p3;
 public class Not extends Operator {
 
 	public static int arity = 1;
+	public static String opName = "Not";
 	
 	public Not(Expression[] args) {
 		super(args);
