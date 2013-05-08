@@ -17,11 +17,4 @@ public class If extends Operator {
 		else
 			return expressions[2].evaluate(input);
 	}
-
-	@Override
-	public Individual clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
