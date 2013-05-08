@@ -1,7 +1,5 @@
 package p3;
 
-import ga.Individual;
-
 public class And extends Operator {
 
 	public static int arity = 2;
