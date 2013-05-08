@@ -25,5 +25,14 @@ public class Leaf extends Expression{
 	public String toString(){
 		return names[x];
 	}
+
+	public int measureDepth() {
+		//does nothing
+		return 1;
+	}
+	
+	public int depth(){
+		return 1;
+	}
 	
 }
