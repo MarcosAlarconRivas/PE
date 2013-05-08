@@ -15,6 +15,5 @@ public class If extends Operator {
 			return expressions[1].evaluate(input);
 		else
 			return expressions[2].evaluate(input);
-	}	
-
+	}
 }
