@@ -17,7 +17,7 @@ public abstract class Operator extends Expression {
 	public String toString(){
 		String s = opName;
 		for(int i=0; i<expressions.length; i++)
-			s+=expressions[i].toString();
+			s+=" "+expressions[i].toString();
 		return s;
 	}
 	
