@@ -2,7 +2,7 @@ package p3;
 
 import java.util.Random;
 
-public class Leaf extends Expresion{
+public class Leaf extends Expression{
 	protected int x;
 	protected static String names[] = {"a1","a0","d3","d2","d1","d0"};
 	
@@ -18,7 +18,7 @@ public class Leaf extends Expresion{
 		return new Leaf(x);
 	}
 	
-	protected boolean evalate(boolean args[]){
+	protected boolean evaluate(boolean args[]){
 		return args[x];
 	}
 	
