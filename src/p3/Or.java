@@ -5,6 +5,7 @@ import ga.Individual;
 public class Or extends Operator {
 
 	public static int arity = 2;
+	public static String opName = "Or";
 	
 	public Or(Expression[] args) {
 		super(args);
