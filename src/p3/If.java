@@ -1,10 +1,9 @@
 package p3;
 
-import ga.Individual;
-
 public class If extends Operator {
 
 	public static int arity = 3;
+	public static String opName = "If";
 	
 	public If(Expression[] args) {
 		super(args);
@@ -16,12 +15,6 @@ public class If extends Operator {
 			return expressions[1].evaluate(input);
 		else
 			return expressions[2].evaluate(input);
-	}
-
-	@Override
-	public Individual clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	}	
 
 }
