@@ -1,17 +1,19 @@
 package p3;
 
-import ga.Individual;
-
 public abstract class Operator extends Expression {
 	protected Expression expressions[];
-	public static int arity= -1;
-	public static String opName; 
+	public static final int arity= -1;
+	protected int depth;
+	public static String opName;
 	
 	public Operator(Expression args[]){
 		if(args.length!=arity)
 			System.out.println("Numero de argumentos incorrecto");
-		else
+		else{
 			expressions=args;
+			measureDepth();
+		}
+		
 	}
 
 	public String toString(){
@@ -22,9 +24,24 @@ public abstract class Operator extends Expression {
 	}
 	
 	@Override
-	public Individual clone() {
-		// TODO Auto-generated method stub
-		return null;
+	public int depth(){
+		return depth;
+	}
+	
+	public int measureDepth(){
+		depth = 0;
+		for(int i=0; i<arity; i++){
+			int argDepth = expressions[i].measureDepth();
+			if(depth<argDepth)
+				depth=argDepth;
+		}//depth = Max(arg[0].depth, arg[1].depth..)
+		
+		return ++depth;
+	}
+	
+	@Override
+	public Operator clone() {
+		return (Operator) (Object)this.clone();
 	}
 	
 }
