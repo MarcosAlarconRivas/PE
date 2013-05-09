@@ -17,5 +17,6 @@ public abstract class Expression extends Individual {
 		enabledIf = use_if;
 	}
 	
+	public abstract void mutate();
 
 }

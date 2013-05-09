@@ -14,4 +14,9 @@ public class Not extends Operator {
 		return !(expressions[0].evaluate(input));
 	}
 
+	@Override
+	public void mutate() {
+		//TODO
+	}
+
 }

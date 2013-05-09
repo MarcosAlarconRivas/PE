@@ -14,4 +14,8 @@ public class Or extends Operator {
 		return (expressions[0].evaluate(input)) || (expressions[1].evaluate(input));
 	}
 
+	public void mutate() {
+		new And(this.expressions);	
+	}
+	
 }

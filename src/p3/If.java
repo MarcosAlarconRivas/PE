@@ -16,4 +16,10 @@ public class If extends Operator {
 		else
 			return expressions[2].evaluate(input);
 	}
+	
+	public void mutate(){
+		Expression aux = expressions[1];
+		expressions[1]=expressions[2];
+		expressions[2]=aux;
+	}
 }

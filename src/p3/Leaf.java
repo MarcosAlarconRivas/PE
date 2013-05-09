@@ -26,4 +26,8 @@ public class Leaf extends Expression{
 		return names[x];
 	}
 	
+	public void mutate(){
+		this.x = (new Random()).nextInt(names.length);		
+	}
+	
 }

@@ -26,5 +26,5 @@ public abstract class Operator extends Expression {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }
