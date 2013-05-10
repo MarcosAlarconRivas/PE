@@ -17,5 +17,11 @@ public class Mut1 extends Mutation {
 			expr.mutate();
 		}
 	}
+	
+	public static void main(String args[]){
+		Expression args1[] = {new Leaf(),new Leaf(),new Leaf()};
+		If a = new If(args1);
+		a.mutate();
+	}
 
 }
