@@ -49,6 +49,8 @@ public class Population {
 		recalculate();
 	}
 	
+	public Population() {}
+
 	public Fitness getFitnessFunction(){
 		return fitnessFunction;
 	}

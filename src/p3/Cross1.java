@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 import ga.Crossover;
+import ga.GeneticAlgorithm;
 import ga.Individual;
 import ga.Mutation;
 import ga.Population;
 import ga.Reproduction;
+import ga.replacement.SurvivalOfTheFittest;
+import ga.selection.Roulette;
 
 public class Cross1 implements Crossover {
 
@@ -46,4 +49,12 @@ public class Cross1 implements Crossover {
 		return children;
 	}
 
+	public static void main(String args[]){
+		Expression args1[] = {new Leaf(1),new Leaf(2),new Leaf(3)};
+		Population p = new Population();
+		Reproduction r = new Reproduction(new Roulette(0.5) , 
+				new Cross1(), new SurvivalOfTheFittest());
+		GeneticAlgorithm g = new GeneticAlgorithm(100, p, r, new Mut1(0.5,0.5,0.5));
+	}
+	
 }

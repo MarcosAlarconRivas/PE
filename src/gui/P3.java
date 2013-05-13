@@ -15,8 +15,8 @@ import ga.selection.SUS;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
-
 import p3.Cross1;
+import p3.MUX4;
 import p3.Mut1;
 
 /**
@@ -196,11 +196,16 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mut1" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cross1" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Reemplazo");
 
@@ -241,7 +246,7 @@ public class P3 extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, 0, 156, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, 167, Short.MAX_VALUE)
                             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -316,7 +321,7 @@ public class P3 extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,11 +348,11 @@ public class P3 extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 707, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 434, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Gráfica", jInternalFrame1);
@@ -356,7 +361,7 @@ public class P3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,6 +402,10 @@ public class P3 extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }                                           
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
 
     /**
      * @param args the command line arguments
@@ -451,8 +460,8 @@ public class P3 extends javax.swing.JFrame {
     	
     	item = jComboBox4.getSelectedIndex();
     	if (item==1) crossMethod = new Cross1();
-//    	else if (item==0) crossMethod = new UnbrokenRows();
-//    	else crossMethod = new MiddleInterchangeCross();
+    	//else if (item==0) crossMethod = new UnbrokenRows();
+    	//else crossMethod = new MiddleInterchangeCross();*/
     	
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
@@ -461,10 +470,10 @@ public class P3 extends javax.swing.JFrame {
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) mutationMthod = new Mut1(probMut,endogamia,enfriamiento);
     	
-    	/*GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
-    			new Population(Conflicts.getInstance(), numInd, elite),
+    	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
+    			new Population(new MUX4(), numInd, elite),
     			new Reproduction(selectionMethod, crossMethod, repalceMthod), 
-    			mutationMthod);*/
+    			mutationMthod);
     	
     	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
     	//refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
