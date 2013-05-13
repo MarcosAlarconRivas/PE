@@ -15,6 +15,8 @@ import ga.selection.SUS;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
+
+import p3.Cross1;
 import p3.Mut1;
 
 /**
@@ -447,10 +449,10 @@ public class P3 extends javax.swing.JFrame {
     	else if (item==3) selectionMethod = new SUS(reproductionProb);
     	else selectionMethod = new Ranking(reproductionProb);
     	
-    	/*item = jComboBox4.getSelectedIndex();
-    	if (item==1) crossMethod = new MiddleInterchangeCross();
-    	else if (item==0) crossMethod = new UnbrokenRows();
-    	else crossMethod = new MiddleInterchangeCross();*/
+    	item = jComboBox4.getSelectedIndex();
+    	if (item==1) crossMethod = new Cross1();
+//    	else if (item==0) crossMethod = new UnbrokenRows();
+//    	else crossMethod = new MiddleInterchangeCross();
     	
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();

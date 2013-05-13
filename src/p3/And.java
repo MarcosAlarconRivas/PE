@@ -18,4 +18,9 @@ public class And extends Operator {
 		new Or(this.expressions);	
 	}
 
+	@Override
+	public int getArity() {
+		return arity;
+	}
+
 }

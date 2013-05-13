@@ -38,5 +38,10 @@ public class Leaf extends Expression{
 	public void mutate(){
 		this.x = (new Random()).nextInt(names.length);		
 	}
+
+	@Override
+	public int getArity() {
+		return 0;
+	}
 	
 }

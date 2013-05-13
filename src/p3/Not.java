@@ -19,4 +19,9 @@ public class Not extends Operator {
 		//TODO
 	}
 
+	@Override
+	public int getArity() {
+		return arity;
+	}
+
 }

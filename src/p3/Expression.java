@@ -1,5 +1,6 @@
 package p3;
 
+import sun.security.jca.GetInstance.Instance;
 import ga.Fitness;
 import ga.Individual;
 
@@ -20,6 +21,8 @@ public abstract class Expression extends Individual {
 	public void setIfEnabled(boolean use_if){
 		enabledIf = use_if;
 	}
+	
+	public abstract int getArity();
 	
 	public abstract void mutate();
 

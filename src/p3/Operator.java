@@ -1,7 +1,7 @@
 package p3;
 
 public abstract class Operator extends Expression {
-	protected Expression expressions[];
+	public Expression expressions[];
 	public static final int arity= -1;
 	protected int depth;
 	public static String opName;
@@ -43,5 +43,11 @@ public abstract class Operator extends Expression {
 	public Operator clone() {
 		return (Operator) (Object)this.clone();
 	}
+	
+	@Override
+	public abstract void mutate();
+	
+	@Override
+	public abstract int getArity();
 	
 }

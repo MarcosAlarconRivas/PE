@@ -22,4 +22,9 @@ public class If extends Operator {
 		expressions[1]=expressions[2];
 		expressions[2]=aux;
 	}
+
+	@Override
+	public int getArity() {
+		return arity;
+	}
 }
