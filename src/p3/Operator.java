@@ -10,7 +10,6 @@ public abstract class Operator extends Expression {
 	public Expression expressions[];
 	public static final int arity= -1;
 	protected int depth;
-	public static String opName;
 	
 	public Operator(Expression args[]){
 		rebuild(args);
@@ -28,12 +27,18 @@ public abstract class Operator extends Expression {
 	}
 
 	public String toString(){
-		String s = opName;
+		String s = this.getClass().getName();
+		if(s.contains(".")){
+			String cuts[] = s.split(".");
+			//TODO the split doesn't work
+			if(cuts.length>0)
+				s= cuts[cuts.length-1];
+		}
 		for(int i=0; i<expressions.length; i++)
 			s+=" "+expressions[i].toString();
 		return s;
 	}
-	
+
 	public static Operator generateRandomOp(int maxDepth){
 		Random r= new Random();
 		Class<? extends Operator> wich = extenders[r.nextInt(extenders.length-(enabledIf?0:1))];

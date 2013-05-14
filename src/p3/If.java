@@ -3,7 +3,6 @@ package p3;
 public class If extends Operator {
 
 	public static int arity = 3;
-	public static String opName = "If";
 	
 	public If(Expression[] args) {
 		super(args);
@@ -29,4 +28,5 @@ public class If extends Operator {
 	public int getArity() {
 		return arity;
 	}
+
 }
