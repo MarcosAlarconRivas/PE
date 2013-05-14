@@ -3,12 +3,9 @@ package p3;
 import java.util.Random;
 
 public abstract class Operator extends Expression {
-	private static Extender extenders[]= new Extender[]{
-		new Extender(Not.class, Not.arity),
-		new Extender(Or.class, Or.arity),
-		new Extender(And.class, And.arity),
-		new Extender(If.class, If.arity),
-	};
+	@SuppressWarnings("unchecked")
+	private final static Class<? extends Operator> extenders[]= 
+			new Class[]{Not.class, Or.class, And.class, If.class};
 
 	public Expression expressions[];
 	public static final int arity= -1;
@@ -16,13 +13,18 @@ public abstract class Operator extends Expression {
 	public static String opName;
 	
 	public Operator(Expression args[]){
+		rebuild(args);
+	}
+	
+	protected Operator(){};
+	
+	private void rebuild(Expression args[]){
 		if(args.length!=arity)
 			System.out.println("Numero de argumentos incorrecto");
 		else{
 			expressions=args;
 			measureDepth();
 		}
-		
 	}
 
 	public String toString(){
@@ -34,19 +36,22 @@ public abstract class Operator extends Expression {
 	
 	public static Operator generateRandomOp(int maxDepth){
 		Random r= new Random();
-		Extender wich = extenders[r.nextInt(extenders.length-(enabledIf?0:1))];
+		Class<? extends Operator> wich = extenders[r.nextInt(extenders.length-(enabledIf?0:1))];
+		int ar = extenderArity(wich);
 
-		Expression branch[] = new Expression[wich.arity];
-		for(int i=0; i<wich.arity; i++){
+		Expression branch[] = new Expression[ar];
+		for(int i=0; i<ar; i++){
 			branch[i]= Expression.generateRandomTree(maxDepth-1);
 		}
 		
 		Operator op= null;
 		try {
-			op = (Operator) wich.c.getConstructors()[0].newInstance(branch);
-			//XXX This crashes!!
+			//op = (Operator) wich.getConstructors()[0].newInstance(branch);
+			op = (Operator) wich.newInstance();
+			op.rebuild(branch);
+			
 		} catch (Exception e) {
-			System.out.println("Revisar Operator::generateRandomOp");
+			System.out.println(e+" >> revisar Operator::generateRandomOp");
 			//e.printStackTrace();
 		}
 		return op;
@@ -79,31 +84,24 @@ public abstract class Operator extends Expression {
 	@Override
 	public abstract int getArity();
 	
-	private static class Extender{
-		Class<? extends Operator> c= null;
-		int arity= -1;
-		
-		Extender(Class<? extends Operator> cl, int arity){
-			if(Operator.class.isAssignableFrom(cl)){
-				c= cl;
-				this.arity= arity;
-			}
+	private static int extenderArity(Class<? extends Operator> c){
+		int res = -1;
+		try {
+			res = c.getDeclaredField("arity").getInt(c);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	}//end of Extender
+		return res;
+	}
 	
 	public static void main(String args[]){
+		for(int i=0; i<extenders.length;i++)
+			System.out.println(extenders[i].getName()+" :"+extenderArity(extenders[i]));
 		
-		Extender e= new Extender(Not.class, 1);
-		System.out.println(e);
+		System.out.println();
 		
 		Expression ex = generateRandomTree(3);
 		System.out.println(ex);
-		/*
-		System.out.println(Not.class.isAssignableFrom(Operator.class));
-		System.out.println(Operator.class.isAssignableFrom(Not.class));
-		System.out.println(Operator.class.isAssignableFrom(If.class));
-		System.out.println(Expression.class.isAssignableFrom(And.class));
-	*/
 	}
 	
 }
