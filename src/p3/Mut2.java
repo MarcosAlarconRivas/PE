@@ -2,11 +2,11 @@ package p3;
 
 import java.util.Random;
 import ga.Individual;
-import ga.VarTriesMut;
+import ga.Mutation;
 /**
  * This does same as Mut1 except it makes the mutation at random depth.
  */
-public class Mut2 extends VarTriesMut {
+public class Mut2 extends Mutation {
 
 	public Mut2(double baseProb, double inbreedingControl,
 			double annealingControl) {
