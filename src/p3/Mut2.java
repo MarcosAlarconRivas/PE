@@ -4,8 +4,7 @@ import java.util.Random;
 import ga.Individual;
 import ga.VarTriesMut;
 /**
- * This does same as Mut1 except it makes the mutation at random depth
- * and it tries to mutate more than once and chooses the best.
+ * This does same as Mut1 except it makes the mutation at random depth.
  */
 public class Mut2 extends VarTriesMut {
 

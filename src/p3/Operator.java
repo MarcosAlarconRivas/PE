@@ -1,9 +1,16 @@
 package p3;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public abstract class Operator extends Expression {
-	private static Class extenders[]= new Class[]{Not.class, Or.class, And.class, If.class};
+	private static Extender extenders[]= new Extender[]{
+		new Extender(Not.class, Not.arity),
+		new Extender(Or.class, Or.arity),
+		new Extender(And.class, And.arity),
+		new Extender(If.class, If.arity),
+	};
+
 	public Expression expressions[];
 	public static final int arity= -1;
 	protected int depth;
@@ -27,17 +34,23 @@ public abstract class Operator extends Expression {
 	}
 	
 	public static Operator generateRandomOp(int maxDepth){
-		Random r;
-		Operator op;
-		try{
-			r = new Random();
-			//TODO
-			
-		}catch(Exception e){
-			System.out.println(e);
+		Random r= new Random();
+		Extender wich = extenders[r.nextInt(extenders.length-(enabledIf?0:1))];
+
+		Expression branch[] = new Expression[wich.arity];
+		for(int i=0; i<wich.arity; i++){
+			branch[i]= Expression.generateRandomTree(maxDepth-1);
 		}
 		
-		return null;
+		Operator op= null;
+		try {
+			op = (Operator) wich.c.getConstructors()[0].newInstance(branch);
+			//FIXME this doesn't make me calmed down
+		} catch (Exception e) {
+			System.out.println("Revisar Operator::generateRandomOp");
+			e.printStackTrace();
+		}
+		return op;
 	}
 	
 	@Override
@@ -66,5 +79,24 @@ public abstract class Operator extends Expression {
 	
 	@Override
 	public abstract int getArity();
+	
+	private static class Extender{
+		Class c= null;
+		int arity= -1;
+		
+		Extender(Class cl, int arity){
+			if(Operator.class.isAssignableFrom(cl)){
+				c= cl;
+				this.arity= arity;
+			}
+		}
+	}//end of Extender
+	
+	public static void main(String args[]){
+		System.out.println(Not.class.isAssignableFrom(Operator.class));
+		System.out.println(Operator.class.isAssignableFrom(Not.class));
+		System.out.println(Operator.class.isAssignableFrom(If.class));
+		System.out.println(Expression.class.isAssignableFrom(And.class));
+	}
 	
 }
