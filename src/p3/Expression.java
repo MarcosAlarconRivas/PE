@@ -22,7 +22,8 @@ public abstract class Expression extends Individual {
 	 * 	0.25 of the nodes are Leaf before then reach the depth.
 	 */
 	public static Expression generateRandomTree(int maxDepth){
-		if(maxDepth<2||Math.random()<.25)return new Leaf();
+		if(maxDepth<=Leaf.depth||Math.random()<.25*(maxDepth/Expression.maxDepth))
+			return new Leaf();
 		return Operator.generateRandomOp(maxDepth);
 	}
 	

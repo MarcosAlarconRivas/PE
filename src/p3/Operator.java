@@ -1,6 +1,5 @@
 package p3;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public abstract class Operator extends Expression {
@@ -81,10 +80,10 @@ public abstract class Operator extends Expression {
 	public abstract int getArity();
 	
 	private static class Extender{
-		Class c= null;
+		Class<? extends Operator> c= null;
 		int arity= -1;
 		
-		Extender(Class cl, int arity){
+		Extender(Class<? extends Operator> cl, int arity){
 			if(Operator.class.isAssignableFrom(cl)){
 				c= cl;
 				this.arity= arity;
@@ -93,10 +92,18 @@ public abstract class Operator extends Expression {
 	}//end of Extender
 	
 	public static void main(String args[]){
+		
+		Extender e= new Extender(Not.class, 1);
+		System.out.println(e);
+		
+		Expression ex = generateRandomTree(3);
+		System.out.println(ex);
+		/*
 		System.out.println(Not.class.isAssignableFrom(Operator.class));
 		System.out.println(Operator.class.isAssignableFrom(Not.class));
 		System.out.println(Operator.class.isAssignableFrom(If.class));
 		System.out.println(Expression.class.isAssignableFrom(And.class));
+	*/
 	}
 	
 }
