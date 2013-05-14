@@ -9,6 +9,8 @@ public class If extends Operator {
 		super(args);
 	}
 	
+	If(){};
+	
 	@Override
 	protected boolean evaluate(boolean[] input) {
 		if(expressions[0].evaluate(input))

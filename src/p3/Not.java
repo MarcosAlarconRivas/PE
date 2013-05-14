@@ -9,6 +9,8 @@ public class Not extends Operator {
 		super(args);
 	}
 	
+	Not(){};
+	
 	@Override
 	protected boolean evaluate(boolean[] input) {
 		return !(expressions[0].evaluate(input));
@@ -18,7 +20,7 @@ public class Not extends Operator {
 	public void mutate() {
 		//TODO
 	}
-
+	
 	@Override
 	public int getArity() {
 		return arity;

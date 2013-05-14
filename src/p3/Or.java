@@ -9,6 +9,8 @@ public class Or extends Operator {
 		super(args);
 	}
 	
+	Or(){};
+	
 	@Override
 	protected boolean evaluate(boolean[] input) {
 		return (expressions[0].evaluate(input)) || (expressions[1].evaluate(input));
@@ -17,7 +19,7 @@ public class Or extends Operator {
 	public void mutate() {
 		new And(this.expressions);	
 	}
-
+	
 	@Override
 	public int getArity() {
 		return arity;

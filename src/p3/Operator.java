@@ -16,10 +16,10 @@ public abstract class Operator extends Expression {
 		rebuild(args);
 	}
 	
-	protected Operator(){};
+	protected Operator() {}//all subclasses must implement empty constructor
 	
 	private void rebuild(Expression args[]){
-		if(args.length!=arity)
+		if(args.length!=getArity())
 			System.out.println("Numero de argumentos incorrecto");
 		else{
 			expressions=args;
@@ -49,10 +49,8 @@ public abstract class Operator extends Expression {
 			//op = (Operator) wich.getConstructors()[0].newInstance(branch);
 			op = (Operator) wich.newInstance();
 			op.rebuild(branch);
-			
 		} catch (Exception e) {
 			System.out.println(e+" >> revisar Operator::generateRandomOp");
-			//e.printStackTrace();
 		}
 		return op;
 	}
@@ -61,6 +59,8 @@ public abstract class Operator extends Expression {
 	public int depth(){
 		return depth;
 	}
+	
+	public abstract int getArity();
 	
 	public int measureDepth(){
 		depth = 0;
@@ -81,9 +81,6 @@ public abstract class Operator extends Expression {
 	@Override
 	public abstract void mutate();
 	
-	@Override
-	public abstract int getArity();
-	
 	private static int extenderArity(Class<? extends Operator> c){
 		int res = -1;
 		try {
@@ -95,10 +92,9 @@ public abstract class Operator extends Expression {
 	}
 	
 	public static void main(String args[]){
-		for(int i=0; i<extenders.length;i++)
+	/*	for(int i=0; i<extenders.length;i++)
 			System.out.println(extenders[i].getName()+" :"+extenderArity(extenders[i]));
-		
-		System.out.println();
+	*/
 		
 		Expression ex = generateRandomTree(3);
 		System.out.println(ex);
