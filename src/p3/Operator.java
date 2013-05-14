@@ -44,10 +44,10 @@ public abstract class Operator extends Expression {
 		Operator op= null;
 		try {
 			op = (Operator) wich.c.getConstructors()[0].newInstance(branch);
-			//FIXME this doesn't make me calmed down
+			//XXX This crashes!!
 		} catch (Exception e) {
 			System.out.println("Revisar Operator::generateRandomOp");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return op;
 	}
