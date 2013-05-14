@@ -12,10 +12,7 @@ public class Mut1 extends Mutation {
 
 	@Override
 	protected void mutate(Individual indiv) {
-		if (!((Expression) indiv).isLeaf()){
-			Operator expr = ((Operator) indiv);
-			expr.mutate();
-		}
+		((Expression) indiv).mutate();
 	}
 	
 	public static void main(String args[]){

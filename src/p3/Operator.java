@@ -1,6 +1,9 @@
 package p3;
 
+import java.util.Random;
+
 public abstract class Operator extends Expression {
+	private static Class extenders[]= new Class[]{Not.class, Or.class, And.class, If.class};
 	public Expression expressions[];
 	public static final int arity= -1;
 	protected int depth;
@@ -21,6 +24,20 @@ public abstract class Operator extends Expression {
 		for(int i=0; i<expressions.length; i++)
 			s+=" "+expressions[i].toString();
 		return s;
+	}
+	
+	public static Operator generateRandomOp(int maxDepth){
+		Random r;
+		Operator op;
+		try{
+			r = new Random();
+			//TODO
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
+		return null;
 	}
 	
 	@Override

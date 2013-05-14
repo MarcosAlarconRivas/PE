@@ -10,8 +10,8 @@ public class Leaf extends Expression{
 		x = (new Random()).nextInt(names.length);
 	}
 	
-	public Leaf(int in){
-		x = in;
+	public Leaf(int wich_var){
+		x = wich_var;
 	}
 	
 	public Leaf clone(){
