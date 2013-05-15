@@ -28,12 +28,9 @@ public abstract class Operator extends Expression {
 
 	public String toString(){
 		String s = this.getClass().getName();
-		if(s.contains(".")){
-			String cuts[] = s.split(".");
-			//TODO the split doesn't work
-			if(cuts.length>0)
-				s= cuts[cuts.length-1];
-		}
+		String cuts[] = s.split("[.]");
+		if (cuts.length > 0)
+			s = cuts[cuts.length - 1];
 		for(int i=0; i<expressions.length; i++)
 			s+=" "+expressions[i].toString();
 		return s;
@@ -97,12 +94,8 @@ public abstract class Operator extends Expression {
 	}
 	
 	public static void main(String args[]){
-	/*	for(int i=0; i<extenders.length;i++)
-			System.out.println(extenders[i].getName()+" :"+extenderArity(extenders[i]));
-	*/
-		
-		Expression ex = generateRandomTree(3);
-		System.out.println(ex);
+		System.out.println(generateRandomTree(3));
+
 	}
 	
 }
