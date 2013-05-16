@@ -3,7 +3,6 @@ package p3;
 public class And extends Operator {
 
 	public static int arity = 2;
-	public static String opName = "And";
 	
 	public And(Expression[] args) {
 		super(args);
