@@ -35,10 +35,6 @@ public class Leaf extends Expression{
 	public int depth(){
 		return depth;
 	}
-	
-	public void mutate(){
-		this.x = (new Random()).nextInt(names.length);		
-	}
 
 	@Override
 	public int getArity() {

@@ -80,9 +80,6 @@ public abstract class Operator extends Expression {
 		return (Operator) (Object)this.clone();
 	}
 	
-	@Override
-	public abstract void mutate();
-	
 	private static int extenderArity(Class<? extends Operator> c){
 		int res = -1;
 		try {

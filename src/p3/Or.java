@@ -14,10 +14,6 @@ public class Or extends Operator {
 	protected boolean evaluate(boolean[] input) {
 		return (expressions[0].evaluate(input)) || (expressions[1].evaluate(input));
 	}
-
-	public void mutate() {
-		new And(this.expressions);	
-	}
 	
 	@Override
 	public int getArity() {

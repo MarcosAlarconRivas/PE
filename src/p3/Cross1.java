@@ -21,16 +21,14 @@ public class Cross1 implements Crossover {
 		//choose 2 parents
 		int r1 = r.nextInt(parents.length);
 		int r2 = r.nextInt(parents.length);
-		Expression ep1 = (Expression) pop.people[parents[r1]];
-		Expression ep2 = (Expression) pop.people[parents[r2]];
 		
 		//create the children
-		Expression ch1 = ep1;
-		Expression ch2 = ep2;
+		Expression ch1 = (Expression) pop.people[parents[r1]].clone();
+		Expression ch2 = (Expression) pop.people[parents[r2]].clone();
 		
 		//choose cut point, depending on number of args
-		int cut1 = r.nextInt(ep1.getArity());
-		int cut2 = r.nextInt(ep2.getArity());
+		int cut1 = r.nextInt(ch1.getArity());
+		int cut2 = r.nextInt(ch2.getArity());
 		
 		
 		//FIXME no puedes saber si son Operator o Leaf
@@ -46,14 +44,6 @@ public class Cross1 implements Crossover {
 		children.add(ch2);
 		
 		return children;
-	}
-
-	public static void main(String args[]){
-		Expression args1[] = {new Leaf(1),new Leaf(2),new Leaf(3)};
-		Population p = new Population();
-		Reproduction r = new Reproduction(new Roulette(0.5) , 
-				new Cross1(), new SurvivalOfTheFittest());
-		GeneticAlgorithm g = new GeneticAlgorithm(100, p, r, new Mut1(0.5,0.5,0.5));
 	}
 	
 }

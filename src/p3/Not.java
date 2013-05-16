@@ -14,11 +14,6 @@ public class Not extends Operator {
 	protected boolean evaluate(boolean[] input) {
 		return !(expressions[0].evaluate(input));
 	}
-
-	@Override
-	public void mutate() {
-		//TODO
-	}
 	
 	@Override
 	public int getArity() {

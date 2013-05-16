@@ -15,14 +15,26 @@ public class Mut2 extends Mutation {
 
 	@Override
 	protected void mutate(Individual i) {
-		Expression tree = (Expression)i;
+		Expression ex = (Expression)i;
 		Random r = new Random();
-		int depth =r.nextInt(tree.depth());
-		while(!tree.isLeaf()&&depth>0){
-			tree= ((Operator)tree).expressions[r.nextInt(tree.getArity())];
+		int depth =r.nextInt(ex.depth());
+		while(!ex.isLeaf()&&depth>0){
+			ex= ((Operator)ex).expressions[r.nextInt(ex.getArity())];
 			depth--;
 		}
-		tree.mutate();
+		if (!ex.isLeaf()){
+			if (ex instanceof If){
+				Expression aux = ((If) ex).expressions[1];
+				((If) ex).expressions[1]=((If) ex).expressions[2];
+				((If) ex).expressions[2]=aux;
+			} else if (ex instanceof Or){
+				ex = new And(((Or) ex).expressions);
+			} else if (ex instanceof And){
+				ex = new Or(((And) ex).expressions);
+			}
+		} else {
+			((Leaf) ex).x = (new Random()).nextInt(Leaf.names.length);
+		}
 	}
 
 }

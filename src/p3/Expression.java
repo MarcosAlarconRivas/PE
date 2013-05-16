@@ -46,7 +46,5 @@ public abstract class Expression extends Individual {
 	}
 	
 	public abstract int getArity();
-	
-	public abstract void mutate();
 
 }
