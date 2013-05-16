@@ -10,7 +10,7 @@ import ga.Reproduction;
 import ga.replacement.SurvivalOfTheFittest;
 import ga.selection.Roulette;
 
-public class Cross1 implements Crossover {
+public class Cross2 implements Crossover {
 
 	@Override
 	public LinkedList<Individual> crossover(int[] parents, Population pop) {
@@ -25,17 +25,20 @@ public class Cross1 implements Crossover {
 		//create the children
 		Expression ch1 = (Expression) pop.people[parents[r1]].clone();
 		Expression ch2 = (Expression) pop.people[parents[r2]].clone();
+
+		int depth = r.nextInt(ch1.depth());
+		while(!ch1.isLeaf()&&depth>0){
+			ch1 = ((Operator)ch1).expressions[r.nextInt(ch1.getArity())];
+			depth--;
+		}
+		depth = r.nextInt(ch2.depth());
+		while(!ch2.isLeaf()&&depth>0){
+			ch2 = ((Operator)ch2).expressions[r.nextInt(ch2.getArity())];
+			depth--;
+		}
 		
-		//choose cut point, depending on number of args
-		int cut1 = r.nextInt(ch1.getArity());
-		int cut2 = r.nextInt(ch2.getArity());
-		
-		//FIXME no puedes saber si son Operator o Leaf
-		Expression e1 = ((Operator) ch1).expressions[cut1];
-		Expression e2 = ((Operator) ch2).expressions[cut2];
-		
-		((Operator) ch1).expressions[cut1] = e2 ;
-		((Operator) ch2).expressions[cut2] = e1;	
+		((Operator) ch1).expressions[r.nextInt(ch1.getArity())] = ch2;
+		((Operator) ch2).expressions[r.nextInt(ch2.getArity())] = ch1;	
 		
 		children.add(ch1);
 		children.add(ch2);
