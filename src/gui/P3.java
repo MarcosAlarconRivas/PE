@@ -16,8 +16,10 @@ import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
 import p3.Cross1;
+import p3.Cross2;
 import p3.MUX4;
 import p3.Mut1;
+import p3.Mut2;
 
 /**
  *
@@ -196,9 +198,9 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mut1" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mut1", "Mut2" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cross1" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cross1", "Cross2" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -460,8 +462,7 @@ public class P3 extends javax.swing.JFrame {
     	
     	item = jComboBox4.getSelectedIndex();
     	if (item==1) crossMethod = new Cross1();
-    	//else if (item==0) crossMethod = new UnbrokenRows();
-    	//else crossMethod = new MiddleInterchangeCross();*/
+        else crossMethod = new Cross2();
     	
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
@@ -469,6 +470,7 @@ public class P3 extends javax.swing.JFrame {
     	
     	item = jComboBox3.getSelectedIndex();
     	if (item==0) mutationMthod = new Mut1(probMut,endogamia,enfriamiento);
+        else mutationMthod = new Mut2(probMut,endogamia,enfriamiento);
     	
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
     			new Population(new MUX4(), numInd, elite),
