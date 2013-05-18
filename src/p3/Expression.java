@@ -8,10 +8,6 @@ public abstract class Expression extends Individual {
 	protected static boolean enabledIf= true;
 	protected static int maxDepth = 5;
 	
-	public Expression(){
-		
-	}
-	
 	/**
 	 * Returns a new Random Expression of the default maxDepth.
 	 * You can change this depth using the static method 'setMaxDepth(int)'.

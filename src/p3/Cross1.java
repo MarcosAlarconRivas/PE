@@ -3,12 +3,8 @@ package p3;
 import java.util.LinkedList;
 import java.util.Random;
 import ga.Crossover;
-import ga.GeneticAlgorithm;
 import ga.Individual;
 import ga.Population;
-import ga.Reproduction;
-import ga.replacement.SurvivalOfTheFittest;
-import ga.selection.Roulette;
 
 public class Cross1 implements Crossover {
 
