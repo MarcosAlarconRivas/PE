@@ -29,9 +29,11 @@ public class Cross1 implements Crossover {
 		//FIXME no puedes saber si son Operator o Leaf
 		Expression e1 = ((Operator) ch1).expressions[cut1];
 		Expression e2 = ((Operator) ch2).expressions[cut2];
-		
-		((Operator) ch1).expressions[cut1] = e2 ;
-		((Operator) ch2).expressions[cut2] = e1;	
+
+		if (!ch1.isLeaf()) ((Operator) ch1).expressions[cut1] = e2;
+		else
+		if (!ch2.isLeaf()) ((Operator) ch2).expressions[cut2] = e1;
+		else
 		
 		children.add(ch1);
 		children.add(ch2);

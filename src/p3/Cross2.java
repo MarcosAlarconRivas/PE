@@ -32,8 +32,11 @@ public class Cross2 implements Crossover {
 			depth--;
 		}
 		
-		((Operator) ch1).expressions[r.nextInt(ch1.getArity())] = ch2;
-		((Operator) ch2).expressions[r.nextInt(ch2.getArity())] = ch1;	
+		Expression aux = ch1;
+		if (!ch1.isLeaf()) ((Operator) ch1).expressions[r.nextInt(ch1.getArity())] = ch2;
+		else
+		if (!ch2.isLeaf()) ((Operator) ch2).expressions[r.nextInt(ch2.getArity())] = aux;
+		else
 		
 		children.add(ch1);
 		children.add(ch2);
