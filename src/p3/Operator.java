@@ -48,7 +48,6 @@ public abstract class Operator extends Expression {
 		
 		Operator op= null;
 		try {
-			//op = (Operator) wich.getConstructors()[0].newInstance(branch);
 			op = (Operator) wich.newInstance();
 			op.rebuild(branch);
 		} catch (Exception e) {
@@ -77,7 +76,15 @@ public abstract class Operator extends Expression {
 	
 	@Override
 	public Operator clone() {
-		return (Operator) (Object)this.clone();
+		Operator copy= null;
+		try {
+			Class<? extends Operator> myClass = this.getClass(); 
+			copy = (Operator) myClass.newInstance();
+			copy.rebuild(this.expressions.clone());
+		} catch (Exception e) {
+			System.out.println(e+" >> revisar Operator::clone");
+		}
+		return copy;
 	}
 	
 	private static int extenderArity(Class<? extends Operator> c){

@@ -8,6 +8,10 @@ public abstract class Expression extends Individual {
 	protected static boolean enabledIf= true;
 	protected static int maxDepth = 5;
 	
+	public Expression(){
+		
+	}
+	
 	/**
 	 * Returns a new Random Expression of the default maxDepth.
 	 * You can change this depth using the static method 'setMaxDepth(int)'.
@@ -18,8 +22,7 @@ public abstract class Expression extends Individual {
 	
 	/**
 	 * This creates a new Expression with a 'maxDepth' size.
-	 * Some of its branches can be shorter:
-	 * 	0.25 of the nodes are Leaf before then reach the depth.
+	 * Some of its branches can be shorter.
 	 */
 	public static Expression generateRandomTree(int maxDepth){
 		if(maxDepth<=Leaf.depth||Math.random()<.25*(maxDepth/Expression.maxDepth))

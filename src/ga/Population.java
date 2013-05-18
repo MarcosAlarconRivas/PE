@@ -4,6 +4,8 @@ import ga.replacement.SurvivalOfTheFittest;
 
 import java.util.Arrays;
 
+import p3.Expression;
+
 public class Population {
 	//copied elite creatures (they are also in people).
 	Individual elite[] = null;
@@ -40,7 +42,10 @@ public class Population {
 		
 		for (int i=0; i<numOfIndividuals; i++) 
 			try {
-				people[i]= fitness.specie().newInstance();
+				if(fitness.specie().isAssignableFrom(Expression.class))
+					people[i]= Expression.generateRandomTree();
+				else 
+					people[i]= fitness.specie().newInstance();
 			}catch (Exception e) {
 				System.out.println(e);
 			}
