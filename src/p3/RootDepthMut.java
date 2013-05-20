@@ -1,27 +1,20 @@
 package p3;
 
 import java.util.Random;
+
 import ga.Individual;
 import ga.Mutation;
-/**
- * This does same as Mut1 except it makes the mutation at random depth.
- */
-public class Mut2 extends Mutation {
 
-	public Mut2(double baseProb, double inbreedingControl,
-			double annealingControl) {
+public class RootDepthMut extends Mutation {
+
+	public RootDepthMut(double baseProb, double inbreedingControl, 
+			double annealingControl) { //prob, endogamia, enfriamiento
 		super(baseProb, inbreedingControl, annealingControl);
 	}
 
 	@Override
-	protected void mutate(Individual i) {
-		Expression ex = (Expression)i;
-		Random r = new Random();
-		int depth =r.nextInt(ex.depth());
-		while(!ex.isLeaf()&&depth>0){
-			ex= ((Operator)ex).expressions[r.nextInt(ex.getArity())];
-			depth--;
-		}
+	protected void mutate(Individual indiv) {
+		Expression ex = ((Expression) indiv);
 		if (!ex.isLeaf()){
 			if (ex instanceof If){
 				Expression aux = ((If) ex).expressions[1];
