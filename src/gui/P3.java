@@ -200,7 +200,7 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mut1", "Mut2" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cross1", "Cross2" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce aleatorio" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
