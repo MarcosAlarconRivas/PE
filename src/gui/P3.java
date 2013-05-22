@@ -21,7 +21,7 @@ import p3.Expression;
 import p3.MUX4;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
-import p3.RandomDepthCorss;
+import p3.RandomDepthCross;
 import p3.RootDepthCross;
 
 /**
@@ -69,7 +69,6 @@ public class P3 extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
@@ -131,15 +130,6 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel5.setText("Probabilidad de mutación");
 
-        jTextField5.setText("0.0001");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Probabilidad de mutación");
-
         jCheckBox1.setText("Elite");
 
         javax.swing.GroupLayout jLabel1Layout = new javax.swing.GroupLayout(jLabel1);
@@ -167,8 +157,7 @@ public class P3 extends javax.swing.JFrame {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel6)
                             .addComponent(jLabel5))
                         .addContainerGap())))
@@ -194,8 +183,7 @@ public class P3 extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jCheckBox1))
         );
@@ -397,10 +385,6 @@ public class P3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                           
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }                                           
@@ -477,7 +461,7 @@ public class P3 extends javax.swing.JFrame {
     	
     	item = jComboBox4.getSelectedIndex();
     	if (item==1) crossMethod = new RootDepthCross();
-        else crossMethod = new RandomDepthCorss();
+        else crossMethod = new RandomDepthCross();
 
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();
@@ -543,7 +527,6 @@ public class P3 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration                   
