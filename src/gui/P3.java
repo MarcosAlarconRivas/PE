@@ -479,6 +479,8 @@ public class P3 extends javax.swing.JFrame {
     	
     	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
     	//refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
+    	ga.search();
+    	System.out.print("aaaaaaaaaa");
     	
     	Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();

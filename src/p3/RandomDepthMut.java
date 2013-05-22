@@ -23,14 +23,15 @@ public class RandomDepthMut extends Mutation {
 			depth--;
 		}
 		if (!ex.isLeaf()){
-			if (ex instanceof If){
-				Expression aux = ((If) ex).expressions[1];
-				((If) ex).expressions[1]=((If) ex).expressions[2];
-				((If) ex).expressions[2]=aux;
-			} else if (ex instanceof Or){
-				ex = new And(((Or) ex).expressions);
-			} else if (ex instanceof And){
-				ex = new Or(((And) ex).expressions);
+			Operator op = (Operator) ex;
+			if (op instanceof If){
+				Expression aux = op.expressions[1];
+				op.expressions[1]=op.expressions[2];
+				op.expressions[2]=aux;
+			} else if (op instanceof Or){
+				op = new And(op.expressions);
+			} else if (op instanceof And){
+				op = new Or(op.expressions);
 			}
 		} else {
 			((Leaf) ex).x = (new Random()).nextInt(Leaf.names.length);
