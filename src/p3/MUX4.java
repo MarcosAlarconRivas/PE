@@ -11,8 +11,7 @@ public class MUX4 implements Fitness {
 	@Override
 	public double evaluate(Individual creature) {
 		Expression e = (Expression)creature;
-		return hits(e)^3/ Math.max(e.depth()/Expression.maxDepth, 1);
-		//return hits(e);
+		return hits(e)/ Math.max(e.depth()/Expression.maxDepth, 1);
 	}
 	
 	public static int hits(Individual cre){
