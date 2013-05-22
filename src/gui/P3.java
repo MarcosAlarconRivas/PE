@@ -92,7 +92,7 @@ public class P3 extends javax.swing.JFrame {
 
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel2.setText("Tama髈 de poblaci髇");
+        jLabel2.setText("Tama帽o de poblaci贸n");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("N髆ero de generaciones");
+        jLabel3.setText("N煤mero de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducci髇");
+        jLabel4.setText("Probabilidad de reproducci贸n");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutaci髇");
+        jLabel5.setText("Probabilidad de mutaci贸n");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +135,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutaci髇");
+        jLabel6.setText("Probabilidad de mutaci贸n");
 
         jCheckBox1.setText("Elite");
 
@@ -199,7 +199,7 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutaci髇 de ra韟", "Mutaci髇 con profundidad aleatoria" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutaci贸n de ra铆z", "Mutaci贸n con profundidad aleatoria" }));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce aleatorio" }));
 
@@ -214,9 +214,9 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel10.setText("Cruce");
 
-        jLabel9.setText("Funci髇 de mutaci髇");
+        jLabel9.setText("Funci贸n de mutaci贸n");
 
-        jLabel8.setText("Funci髇 de selecci髇");
+        jLabel8.setText("Funci贸n de selecci贸n");
 
         jLabel14.setText("Enfriamiento");
 
@@ -358,7 +358,7 @@ public class P3 extends javax.swing.JFrame {
             .addGap(0, 434, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gr醘ica", jInternalFrame1);
+        jTabbedPane1.addTab("Gr谩fica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
