@@ -13,29 +13,35 @@ public abstract class Expression extends Individual {
 	 * You can change this depth using the static method 'setMaxDepth(int)'.
 	 */
 	public static Expression generateRandomTree(){
-		return generateRandomTree(1, maxDepth);
-	}
-	
-	public static Expression generateRandomTree(int minDepth, int maxDepth){
-		if(maxDepth<=Leaf.depth)return new Leaf();
-		return Operator.generateRandomOp(maxDepth);
+		Expression r= generateRandomTree(maxDepth);
+		r.recalce();
+		return r;
 	}
 	
 	/**
 	 * This creates a new Expression with a 'maxDepth' size.
 	 * Some of its branches can be shorter.
 	 */
-	public static Expression generateRandomTree(int maxDepth){
-		if(maxDepth<=Leaf.depth||Math.random()<.25*(maxDepth/Expression.maxDepth))
+	static Expression generateRandomTree(int maxDepths){
+		return generateRandomTree(maxDepths, true);
+	}
+	
+	/**
+	 * This creates a new Expression with a 'maxDepth' size.
+	 * If 'leafs' some intern nodes are randomly generated as leafs.
+	 */
+	static Expression generateRandomTree(int maxDepth, boolean leafs){
+		if(maxDepth<=Leaf.depth)return leafs?(new Leaf()):null;
+		if(maxDepth<=Leaf.depth||(leafs&&Math.random()<.75*(maxDepth/Expression.maxDepth)))
 			return new Leaf();
-		return Operator.generateRandomOp(maxDepth);
+		return Operator.generateRandomOp(maxDepth, leafs);
 	}
 	
 	protected abstract boolean evaluate(boolean args[]);
 	
 	public abstract int depth();
 	
-	public abstract int measureDepth();
+	protected abstract int measureDepth();
 	
 	public boolean isLeaf(){
 		 return this instanceof Leaf;
@@ -47,6 +53,12 @@ public abstract class Expression extends Individual {
 	
 	public static void setMaxDepth(int depth){
 		maxDepth = depth;
+	}
+	
+	@Override
+	public double recalce(){
+		measureDepth();
+		return super.recalce();
 	}
 	
 	public abstract int getArity();

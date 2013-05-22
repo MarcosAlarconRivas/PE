@@ -33,6 +33,7 @@ public class RootBranchingMut extends Mutation {
 			e= exps[choosen];
 		}
 		exps[choosen]= Expression.generateRandomTree(Expression.maxDepth-e.depth());
+		e.recalce();
 	}
 
 }

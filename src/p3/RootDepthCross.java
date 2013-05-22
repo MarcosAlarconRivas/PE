@@ -34,6 +34,9 @@ public class RootDepthCross implements Crossover {
 			else ch1 = e2;
 			if (!ch2.isLeaf())((Operator) ch2).expressions[cut2] = e1;
 			else ch2 = e1;
+			
+			ch1.recalce();
+			ch2.recalce();
 
 			// add new trees in the list
 			children.add(ch1);

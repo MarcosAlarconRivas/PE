@@ -36,6 +36,7 @@ public class RandomDepthMut extends Mutation {
 		} else {
 			((Leaf) ex).x = (new Random()).nextInt(Leaf.names.length);
 		}
+		ex.recalce();
 	}
 
 }

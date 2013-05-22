@@ -36,14 +36,14 @@ public abstract class Operator extends Expression {
 		return s;
 	}
 
-	public static Operator generateRandomOp(int maxDepth){
+	public static Operator generateRandomOp(int maxDepth, boolean leafs){
 		Random r= new Random();
 		Class<? extends Operator> wich = extenders[r.nextInt(extenders.length-(enabledIf?0:1))];
 		int ar = extenderArity(wich);
 
 		Expression branch[] = new Expression[ar];
 		for(int i=0; i<ar; i++){
-			branch[i]= Expression.generateRandomTree(maxDepth-1);
+			branch[i]= Expression.generateRandomTree(maxDepth-1, leafs);
 		}
 		
 		Operator op= null;
@@ -98,7 +98,7 @@ public abstract class Operator extends Expression {
 	}
 	
 	public static void main(String args[]){
-		System.out.println(generateRandomTree(3));
+		System.out.println(generateRandomTree());
 
 	}
 	

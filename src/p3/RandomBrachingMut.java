@@ -21,13 +21,15 @@ public class RandomBrachingMut extends Mutation {
 	protected void mutate(Individual i) {
 		Expression e = (Expression) i;
 		Random r =  new Random();
-		if(e.isLeaf()){
+		if(e.isLeaf())
 			((Leaf)e).x= r.nextInt(Leaf.names.length);
-			return;
-		}//else
-		Operator op  = (Operator) e;
-		op.expressions[r.nextInt(op.expressions.length)]= Expression.generateRandomTree();
+		else{
+			Operator op  = (Operator) e;
+			op.expressions[r.nextInt(op.expressions.length)]= Expression.generateRandomTree();
+		}
+		e.recalce();
 	}
+	
 
 }
 
