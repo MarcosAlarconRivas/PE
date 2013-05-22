@@ -28,7 +28,7 @@ public class RandomBranchingMut extends Mutation {
 		int d = r.nextInt(e.depth());
 		int current = 0;
 		int choosen = 0;
-		Expression[] exps = ((Operator) e).expressions;;
+		Expression[] exps = null;
 		while (current < d && !e.isLeaf()) {
 			exps = ((Operator) e).expressions;
 			choosen = r.nextInt(exps.length);
