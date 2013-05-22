@@ -6,14 +6,19 @@ import ga.Individual;
 public abstract class Expression extends Individual {
 	public static final Fitness fitness= new MUX4();
 	protected static boolean enabledIf= true;
-	protected static int maxDepth = 5;
+	protected static int maxDepth = 3;
 	
 	/**
 	 * Returns a new Random Expression of the default maxDepth.
 	 * You can change this depth using the static method 'setMaxDepth(int)'.
 	 */
 	public static Expression generateRandomTree(){
-		return generateRandomTree(maxDepth);
+		return generateRandomTree(1, maxDepth);
+	}
+	
+	public static Expression generateRandomTree(int minDepth, int maxDepth){
+		if(maxDepth<=Leaf.depth)return new Leaf();
+		return Operator.generateRandomOp(maxDepth);
 	}
 	
 	/**
@@ -36,7 +41,7 @@ public abstract class Expression extends Individual {
 		 return this instanceof Leaf;
 	}
 	
-	public void setIfEnabled(boolean use_if){
+	public static void setIfEnabled(boolean use_if){
 		enabledIf = use_if;
 	}
 	
