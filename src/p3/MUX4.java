@@ -11,13 +11,18 @@ public class MUX4 implements Fitness {
 	@Override
 	public double evaluate(Individual creature) {
 		Expression e = (Expression)creature;
+		return 3*hits(e)/e.measureDepth();
+		//FIXME can i use depth()?
+	}
+	
+	public static int hits(Individual cre){
+		Expression e = (Expression)cre;
 		int hits=0;
 		for(int i=0; i<test.length; i++)
 			if(e.evaluate(test[i])==mux(test[i]))
 				hits++;
+		return hits;
 		
-		return 3*hits/e.measureDepth();
-		//FIXME can i use depth()?
 	}
 
 	private static boolean mux(boolean inputs[]){
