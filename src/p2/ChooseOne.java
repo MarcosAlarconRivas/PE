@@ -40,7 +40,7 @@ public class ChooseOne extends VarTriesMut {
 			newOne.rows[row][c1]= newOne.rows[row][c2];
 			newOne.rows[row][c2]= p;
 			
-			newOne.recalce();
+			newOne.recalcule();
 			
 			if(best==null||newOne.compareTo(best)>0)//choose the best one
 				best= newOne;

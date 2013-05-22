@@ -22,20 +22,20 @@ public class RandomBrachingMut extends Mutation {
 		Expression e = (Expression) i;
 		Random r = new Random();
 		if (e.isLeaf()) {
-			((Leaf) e).x = r.nextInt(Leaf.names.length);
+			((Leaf) e).rebuild(r.nextInt(Leaf.names.length));
 			return;
 		}// else
 		int d = r.nextInt(e.depth());
 		int current = 0;
 		int choosen = 0;
-		Expression[] exps = null;
+		Expression[] exps = ((Operator) e).expressions;;
 		while (current < d && !e.isLeaf()) {
 			exps = ((Operator) e).expressions;
 			choosen = r.nextInt(exps.length);
 			e = exps[choosen];
 		}
 		exps[choosen] = Expression.generateRandomTree(Expression.maxDepth-e.depth());
-		e.recalce();
+		e.recalcule();
 	}
 	
 	

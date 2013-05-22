@@ -22,7 +22,7 @@ public abstract class Individual implements Comparable<Individual>, Cloneable{
 	/**
 	 * recalces and @returns the fitness of this Individual.
 	 */
-	public double recalce(){
+	public double recalcule(){
 		return lastEvaluation=fitness.evaluate(this);
 	}
 	

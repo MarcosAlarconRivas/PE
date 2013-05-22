@@ -35,7 +35,7 @@ public class Simplest extends Mutation {
 					}
 				}
 			}
-			if(mutated)ind.recalce();
+			if(mutated)ind.recalcule();
 		}
 	}
 	

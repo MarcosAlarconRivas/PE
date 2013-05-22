@@ -51,8 +51,8 @@ public class RandomDepthCross implements Crossover {
 				ch2 = (Expression) e1.clone();
 			//if for both them are chosen their roots, nothing is done
 		
-			ch1.recalce();
-			ch2.recalce();
+			ch1.recalcule();
+			ch2.recalcule();
 
 			//add grafted trees into the list
 			children.add(ch1);

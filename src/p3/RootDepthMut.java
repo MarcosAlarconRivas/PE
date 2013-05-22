@@ -28,7 +28,7 @@ public class RootDepthMut extends Mutation {
 			 else if (op instanceof And)
 				op = new Or(op.expressions);
 		} 	
-		ex.recalce();
+		ex.recalcule();
 	}
 
 }

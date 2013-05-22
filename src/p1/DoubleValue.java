@@ -14,7 +14,7 @@ public class DoubleValue extends Individual {
 	
 	DoubleValue(DoubleChromosome gen[]){
 		genotype = gen;
-		recalce();
+		recalcule();
 	}
 	
 	private DoubleValue(DoubleChromosome gen[], double eval){
@@ -26,7 +26,7 @@ public class DoubleValue extends Individual {
 		genotype = new DoubleChromosome[numOfVars];
 		for(int i=0; i<numOfVars; i++)
 			genotype[i]=new DoubleChromosome(((DoubleFunction)fitness).genotypeBits[i]);
-		recalce();
+		recalcule();
 	}
 	
 	public boolean equals(Individual other){

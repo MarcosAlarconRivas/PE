@@ -8,16 +8,21 @@ public class Leaf extends Expression{
 	static final int depth= 0;
 	
 	public Leaf(){
-		x = (new Random()).nextInt(names.length);
+		this((new Random()).nextInt(names.length));
 	}
 	
 	public Leaf(int wich_var){
 		x = wich_var;
-		recalce();
+		recalcule();
 	}
 	
 	public Leaf clone(){
 		return new Leaf(x);
+	}
+	
+	public void rebuild(int x){
+		this.x=x;
+		recalcule();
 	}
 	
 	protected boolean evaluate(boolean args[]){

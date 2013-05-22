@@ -14,7 +14,7 @@ public abstract class Expression extends Individual {
 	 */
 	public static Expression generateRandomTree(){
 		Expression r= generateRandomTree(maxDepth, false);
-		r.recalce();
+		r.recalcule();
 		return r;
 	}
 	
@@ -56,9 +56,9 @@ public abstract class Expression extends Individual {
 	}
 	
 	@Override
-	public double recalce(){
+	public double recalcule(){
 		measureDepth();
-		return super.recalce();
+		return super.recalcule();
 	}
 	
 	public abstract int getArity();

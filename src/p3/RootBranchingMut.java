@@ -23,7 +23,7 @@ public class RootBranchingMut extends Mutation {
 		else{
 			Operator op  = (Operator) e;
 			op.expressions[r.nextInt(op.expressions.length)]= Expression.generateRandomTree();
-			op.recalce();
+			op.recalcule();
 		}
 	}
 }

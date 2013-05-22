@@ -52,7 +52,7 @@ public class Reverse extends VarTriesMut {
 				}
 			}
 			
-			newOne.recalce();
+			newOne.recalcule();
 			
 			if(newOne.compareTo(sudoku)>0){//choose the best one
 				sudoku.rows = newOne.rows;

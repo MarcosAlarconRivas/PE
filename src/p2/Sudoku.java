@@ -52,7 +52,7 @@ public class Sudoku extends Individual {
 			if(uncompleteMatrix)rows[i]= generateRow(rowsMatrix[i]);
 			else rows[i]= rowsMatrix[i];
 		
-		this.recalce();
+		this.recalcule();
 	}
 	
 	/**
