@@ -36,7 +36,7 @@ public abstract class Expression extends Individual {
 		 return this instanceof Leaf;
 	}
 	
-	public void setIfEnabled(boolean use_if){
+	public static void setIfEnabled(boolean use_if){
 		enabledIf = use_if;
 	}
 	

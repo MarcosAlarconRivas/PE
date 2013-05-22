@@ -16,6 +16,8 @@ import ga.selection.SUS;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
+
+import p3.Expression;
 import p3.MUX4;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
@@ -34,7 +36,7 @@ public class P3 extends javax.swing.JFrame {
     private Mutation mutationMthod;
     private int item;
     private Crossover crossMethod;
-    private boolean elite;
+    private boolean elite,ifchecked;
     private Selection selectionMethod;
     private Replacement repalceMthod;
     private double enfriamiento;
@@ -87,6 +89,7 @@ public class P3 extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -310,6 +313,8 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox2.setText("If");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -319,7 +324,11 @@ public class P3 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jCheckBox2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
@@ -327,21 +336,23 @@ public class P3 extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
+            );
 
         jTabbedPane1.addTab("Mux2_4", null, jPanel1, "");
 
@@ -453,7 +464,10 @@ public class P3 extends javax.swing.JFrame {
     	numGen = Long.parseLong(jTextField2.getText());
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
-
+    	ifchecked = jCheckBox2.isSelected();
+    	
+    	Expression.setIfEnabled(ifchecked);
+    	
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
@@ -477,9 +491,7 @@ public class P3 extends javax.swing.JFrame {
     			new Population(new MUX4(), numInd, elite),
     			new Reproduction(selectionMethod, crossMethod, repalceMthod), 
     			mutationMthod);
-    	
-    	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
-    	//refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
+
     	Individual bestOne =ga.search();
     	
     	Plot2DPanel plot = new Plot2DPanel();
@@ -504,6 +516,7 @@ public class P3 extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
