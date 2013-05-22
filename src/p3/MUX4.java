@@ -11,10 +11,8 @@ public class MUX4 implements Fitness {
 	@Override
 	public double evaluate(Individual creature) {
 		Expression e = (Expression)creature;
-		int h = hits(e);
-		//return (h^2)/(e.measureDepth()+1);
-		return h;
-		//FIXME can i use depth()?
+		return hits(e)^3/ Math.max(e.depth()+1-Expression.maxDepth, 1);
+		//return hits(e);
 	}
 	
 	public static int hits(Individual cre){
@@ -24,7 +22,6 @@ public class MUX4 implements Fitness {
 			if(e.evaluate(test[i])==mux(test[i]))
 				hits++;
 		return hits;
-		
 	}
 
 	private static boolean mux(boolean inputs[]){

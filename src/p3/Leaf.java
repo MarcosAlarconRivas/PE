@@ -13,6 +13,7 @@ public class Leaf extends Expression{
 	
 	public Leaf(int wich_var){
 		x = wich_var;
+		recalce();
 	}
 	
 	public Leaf clone(){

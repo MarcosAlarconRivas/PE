@@ -13,7 +13,7 @@ public abstract class Expression extends Individual {
 	 * You can change this depth using the static method 'setMaxDepth(int)'.
 	 */
 	public static Expression generateRandomTree(){
-		Expression r= generateRandomTree(maxDepth);
+		Expression r= generateRandomTree(maxDepth, false);
 		r.recalce();
 		return r;
 	}
@@ -31,7 +31,7 @@ public abstract class Expression extends Individual {
 	 * If 'leafs' some intern nodes are randomly generated as leafs.
 	 */
 	static Expression generateRandomTree(int maxDepth, boolean leafs){
-		if(maxDepth<=Leaf.depth)return leafs?(new Leaf()):null;
+		if(maxDepth<=Leaf.depth)return new Leaf();
 		if(maxDepth<=Leaf.depth||(leafs&&Math.random()<.75*(maxDepth/Expression.maxDepth)))
 			return new Leaf();
 		return Operator.generateRandomOp(maxDepth, leafs);

@@ -81,6 +81,7 @@ public abstract class Operator extends Expression {
 			Class<? extends Operator> myClass = this.getClass(); 
 			copy = (Operator) myClass.newInstance();
 			copy.rebuild(this.expressions.clone());
+			copy.lastEvaluation= lastEvaluation;
 		} catch (Exception e) {
 			System.out.println(e+" >> revisar Operator::clone");
 		}
