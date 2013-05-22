@@ -10,9 +10,9 @@ import java.util.Random;
  * * (with max depth equals to the original node)
  */
 
-public class RandomBrachingMut extends Mutation {
+public class RandomBranchingMut extends Mutation {
 
-	public RandomBrachingMut(double baseProb, double inbreedingControl,
+	public RandomBranchingMut(double baseProb, double inbreedingControl,
 			double annealingControl) {
 		super(baseProb, inbreedingControl, annealingControl);
 	}
@@ -37,8 +37,6 @@ public class RandomBrachingMut extends Mutation {
 		exps[choosen] = Expression.generateRandomTree(Expression.maxDepth-e.depth());
 		e.recalce();
 	}
-	
-	
 
 }
 
