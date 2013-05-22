@@ -14,26 +14,16 @@ public class RootBranchingMut extends Mutation {
 			double annealingControl) {
 		super(baseProb, inbreedingControl, annealingControl);
 	}
-
 	@Override
 	protected void mutate(Individual i) {
 		Expression e = (Expression) i;
 		Random r =  new Random();
-		if(e.isLeaf()){
+		if(e.isLeaf())
 			((Leaf)e).x= r.nextInt(Leaf.names.length);
-			return;
-		}//else
-		int d= r.nextInt(e.depth());
-		int current= 0;
-		int choosen= 0;
-		Expression[] exps = null;
-		while(current<d&&!e.isLeaf()){
-			exps= ((Operator) e).expressions;
-			choosen= r.nextInt(exps.length);
-			e= exps[choosen];
+		else{
+			Operator op  = (Operator) e;
+			op.expressions[r.nextInt(op.expressions.length)]= Expression.generateRandomTree();
+			op.recalce();
 		}
-		exps[choosen]= Expression.generateRandomTree(Expression.maxDepth-e.depth());
-		e.recalce();
 	}
-
 }
