@@ -34,8 +34,13 @@ public class RandomBranchingMut extends Mutation {
 			choosen = r.nextInt(exps.length);
 			e = exps[choosen];
 		}
-		exps[choosen] = Expression.generateRandomTree(Expression.maxDepth-e.depth());
-		e.recalcule();
+		if(exps==null)
+			((Operator) e).rebuild();
+		else{
+			exps[choosen] = Expression.generateRandomTree(Expression.maxDepth-e.depth());
+			e.recalcule();
+		}
+		
 	}
 
 }

@@ -22,8 +22,20 @@ public abstract class Operator extends Expression {
 			System.out.println("Numero de argumentos incorrecto");
 		else{
 			expressions=args;
-			measureDepth();
+			recalcule();
 		}
+	}
+	
+	/**
+	 * Warning: makes deeper trees than maxDepth
+	 */
+	void rebuild(){
+		int ar= getArity();
+		Expression e[]= new Expression[ar];
+		for(int i=0; i<ar; i++){
+			e[i]= Expression.generateRandomTree();
+		}
+		rebuild(e);
 	}
 
 	public String toString(){
