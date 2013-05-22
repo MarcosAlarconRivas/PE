@@ -19,7 +19,7 @@ import org.math.plot.Plot2DPanel;
 
 import p3.Expression;
 import p3.MUX4;
-import p3.RandomBrachingMut;
+import p3.RandomBranchingMut;
 import p3.RootBranchingMut;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
@@ -474,7 +474,7 @@ public class P3 extends javax.swing.JFrame {
     		case 0: mutationMthod = new RootDepthMut(probMut,endogamia,enfriamiento);break;
     		case 1: mutationMthod = new RandomDepthMut(probMut,endogamia,enfriamiento);break;
     		case 2: mutationMthod = new RootBranchingMut(probMut,endogamia,enfriamiento);break;
-    		default: mutationMthod = new RandomBrachingMut(probMut,endogamia,enfriamiento);break;
+    		default: mutationMthod = new RandomBranchingMut(probMut,endogamia,enfriamiento);break;
     	}
     	
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
