@@ -21,7 +21,7 @@ import p3.Expression;
 import p3.MUX4;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
-import p3.RandomDepthCorss;
+import p3.RandomDepthCross;
 import p3.RootDepthCross;
 
 /**
@@ -461,7 +461,7 @@ public class P3 extends javax.swing.JFrame {
     	
     	item = jComboBox4.getSelectedIndex();
     	if (item==1) crossMethod = new RootDepthCross();
-        else crossMethod = new RandomDepthCorss();
+        else crossMethod = new RandomDepthCross();
 
     	item = jComboBox5.getSelectedIndex();
     	if (item==0) repalceMthod = new SurvivalOfTheFittest();

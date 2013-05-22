@@ -6,7 +6,7 @@ import ga.Crossover;
 import ga.Individual;
 import ga.Population;
 
-public class RandomDepthCorss implements Crossover {
+public class RandomDepthCross implements Crossover {
 
 	@Override
 	public LinkedList<Individual> crossover(int[] parents, Population pop) {
