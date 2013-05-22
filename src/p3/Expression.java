@@ -6,7 +6,7 @@ import ga.Individual;
 public abstract class Expression extends Individual {
 	public static final Fitness fitness= new MUX4();
 	protected static boolean enabledIf= true;
-	protected static int maxDepth = 3;
+	protected static int maxDepth = 5;
 	
 	/**
 	 * Returns a new Random Expression of the default maxDepth.

@@ -25,11 +25,14 @@ public class RootBranchingMut extends Mutation {
 		}//else
 		int d= r.nextInt(e.depth());
 		int current= 0;
+		int choosen= 0;
+		Expression[] exps = null;
 		while(current<d&&!e.isLeaf()){
-			Expression[] exps= ((Operator) e).expressions;
-			e= exps[r.nextInt(exps.length)];
+			exps= ((Operator) e).expressions;
+			choosen= r.nextInt(exps.length);
+			e= exps[choosen];
 		}
-		op= Expression.generateRandomTree();
+		exps[choosen]= Expression.generateRandomTree(Expression.maxDepth-e.depth());
 	}
 
 }
