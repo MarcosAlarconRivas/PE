@@ -201,7 +201,7 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutación de raíz", "Mutación con profundidad aleatoria" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce aleatorio" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce con profundidad aleatoria" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -481,7 +481,6 @@ public class P3 extends javax.swing.JFrame {
     	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
     	//refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
     	Individual bestOne =ga.search();
-    	System.out.print("aaaaaaaaaa");
     	
     	Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
@@ -498,7 +497,7 @@ public class P3 extends javax.swing.JFrame {
         jInternalFrame1.setContentPane(plot);
         setVisible(true);
         
-        jTextField1.setText("Aciertos: "+MUX4.hits(bestOne)+'\n'+"Expresion: "+bestOne);
+        jTextArea1.setText("Expresion: "+bestOne+'\n'+"Aciertos: "+MUX4.hits(bestOne));
     }
 
     

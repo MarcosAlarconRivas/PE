@@ -17,7 +17,7 @@ public class RandomDepthMut extends Mutation {
 	protected void mutate(Individual i) {
 		Expression ex = (Expression)i;
 		Random r = new Random();
-		int depth =r.nextInt(ex.depth());
+		int depth =r.nextInt(ex.depth()>0?ex.depth():1);
 		while(!ex.isLeaf()&&depth>0){
 			ex= ((Operator)ex).expressions[r.nextInt(ex.getArity())];
 			depth--;
