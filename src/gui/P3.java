@@ -16,6 +16,8 @@ import ga.selection.SUS;
 import ga.selection.Selection;
 import ga.selection.Tournament;
 import org.math.plot.Plot2DPanel;
+
+import p3.Expression;
 import p3.MUX4;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
@@ -34,7 +36,7 @@ public class P3 extends javax.swing.JFrame {
     private Mutation mutationMthod;
     private int item;
     private Crossover crossMethod;
-    private boolean elite;
+    private boolean elite,ifchecked;
     private Selection selectionMethod;
     private Replacement repalceMthod;
     private double enfriamiento;
@@ -87,12 +89,13 @@ public class P3 extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel2.setText("Tama髈 de poblaci髇");
+        jLabel2.setText("Tama帽o de poblaci贸n");
 
         jTextField1.setText("100");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +104,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("N髆ero de generaciones");
+        jLabel3.setText("N煤mero de generaciones");
 
         jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +113,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Probabilidad de reproducci髇");
+        jLabel4.setText("Probabilidad de reproducci贸n");
 
         jTextField3.setText("0.5");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +129,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Probabilidad de mutaci髇");
+        jLabel5.setText("Probabilidad de mutaci贸n");
 
         jTextField5.setText("0.0001");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +138,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Probabilidad de mutaci髇");
+        jLabel6.setText("Probabilidad de mutaci贸n");
 
         jCheckBox1.setText("Elite");
 
@@ -199,9 +202,9 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutaci髇 de ra韟", "Mutaci髇 con profundidad aleatoria" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutaci贸n de ra铆z", "Mutaci贸n con profundidad aleatoria" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce aleatorio" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce con profundidad aleatoria" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -214,9 +217,9 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel10.setText("Cruce");
 
-        jLabel9.setText("Funci髇 de mutaci髇");
+        jLabel9.setText("Funci贸n de mutaci贸n");
 
-        jLabel8.setText("Funci髇 de selecci髇");
+        jLabel8.setText("Funci贸n de selecci贸n");
 
         jLabel14.setText("Enfriamiento");
 
@@ -310,6 +313,8 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox2.setText("If");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -319,7 +324,11 @@ public class P3 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jCheckBox2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
@@ -327,21 +336,23 @@ public class P3 extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
+            );
 
         jTabbedPane1.addTab("Mux2_4", null, jPanel1, "");
 
@@ -358,7 +369,7 @@ public class P3 extends javax.swing.JFrame {
             .addGap(0, 434, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Gr醘ica", jInternalFrame1);
+        jTabbedPane1.addTab("Gr谩fica", jInternalFrame1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -453,7 +464,10 @@ public class P3 extends javax.swing.JFrame {
     	numGen = Long.parseLong(jTextField2.getText());
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
-
+    	ifchecked = jCheckBox2.isSelected();
+    	
+    	Expression.setIfEnabled(ifchecked);
+    	
     	item = jComboBox2.getSelectedIndex();
     	if (item==0) selectionMethod = new Tournament(reproductionProb);
     	else if (item==1) selectionMethod = new Roulette(reproductionProb);
@@ -477,11 +491,8 @@ public class P3 extends javax.swing.JFrame {
     			new Population(new MUX4(), numInd, elite),
     			new Reproduction(selectionMethod, crossMethod, repalceMthod), 
     			mutationMthod);
-    	
-    	//poner en el tablero de la interfaz la matriz ga.search().fenotype()
-    	//refreshGUIMatrix(((Sudoku)ga.search()).fenotype());
+
     	Individual bestOne =ga.search();
-    	System.out.print("aaaaaaaaaa");
     	
     	Plot2DPanel plot = new Plot2DPanel();
         plot.removeAllPlots();
@@ -498,13 +509,14 @@ public class P3 extends javax.swing.JFrame {
         jInternalFrame1.setContentPane(plot);
         setVisible(true);
         
-        jTextField1.setText("Aciertos: "+MUX4.hits(bestOne)+'\n'+"Expresion: "+bestOne);
+        jTextArea1.setText("Expresion: "+bestOne+'\n'+"Aciertos: "+MUX4.hits(bestOne));
     }
 
     
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
