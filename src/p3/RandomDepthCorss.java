@@ -27,7 +27,7 @@ public class RandomDepthCorss implements Crossover {
 			Expression e1= ch1; //chosen node
 			Expression pe1= null;//parent node of e1
 			int b1=-1;//branch of pe1 that matches with e1
-			for (int depth=r.nextInt(e1.depth()); !e1.isLeaf()&&depth>0; depth--){
+			for (int depth=r.nextInt(e1.depth()>0?e1.depth():1); !e1.isLeaf()&&depth>0; depth--){
 				pe1= e1;
 				b1 = r.nextInt(e1.getArity());
 				e1 = ((Operator)e1).expressions[b1];
@@ -36,7 +36,7 @@ public class RandomDepthCorss implements Crossover {
 			Expression e2= ch2; //chosen node
 			Expression pe2= null;//parent node of e2
 			int b2=-1;//branch of pe2 that matches with e2
-			for (int depth=r.nextInt(e2.depth()); !e2.isLeaf()&&depth>0; depth--){
+			for (int depth=r.nextInt(e2.depth()>0?e2.depth():1); !e2.isLeaf()&&depth>0; depth--){
 				pe2= e2;
 				b2 = r.nextInt(e2.getArity());
 				e2 = ((Operator)e2).expressions[b2];

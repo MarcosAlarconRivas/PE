@@ -22,7 +22,6 @@ public class RootDepthCross implements Crossover {
 
 			//choose cut point, depending on number of args
 			int cut1=0, cut2=0;
-			//TODO arreglar
 			if(!ch1.isLeaf()) cut1 = r.nextInt(ch1.getArity());
 			if(!ch2.isLeaf()) cut2 = r.nextInt(ch2.getArity());
 

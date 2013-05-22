@@ -11,7 +11,7 @@ public class MUX4 implements Fitness {
 	@Override
 	public double evaluate(Individual creature) {
 		Expression e = (Expression)creature;
-		return 3*hits(e)/e.measureDepth();
+		return 3*hits(e)/(e.measureDepth()+1);
 		//FIXME can i use depth()?
 	}
 	
