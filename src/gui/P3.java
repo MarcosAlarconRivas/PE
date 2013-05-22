@@ -19,6 +19,8 @@ import org.math.plot.Plot2DPanel;
 
 import p3.Expression;
 import p3.MUX4;
+import p3.RandomBrachingMut;
+import p3.RootBranchingMut;
 import p3.RootDepthMut;
 import p3.RandomDepthMut;
 import p3.RandomDepthCross;
@@ -114,14 +116,14 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel4.setText("Probabilidad de reproducción");
 
-        jTextField3.setText("0.5");
+        jTextField3.setText("0.75");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("0.5");
+        jTextField4.setText("0.25");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -190,7 +192,7 @@ public class P3 extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutación de raíz", "Mutación con profundidad aleatoria" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutación de raíz", "Mutación con profundidad aleatoria", "Ramificación de raiz", "Ramificación de profindidad aleatoria" }));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce con profundidad aleatoria" }));
 
@@ -468,8 +470,12 @@ public class P3 extends javax.swing.JFrame {
     	else repalceMthod = new ChildrenRepalceParent();
     	
     	item = jComboBox3.getSelectedIndex();
-    	if (item==0) mutationMthod = new RootDepthMut(probMut,endogamia,enfriamiento);
-        else mutationMthod = new RandomDepthMut(probMut,endogamia,enfriamiento);
+    	switch(item){
+    		case 0: mutationMthod = new RootDepthMut(probMut,endogamia,enfriamiento);break;
+    		case 1: mutationMthod = new RandomDepthMut(probMut,endogamia,enfriamiento);break;
+    		case 2: mutationMthod = new RootBranchingMut(probMut,endogamia,enfriamiento);break;
+    		default: mutationMthod = new RandomBrachingMut(probMut,endogamia,enfriamiento);break;
+    	}
     	
     	GeneticAlgorithm ga = new GeneticAlgorithm(numGen, 
     			new Population(new MUX4(), numInd, elite),
