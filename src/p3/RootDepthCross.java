@@ -21,10 +21,10 @@ public class RootDepthCross implements Crossover {
 			Expression ch2 = (Expression) pop.people[parents[i+1]].clone();
 
 			//choose cut point, depending on number of args
-			int cut1, cut2;
+			int cut1=0, cut2=0;
 			//TODO arreglar
-			if(!)= r.nextInt(ch1.getArity());
-			int cut2 = r.nextInt(ch2.getArity());
+			if(!ch1.isLeaf()) cut1 = r.nextInt(ch1.getArity());
+			if(!ch2.isLeaf()) cut2 = r.nextInt(ch2.getArity());
 
 			//copy branches to change
 			Expression e1 =(Expression)((ch1.isLeaf())?ch1:((Operator)ch1).expressions[cut1]).clone();
