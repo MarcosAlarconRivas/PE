@@ -22,7 +22,7 @@ public class RandomBranchingMut extends Mutation {
 		Expression e = (Expression) i;
 		Random r = new Random();
 		if (e.isLeaf()) {
-			((Leaf) e).rebuild(r.nextInt(Leaf.names.length));
+			((Leaf) e).rebuild();
 			return;
 		}// else
 		int d = r.nextInt(e.depth());

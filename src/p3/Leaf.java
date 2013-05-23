@@ -3,7 +3,7 @@ package p3;
 import java.util.Random;
 
 public class Leaf extends Expression{
-	protected int x;
+	private int x;
 	protected static String names[] = {"a1","a0","d3","d2","d1","d0"};
 	static final int depth= 0;
 	
@@ -20,9 +20,13 @@ public class Leaf extends Expression{
 		return new Leaf(x);
 	}
 	
-	public void rebuild(int x){
+	protected void rebuild(int x){
 		this.x=x;
 		recalcule();
+	}
+	
+	public void rebuild(){
+		rebuild(new Random().nextInt(names.length));
 	}
 	
 	protected boolean evaluate(boolean args[]){

@@ -1,7 +1,5 @@
 package p3;
 
-import java.util.Random;
-
 import ga.Individual;
 import ga.Mutation;
 
@@ -17,9 +15,8 @@ public class RootBranchingMut extends Mutation {
 	@Override
 	protected void mutate(Individual i) {
 		Expression e = (Expression) i;
-		Random r =  new Random();
 		if(e.isLeaf())
-			((Leaf)e).x= r.nextInt(Leaf.names.length);
+			((Leaf)e).rebuild();
 		else{
 			Operator op  = (Operator) e;
 			op.rebuildBest(4);

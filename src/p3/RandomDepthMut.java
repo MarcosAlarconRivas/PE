@@ -34,7 +34,7 @@ public class RandomDepthMut extends Mutation {
 				op = new Or(op.expressions);
 			}
 		} else {
-			((Leaf) ex).x = (new Random()).nextInt(Leaf.names.length);
+			((Leaf) ex).rebuild();
 		}
 		ex.recalcule();
 	}

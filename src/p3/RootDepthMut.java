@@ -1,7 +1,5 @@
 package p3;
 
-import java.util.Random;
-
 import ga.Individual;
 import ga.Mutation;
 
@@ -16,7 +14,7 @@ public class RootDepthMut extends Mutation {
 	protected void mutate(Individual indiv) {
 		Expression ex = ((Expression) indiv);
 		if (ex.isLeaf())
-			((Leaf) ex).x = (new Random()).nextInt(Leaf.names.length);
+			((Leaf) ex).rebuild();
 		else{
 			Operator op = (Operator) ex;
 			if (ex instanceof If){
