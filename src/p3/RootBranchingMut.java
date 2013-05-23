@@ -22,8 +22,7 @@ public class RootBranchingMut extends Mutation {
 			((Leaf)e).x= r.nextInt(Leaf.names.length);
 		else{
 			Operator op  = (Operator) e;
-			op.expressions[r.nextInt(op.expressions.length)]= Expression.generateRandomTree();
-			op.recalcule();
+			op.rebuildBest(4);
 		}
 	}
 }

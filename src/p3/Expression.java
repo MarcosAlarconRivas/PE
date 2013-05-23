@@ -18,6 +18,17 @@ public abstract class Expression extends Individual {
 		return r;
 	}
 	
+	/** Generate numOfTries trees and returns the best one
+	public static Expression generateGoodTree(int numOfTries){
+		Expression best = null;
+		while(numOfTries-- >0){
+			Expression newTry= generateRandomTree();
+			if(best==null||best.compareTo(newTry)<0)
+				best= newTry;
+		}
+		return best;
+	}*/
+	
 	/**
 	 * This creates a new Expression with a 'maxDepth' size.
 	 * Some of its branches can be shorter.

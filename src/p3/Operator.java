@@ -27,6 +27,7 @@ public abstract class Operator extends Expression {
 	}
 	
 	/**
+	 * Regenerate the tree with new Random branches
 	 * Warning: makes deeper trees than maxDepth
 	 */
 	void rebuild(){
@@ -36,6 +37,25 @@ public abstract class Operator extends Expression {
 			e[i]= Expression.generateRandomTree();
 		}
 		rebuild(e);
+	}
+	/**
+	 * THe same that rebuild(), but tries it numOfTries times
+	 * and chooses the best 
+	 */
+	void rebuildBest(int numOfTries){
+		Expression[] best = expressions.clone();
+		int dep= depth();
+		double bestF= recalcule();
+		while(numOfTries-- >0){
+			Expression[] newTry= new Expression[getArity()];
+			for(int i=0; i<getArity(); i++)
+				newTry[i]= generateRandomTree(Expression.maxDepth-dep);
+			rebuild(newTry);
+			double newF= this.fitness();
+			if((fitness.maximization())?(bestF>newF):(bestF<newF))
+				best= newTry;
+		}
+		rebuild(best);
 	}
 
 	public String toString(){
