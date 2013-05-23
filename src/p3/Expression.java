@@ -18,7 +18,7 @@ public abstract class Expression extends Individual {
 		return r;
 	}
 	
-	/** Generate numOfTries trees and returns the best one
+	/** Generate numOfTries trees and returns the best one*/
 	public static Expression generateGoodTree(int numOfTries){
 		Expression best = null;
 		while(numOfTries-- >0){
@@ -27,7 +27,7 @@ public abstract class Expression extends Individual {
 				best= newTry;
 		}
 		return best;
-	}*/
+	}
 	
 	/**
 	 * This creates a new Expression with a 'maxDepth' size.
@@ -58,7 +58,10 @@ public abstract class Expression extends Individual {
 	}
 	
 	public static void setIfEnabled(boolean use_if){
+		if(enabledIf == use_if)return;
 		enabledIf = use_if;
+		if(!use_if)maxDepth+=2;
+		else maxDepth-=2;
 	}
 	
 	public static void setMaxDepth(int depth){

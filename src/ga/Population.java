@@ -43,7 +43,7 @@ public class Population {
 		for (int i=0; i<numOfIndividuals; i++) 
 			try {
 				if(fitness.specie().isAssignableFrom(Expression.class))
-					people[i]= Expression.generateRandomTree();
+					people[i]= Expression.generateGoodTree(3);
 				else 
 					people[i]= fitness.specie().newInstance();
 			}catch (Exception e) {
