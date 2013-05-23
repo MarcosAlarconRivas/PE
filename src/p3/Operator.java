@@ -74,7 +74,15 @@ public abstract class Operator extends Expression {
 		int ar = extenderArity(wich);
 
 		Expression branch[] = new Expression[ar];
-		for(int i=0; i<ar; i++){
+		int i=0;
+		if(ar>2 && Math.random()<.5*maxDepth/Expression.maxDepth){
+			int u=r.nextInt(2), c=1-u;
+			while(i<ar)	
+				branch[i++]=(i==1)?new Leaf(u):new If(new Leaf[]{new Leaf(c),Leaf.data(i<3),Leaf.data(false)});
+				
+		}
+		
+		for( ;i<ar; i++){
 			branch[i]= Expression.generateRandomTree(maxDepth-1, leafs);
 		}
 		

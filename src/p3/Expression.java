@@ -6,7 +6,7 @@ import ga.Individual;
 public abstract class Expression extends Individual {
 	public static final Fitness fitness= new MUX4();
 	protected static boolean enabledIf= true;
-	protected static int maxDepth = 2;
+	protected static int maxDepth = 3;
 	
 	/**
 	 * Returns a new Random Expression of the default maxDepth.
@@ -42,7 +42,6 @@ public abstract class Expression extends Individual {
 	 * If 'leafs' some intern nodes are randomly generated as leafs.
 	 */
 	static Expression generateRandomTree(int maxDepth, boolean leafs){
-		if(maxDepth<=Leaf.depth)return new Leaf();
 		if(maxDepth<=Leaf.depth||(leafs&&Math.random()<.75*(maxDepth/Expression.maxDepth)))
 			return new Leaf();
 		return Operator.generateRandomOp(maxDepth, leafs);
@@ -74,4 +73,19 @@ public abstract class Expression extends Individual {
 	
 	public abstract int getArity();
 
+	public double kinship(Individual individual) {
+		if(this==individual) return 1;
+		Expression other= (Expression) individual;
+		double k=0;
+		double mF= this.fitness();
+		double hF= other.fitness();
+		k=(64-Math.abs(mF-hF))*(mF+hF/2)/64;
+		k= k/Math.abs(depth()-other.depth());
+		if(this.isLeaf()^other.isLeaf()) k/= 3;
+		else if(isLeaf()){
+			if(((Leaf) this).equals((Leaf)other))k/= 2;
+		}else if(getClass() != other.getClass()) k/= 1.5;
+		
+		return k;
+	}
 }
