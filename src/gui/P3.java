@@ -98,7 +98,7 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel2.setText("Tamaño de población");
 
-        jTextField1.setText("100");
+        jTextField1.setText("3000");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -107,7 +107,7 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel3.setText("Número de generaciones");
 
-        jTextField2.setText("100");
+        jTextField2.setText("20");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -116,7 +116,7 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel4.setText("Probabilidad de reproducción");
 
-        jTextField3.setText("0.75");
+        jTextField3.setText("0.9");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -133,6 +133,7 @@ public class P3 extends javax.swing.JFrame {
         jLabel5.setText("Probabilidad de mutación");
 
         jCheckBox1.setText("Elite");
+        jCheckBox1.setSelected(true);
 
         javax.swing.GroupLayout jLabel1Layout = new javax.swing.GroupLayout(jLabel1);
         jLabel1.setLayout(jLabel1Layout);
@@ -193,9 +194,11 @@ public class P3 extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutación de raíz", "Mutación con profundidad aleatoria", "Ramificación de raiz", "Ramificación de profindidad aleatoria" }));
-
+        jComboBox3.setSelectedIndex(3);
+        
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cruce de raiz", "Cruce con profundidad aleatoria" }));
-
+        jComboBox4.setSelectedIndex(1);
+        
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supervivencia de los mejores", "Hijos reemplazan a los padres" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,6 +307,7 @@ public class P3 extends javax.swing.JFrame {
         });
 
         jCheckBox2.setText("If");
+        jCheckBox2.setSelected(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
