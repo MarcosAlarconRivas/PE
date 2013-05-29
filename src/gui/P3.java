@@ -43,6 +43,7 @@ public class P3 extends javax.swing.JFrame {
     private Replacement repalceMthod;
     private double enfriamiento;
     private double endogamia;
+	private int prof;
 
     /**
      * Creates new form P3
@@ -91,14 +92,16 @@ public class P3 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jCheckBox2 = new javax.swing.JCheckBox();
-
+        jTextField10 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setText("Tamaño de población");
 
-        jTextField1.setText("3000");
+        jTextField1.setText("150");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -107,7 +110,7 @@ public class P3 extends javax.swing.JFrame {
 
         jLabel3.setText("Número de generaciones");
 
-        jTextField2.setText("20");
+        jTextField2.setText("100");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -123,7 +126,7 @@ public class P3 extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setText("0.25");
+        jTextField4.setText("0.4");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -192,7 +195,8 @@ public class P3 extends javax.swing.JFrame {
         );
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tournament", "Roulette", "NonRepeatingRoulette", "SUS", "Ranking" }));
-
+        jComboBox2.setSelectedIndex(3);
+        
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mutación de raíz", "Mutación con profundidad aleatoria", "Ramificación de raiz", "Ramificación de profindidad aleatoria" }));
         jComboBox3.setSelectedIndex(3);
         
@@ -209,6 +213,7 @@ public class P3 extends javax.swing.JFrame {
         jLabel11.setText("Reemplazo");
 
         jLabel10.setText("Cruce");
+        jLabel16.setText("Profundidad");
 
         jLabel9.setText("Función de mutación");
 
@@ -229,6 +234,13 @@ public class P3 extends javax.swing.JFrame {
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
+            }
+        });
+        
+        jTextField10.setText("2");
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
             }
         });
 
@@ -261,8 +273,13 @@ public class P3 extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(134, 134, 134)))
+                                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +308,11 @@ public class P3 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
         );
 
         jTextArea1.setEditable(false);
@@ -405,7 +426,11 @@ public class P3 extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }                                           
+    }            
+    
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }          
 
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
@@ -455,6 +480,9 @@ public class P3 extends javax.swing.JFrame {
     	reproductionProb = Double.parseDouble(jTextField3.getText());
     	elite = jCheckBox1.isSelected();
     	ifchecked = jCheckBox2.isSelected();
+    	prof=Integer.parseInt(jTextField10.getText());
+    	
+    	Expression.setMaxDepth(prof);
     	
     	Expression.setIfEnabled(ifchecked);
     	
@@ -527,6 +555,7 @@ public class P3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -536,6 +565,7 @@ public class P3 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;

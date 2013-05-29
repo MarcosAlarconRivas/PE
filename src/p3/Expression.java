@@ -58,10 +58,10 @@ public abstract class Expression extends Individual {
 	}
 	
 	public static void setIfEnabled(boolean use_if){
-		if(enabledIf == use_if)return;
+		//if(enabledIf == use_if)return;
 		enabledIf = use_if;
-		if(!use_if)maxDepth+=2;
-		else maxDepth-=2;
+		//if(!use_if)maxDepth+=2;
+		//else maxDepth-=2;
 	}
 	
 	public static void setMaxDepth(int depth){
